@@ -19,6 +19,7 @@ export interface JobDrive {
   rounds: string[];
   postedDaysAgo: string;
   featured?: boolean;
+  posterImage?: string;
 }
 
 export interface CandidateApplication {
@@ -89,16 +90,10 @@ export interface CorporateInquiry {
 export interface PlacementTestimonial {
   id: string;
   candidateName: string;
-  initials: string;
-  placedCompany: string;
-  role: string;
-  packageCTC: string;
-  sector: 'IT' | 'Non-IT' | 'Healthcare';
-  location: string;
-  batchYear: string;
+  candidateEmail: string;
+  categoryBadge: string;
+  roleSubtitle: string;
   quote: string;
-  mentorFeedback: string;
-  verificationBadge: string;
 }
 
 export interface MockPrepModule {

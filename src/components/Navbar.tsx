@@ -59,8 +59,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onSelectSectorFilte
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Brand Logo */}
           <a href="#" className="flex items-center gap-3 group focus:outline-none">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 flex items-center justify-center shadow-md shadow-amber-500/20 group-hover:scale-105 transition-transform duration-200">
-              <span className="font-extrabold text-slate-950 text-lg tracking-tight font-mono">TR</span>
+            <div className="w-10 h-10 rounded-full bg-white p-0.5 border border-amber-400/50 shadow-md shadow-amber-500/20 group-hover:scale-105 transition-transform duration-200 overflow-hidden flex items-center justify-center">
+              <img
+                src="/logo.png"
+                alt="TalentRise Training and Placements Logo"
+                className="w-full h-full object-contain"
+              />
             </div>
             <div className="flex flex-col">
               <div className="flex items-center gap-1.5">
@@ -139,8 +143,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onSelectSectorFilte
             <div>
               <div className="flex items-center justify-between pb-5 border-b border-slate-800">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-amber-400 flex items-center justify-center text-slate-950 font-bold font-mono text-sm">
-                    TR
+                  <div className="w-9 h-9 rounded-full bg-white p-0.5 border border-amber-400/50 overflow-hidden flex items-center justify-center">
+                    <img
+                      src="/logo.png"
+                      alt="TalentRise Logo"
+                      className="w-full h-full object-contain"
+                    />
                   </div>
                   <div>
                     <span className="text-base font-bold text-white">Talent<span className="text-amber-400">Rise</span></span>

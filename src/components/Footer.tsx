@@ -25,8 +25,12 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onSelectSectorFilte
           {/* Col 1: Brand & Founder Credential (5 cols) */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-slate-950 font-bold font-mono text-base shadow-md">
-                TR
+              <div className="w-10 h-10 rounded-full bg-white p-0.5 border border-amber-400/50 flex items-center justify-center shadow-md overflow-hidden">
+                <img
+                  src="/logo.png"
+                  alt="TalentRise Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
                 <span className="text-xl font-bold text-white tracking-tight">

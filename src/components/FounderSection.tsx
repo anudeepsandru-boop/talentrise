@@ -40,19 +40,18 @@ export const FounderSection: React.FC = () => {
                 <span className="text-[11px] font-mono text-slate-400">Est. 2024</span>
               </div>
 
-              {/* Executive Monogram Seal (SA) */}
+              {/* Executive Founder Portrait & Verified Recruiter Seal */}
               <div className="relative mx-auto mb-6">
-                <div className="w-28 h-28 rounded-full bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-200 p-1 shadow-xl shadow-amber-500/20 flex items-center justify-center">
-                  <div className="w-full h-full rounded-full bg-[#0B132B] flex flex-col items-center justify-center border-2 border-amber-400/40">
-                    <span className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-200 font-mono tracking-wider">
-                      SA
-                    </span>
-                    <span className="text-[8px] uppercase tracking-widest text-slate-400 font-bold -mt-0.5">
-                      Executive Seal
-                    </span>
+                <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-200 p-1 shadow-2xl shadow-amber-500/25 flex items-center justify-center">
+                  <div className="w-full h-full rounded-full overflow-hidden bg-slate-900 border-2 border-amber-400/60 flex items-center justify-center">
+                    <img
+                      src="/founder.jpg"
+                      alt={FOUNDER_NAME}
+                      className="w-full h-full object-cover object-top"
+                    />
                   </div>
                 </div>
-                <div className="absolute -bottom-2 -right-2 bg-emerald-500 text-slate-950 p-1.5 rounded-full shadow-lg border-2 border-[#0B132B]" title="Active Recruiter Status">
+                <div className="absolute -bottom-1 -right-1 bg-emerald-500 text-slate-950 p-2 rounded-full shadow-lg border-2 border-[#0B132B]" title="Verified Recruiter Status">
                   <BadgeCheck className="w-4 h-4" />
                 </div>
               </div>

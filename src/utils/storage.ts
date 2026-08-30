@@ -1,10 +1,18 @@
-import { CandidateApplication, MockBookingSubmission, ReferralSubmission, CorporateInquiry } from '../types';
+import { CandidateApplication, MockBookingSubmission, ReferralSubmission, CorporateInquiry, JobDrive } from '../types';
+import { JOB_DRIVES } from '../data/jobDrives';
 
 const STORAGE_KEYS = {
   APPLICATIONS: 'talentrise_applications_v1',
   MOCK_BOOKINGS: 'talentrise_mock_bookings_v1',
   REFERRALS: 'talentrise_referrals_v1',
   CORPORATE_INQUIRIES: 'talentrise_corporate_inquiries_v1',
+  CUSTOM_JOBS: 'talentrise_custom_jobs_v1',
+  DELETED_JOB_IDS: 'talentrise_deleted_jobs_v1',
+};
+
+export const TALENTRISE_EVENTS = {
+  JOBS_UPDATED: 'talentrise_jobs_updated',
+  APPLICATIONS_UPDATED: 'talentrise_applications_updated',
 };
 
 // Seed sample applications
@@ -349,3 +357,84 @@ export function exportApplicationsAsCSV(): string {
   ]);
   return [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
 }
+
+export function getJobDrives(): JobDrive[] {
+  try {
+    const deletedRaw = localStorage.getItem(STORAGE_KEYS.DELETED_JOB_IDS);
+    const deletedIds: string[] = deletedRaw ? JSON.parse(deletedRaw) : [];
+
+    const customRaw = localStorage.getItem(STORAGE_KEYS.CUSTOM_JOBS);
+    const customJobs: JobDrive[] = customRaw ? JSON.parse(customRaw) : [];
+
+    // Filter preset jobs that haven't been deleted
+    const filteredPreset = JOB_DRIVES.filter(job => !deletedIds.includes(job.id));
+
+    // Combine custom jobs first (newer first) with filtered presets
+    return [...customJobs, ...filteredPreset];
+  } catch (e) {
+    return JOB_DRIVES;
+  }
+}
+
+export function saveJobDrive(job: Omit<JobDrive, 'id' | 'postedDaysAgo'> & { id?: string; postedDaysAgo?: string }): JobDrive {
+  const customRaw = localStorage.getItem(STORAGE_KEYS.CUSTOM_JOBS);
+  const currentCustom: JobDrive[] = customRaw ? JSON.parse(customRaw) : [];
+
+  const existingIndex = currentCustom.findIndex(j => j.id === job.id);
+  const newRecord: JobDrive = {
+    id: job.id || `drive-custom-${Date.now()}`,
+    postedDaysAgo: job.postedDaysAgo || 'Just now',
+    title: job.title,
+    companyOrProcess: job.companyOrProcess,
+    clientBadge: job.clientBadge || 'Direct Walk-in',
+    sector: job.sector,
+    ctc: job.ctc,
+    experience: job.experience,
+    location: job.location,
+    workMode: job.workMode,
+    shifts: job.shifts,
+    openingsCount: Number(job.openingsCount) || 1,
+    urgentHiring: Boolean(job.urgentHiring),
+    walkInDates: job.walkInDates || 'Immediate Scheduling via TalentRise',
+    eligibility: job.eligibility && job.eligibility.length > 0 ? job.eligibility : ['Any Graduate / Relevant stream'],
+    keyRequirements: job.keyRequirements && job.keyRequirements.length > 0 ? job.keyRequirements : ['Good communication and domain aptitude'],
+    rounds: job.rounds && job.rounds.length > 0 ? job.rounds : ['HR Screening', 'Client Fitment Round'],
+    featured: job.featured ?? true,
+    posterImage: job.posterImage,
+  };
+
+  let updatedCustom: JobDrive[];
+  if (existingIndex >= 0) {
+    updatedCustom = [...currentCustom];
+    updatedCustom[existingIndex] = newRecord;
+  } else {
+    updatedCustom = [newRecord, ...currentCustom];
+  }
+
+  localStorage.setItem(STORAGE_KEYS.CUSTOM_JOBS, JSON.stringify(updatedCustom));
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent(TALENTRISE_EVENTS.JOBS_UPDATED));
+  }
+  return newRecord;
+}
+
+export function deleteJobDrive(id: string): void {
+  // Check if it's in custom jobs
+  const customRaw = localStorage.getItem(STORAGE_KEYS.CUSTOM_JOBS);
+  const currentCustom: JobDrive[] = customRaw ? JSON.parse(customRaw) : [];
+  const filteredCustom = currentCustom.filter(j => j.id !== id);
+  localStorage.setItem(STORAGE_KEYS.CUSTOM_JOBS, JSON.stringify(filteredCustom));
+
+  // Also mark in deleted preset IDs
+  const deletedRaw = localStorage.getItem(STORAGE_KEYS.DELETED_JOB_IDS);
+  const deletedIds: string[] = deletedRaw ? JSON.parse(deletedRaw) : [];
+  if (!deletedIds.includes(id)) {
+    deletedIds.push(id);
+    localStorage.setItem(STORAGE_KEYS.DELETED_JOB_IDS, JSON.stringify(deletedIds));
+  }
+
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent(TALENTRISE_EVENTS.JOBS_UPDATED));
+  }
+}
+

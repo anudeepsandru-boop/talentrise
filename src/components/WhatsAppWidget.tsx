@@ -57,11 +57,13 @@ export const WhatsAppWidget: React.FC = () => {
           {/* Header */}
           <div className="bg-gradient-to-r from-[#0B132B] to-slate-900 p-4 border-b border-slate-800 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              {/* Executive Monogram Badge */}
+              {/* Executive Founder Avatar */}
               <div className="relative">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-300 text-slate-950 font-bold font-mono text-sm flex items-center justify-center shadow-md">
-                  SA
-                </div>
+                <img
+                  src="/founder.jpg"
+                  alt={FOUNDER_NAME}
+                  className="w-10 h-10 rounded-full object-cover object-top border-2 border-amber-400 shadow-md bg-slate-900"
+                />
                 <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-[#0F172A]" />
               </div>
 

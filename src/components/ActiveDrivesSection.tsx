@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { 
   Search, 
   Filter, 
@@ -16,10 +16,12 @@ import {
   Flame, 
   Building2, 
   Car, 
-  ArrowUpRight
+  ArrowUpRight,
+  Image as ImageIcon,
+  X
 } from 'lucide-react';
 import { JobDrive, SectorType } from '../types';
-import { JOB_DRIVES } from '../data/jobDrives';
+import { getJobDrives, TALENTRISE_EVENTS } from '../utils/storage';
 import { generateJobQuickApplyMessage, openWhatsApp, DISPLAY_PHONE, FOUNDER_NAME } from '../utils/whatsappHelper';
 
 interface ActiveDrivesSectionProps {
@@ -33,12 +35,21 @@ export const ActiveDrivesSection: React.FC<ActiveDrivesSectionProps> = ({
   selectedSector,
   onSelectSector,
 }) => {
+  const [allJobs, setAllJobs] = useState<JobDrive[]>(() => getJobDrives());
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedWorkMode, setSelectedWorkMode] = useState<string>('All');
-  const [selectedExperience, setSelectedExperience] = useState<string>('All');
+  const [previewPosterJob, setPreviewPosterJob] = useState<JobDrive | null>(null);
+
+  useEffect(() => {
+    const handleJobsUpdated = () => {
+      setAllJobs(getJobDrives());
+    };
+    window.addEventListener(TALENTRISE_EVENTS.JOBS_UPDATED, handleJobsUpdated);
+    return () => window.removeEventListener(TALENTRISE_EVENTS.JOBS_UPDATED, handleJobsUpdated);
+  }, []);
 
   const filteredJobs = useMemo(() => {
-    return JOB_DRIVES.filter(job => {
+    return allJobs.filter(job => {
       // Sector filter
       if (selectedSector !== 'All' && job.sector !== selectedSector) {
         return false;
@@ -61,7 +72,7 @@ export const ActiveDrivesSection: React.FC<ActiveDrivesSectionProps> = ({
       }
       return true;
     });
-  }, [selectedSector, selectedWorkMode, searchQuery]);
+  }, [allJobs, selectedSector, selectedWorkMode, searchQuery]);
 
   const handleQuickWhatsAppApply = (job: JobDrive) => {
     const msg = generateJobQuickApplyMessage(job.title, job.companyOrProcess, job.ctc, job.location);
@@ -69,10 +80,10 @@ export const ActiveDrivesSection: React.FC<ActiveDrivesSectionProps> = ({
   };
 
   const tabs: { id: SectorType; label: string; count: number }[] = [
-    { id: 'All', label: 'All Drives', count: JOB_DRIVES.length },
-    { id: 'IT', label: 'IT & Cloud Tech', count: JOB_DRIVES.filter(j => j.sector === 'IT').length },
-    { id: 'Non-IT', label: 'Non-IT & BPO / Voice', count: JOB_DRIVES.filter(j => j.sector === 'Non-IT').length },
-    { id: 'Healthcare', label: 'Healthcare & Medical Billing', count: JOB_DRIVES.filter(j => j.sector === 'Healthcare').length },
+    { id: 'All', label: 'All Drives', count: allJobs.length },
+    { id: 'IT', label: 'IT & Cloud Tech', count: allJobs.filter(j => j.sector === 'IT').length },
+    { id: 'Non-IT', label: 'Non-IT & BPO / Voice', count: allJobs.filter(j => j.sector === 'Non-IT').length },
+    { id: 'Healthcare', label: 'Healthcare & Medical Billing', count: allJobs.filter(j => j.sector === 'Healthcare').length },
   ];
 
   return (
@@ -89,7 +100,7 @@ export const ActiveDrivesSection: React.FC<ActiveDrivesSectionProps> = ({
               Active Hiring Drives & Job Board
             </h2>
             <p className="text-sm sm:text-base text-slate-400 mt-1 max-w-2xl">
-              Curated direct client drives in Hyderabad. Fast-track profile forwarding directly to hiring managers with <strong className="text-amber-400 font-medium">0% consultancy fees charged to candidates</strong>.
+              Curated direct client drives in Hyderabad. Fast-track profile forwarding and 1-on-1 interview mentoring directly with client hiring managers.
             </p>
           </div>
 
@@ -278,6 +289,23 @@ export const ActiveDrivesSection: React.FC<ActiveDrivesSectionProps> = ({
                       </div>
                     ))}
                   </div>
+
+                  {/* Optional Poster Image Attachment Preview */}
+                  {job.posterImage && (
+                    <div className="mb-4">
+                      <button
+                        type="button"
+                        onClick={() => setPreviewPosterJob(job)}
+                        className="w-full flex items-center justify-between p-2 rounded-xl bg-slate-950/70 hover:bg-slate-800/80 border border-slate-700/60 text-xs text-sky-300 hover:text-sky-200 transition-colors"
+                      >
+                        <div className="flex items-center gap-2">
+                          <ImageIcon className="w-3.5 h-3.5 text-amber-400" />
+                          <span>View Attached Requirement Poster</span>
+                        </div>
+                        <span className="text-[10px] text-amber-400 underline font-mono">Enlarge ↗</span>
+                      </button>
+                    </div>
+                  )}
                 </div>
 
                 {/* Card Actions */}
@@ -323,6 +351,46 @@ export const ActiveDrivesSection: React.FC<ActiveDrivesSectionProps> = ({
           </button>
         </div>
       </div>
+
+      {/* Poster Image Lightbox Modal */}
+      {previewPosterJob && previewPosterJob.posterImage && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm animate-in fade-in">
+          <div className="relative max-w-2xl w-full bg-[#0F172A] rounded-2xl border border-slate-700 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+            <div className="flex items-center justify-between p-4 border-b border-slate-800 bg-[#0B132B]">
+              <div>
+                <h4 className="text-sm font-bold text-white">{previewPosterJob.title}</h4>
+                <p className="text-xs text-slate-400">{previewPosterJob.companyOrProcess}</p>
+              </div>
+              <button
+                onClick={() => setPreviewPosterJob(null)}
+                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="p-4 overflow-y-auto flex items-center justify-center bg-slate-950">
+              <img
+                src={previewPosterJob.posterImage}
+                alt="Requirement Poster"
+                className="max-h-[65vh] w-auto object-contain rounded-lg border border-slate-800"
+              />
+            </div>
+            <div className="p-3 bg-[#0B132B] border-t border-slate-800 flex items-center justify-between">
+              <span className="text-xs text-slate-400 font-mono">Original Recruiter Flyer Attachment</span>
+              <button
+                onClick={() => {
+                  const job = previewPosterJob;
+                  setPreviewPosterJob(null);
+                  onOpenApplyModal(job);
+                }}
+                className="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs"
+              >
+                Apply for this Drive Now
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

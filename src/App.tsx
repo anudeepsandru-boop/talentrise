@@ -122,7 +122,7 @@ export default function App() {
         onSuccessToast={(title, msg) => addToast(title, msg, 'success')}
       />
 
-      {/* Recruiter Admin Portal Modal (Passcode: admin123) */}
+      {/* Recruiter Admin Portal Modal */}
       <AdminPortalModal
         isOpen={isAdminPortalOpen}
         onClose={() => setIsAdminPortalOpen(false)}

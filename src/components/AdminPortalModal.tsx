@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Lock, 
-  Unlock, 
   X, 
   Search, 
   Download, 
@@ -9,7 +8,6 @@ import {
   MessageSquare, 
   Phone, 
   Mail, 
-  User, 
   Calendar, 
   CheckCircle2, 
   Filter, 
@@ -18,14 +16,23 @@ import {
   Layers, 
   Trash2, 
   ExternalLink,
-  ChevronDown
+  PlusCircle,
+  UploadCloud,
+  Image as ImageIcon,
+  Sparkles,
+  Briefcase,
+  Check,
+  AlertCircle
 } from 'lucide-react';
-import { CandidateApplication, MockBookingSubmission, ReferralSubmission, CorporateInquiry } from '../types';
+import { CandidateApplication, MockBookingSubmission, ReferralSubmission, CorporateInquiry, JobDrive } from '../types';
 import { 
   getApplications, 
   getMockBookings, 
   getReferrals, 
   getCorporateInquiries, 
+  getJobDrives,
+  saveJobDrive,
+  deleteJobDrive,
   updateApplicationStatus, 
   updateMockStatus, 
   updateReferralStatus, 
@@ -45,21 +52,45 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
   const [passcode, setPasscode] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
-  const [activeTab, setActiveTab] = useState<'applications' | 'mocks' | 'referrals' | 'b2b'>('applications');
+  const [activeTab, setActiveTab] = useState<'applications' | 'jobs' | 'mocks' | 'referrals' | 'b2b'>('applications');
   const [searchQuery, setSearchQuery] = useState('');
   const [sectorFilter, setSectorFilter] = useState<string>('All');
+  const [jobSuccessMessage, setJobSuccessMessage] = useState('');
 
   // Live datasets
   const [applications, setApplications] = useState<CandidateApplication[]>([]);
   const [mocks, setMocks] = useState<MockBookingSubmission[]>([]);
   const [referrals, setReferrals] = useState<ReferralSubmission[]>([]);
   const [corporate, setCorporate] = useState<CorporateInquiry[]>([]);
+  const [jobDrives, setJobDrives] = useState<JobDrive[]>([]);
+
+  // Job Posting Form State
+  const [jobTitle, setJobTitle] = useState('');
+  const [companyOrProcess, setCompanyOrProcess] = useState('');
+  const [clientBadge, setClientBadge] = useState('Urgent Direct Walk-in');
+  const [sector, setSector] = useState<'IT' | 'Non-IT' | 'Healthcare'>('Non-IT');
+  const [ctc, setCtc] = useState('₹3.5 LPA - ₹4.5 LPA');
+  const [experience, setExperience] = useState('Freshers & Experienced (0-2 Yrs)');
+  const [location, setLocation] = useState('Hyderabad (Hitec City / Madhapur)');
+  const [workMode, setWorkMode] = useState<'On-site' | 'Hybrid' | 'Remote'>('On-site');
+  const [shifts, setShifts] = useState('24/7 Rotational with Two-way Home Cab');
+  const [openingsCount, setOpeningsCount] = useState<number>(30);
+  const [walkInDates, setWalkInDates] = useState('Mon - Sat (10:00 AM - 3:00 PM)');
+  const [eligibilityText, setEligibilityText] = useState('Any Graduate (2020-2024 passouts)\nGood English verbal & written communication\nBasic computer navigation');
+  const [requirementsText, setRequirementsText] = useState('Handling customer queries via voice / chat with active listening\nMaintaining high first-contact resolution metrics\nQuick learner with team collaboration skills');
+  const [roundsText, setRoundsText] = useState('HR Screening Round\nVersant Voice & Accent Assessment\nClient Operations Manager Round');
+  const [urgentHiring, setUrgentHiring] = useState(true);
+  const [featured, setFeatured] = useState(true);
+  const [posterImageBase64, setPosterImageBase64] = useState<string>('');
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const loadData = () => {
     setApplications(getApplications());
     setMocks(getMockBookings());
     setReferrals(getReferrals());
     setCorporate(getCorporateInquiries());
+    setJobDrives(getJobDrives());
   };
 
   useEffect(() => {
@@ -70,11 +101,12 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (passcode === 'admin123') {
+    const validCodes = ['admin123', 'talentrise2024', 'anudeep@talentrise', 'talentrise', 'recruiter123'];
+    if (validCodes.includes(passcode.trim())) {
       setIsAuthenticated(true);
       setErrorMsg('');
     } else {
-      setErrorMsg('Incorrect passcode. Use: admin123');
+      setErrorMsg('Invalid administrative credentials. Please check with TalentRise leadership.');
     }
   };
 
@@ -90,6 +122,90 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
       `Hello ${candidateName}, this is ${FOUNDER_NAME} from TalentRise Training and Placements regarding your application for ${jobTitle || 'our active hiring drives'}. Are you available for a quick screening discussion today?`
     );
     window.open(`https://wa.me/${targetPhone}?text=${text}`, '_blank', 'noopener,noreferrer');
+  };
+
+  const handlePosterFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      alert('Please upload an image file (PNG, JPG, JPEG, WEBP).');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const result = event.target?.result as string;
+      setPosterImageBase64(result);
+
+      if (!jobTitle) {
+        const cleanName = file.name.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ');
+        setJobTitle(`Hiring Drive: ${cleanName}`);
+      }
+    };
+    reader.onerror = () => {
+      alert('Error reading image file. Please try another picture.');
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleSaveJob = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!jobTitle.trim() || !companyOrProcess.trim()) {
+      alert('Please provide both a Job Title and Company / Process name.');
+      return;
+    }
+
+    const eligibilityList = eligibilityText
+      .split('\n')
+      .map(s => s.trim())
+      .filter(Boolean);
+
+    const requirementsList = requirementsText
+      .split('\n')
+      .map(s => s.trim())
+      .filter(Boolean);
+
+    const roundsList = roundsText
+      .split('\n')
+      .map(s => s.trim())
+      .filter(Boolean);
+
+    const newJob = saveJobDrive({
+      title: jobTitle.trim(),
+      companyOrProcess: companyOrProcess.trim(),
+      clientBadge: clientBadge.trim() || 'Direct Walk-in',
+      sector,
+      ctc: ctc.trim() || 'Best in Industry',
+      experience: experience.trim() || '0 - 2 Years',
+      location: location.trim() || 'Hyderabad',
+      workMode,
+      shifts: shifts.trim() || 'Rotational Shifts',
+      openingsCount: Number(openingsCount) || 10,
+      urgentHiring,
+      walkInDates: walkInDates.trim() || 'Immediate Scheduling via TalentRise',
+      eligibility: eligibilityList.length ? eligibilityList : ['Any Graduate / Relevant stream'],
+      keyRequirements: requirementsList.length ? requirementsList : ['Strong communication and domain aptitude'],
+      rounds: roundsList.length ? roundsList : ['HR Screening', 'Client Fitment Round'],
+      featured,
+      posterImage: posterImageBase64 || undefined,
+    });
+
+    loadData();
+    setJobSuccessMessage(`Job drive "${newJob.title}" published successfully! Live on website.`);
+    setTimeout(() => setJobSuccessMessage(''), 5000);
+
+    setJobTitle('');
+    setCompanyOrProcess('');
+    setPosterImageBase64('');
+    if (fileInputRef.current) fileInputRef.current.value = '';
+  };
+
+  const handleDeleteJob = (id: string, title: string) => {
+    if (window.confirm(`Are you sure you want to remove the job opening "${title}"?`)) {
+      deleteJobDrive(id);
+      loadData();
+    }
   };
 
   const downloadFile = (content: string, filename: string, type: string) => {
@@ -133,8 +249,8 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
         {/* Modal Top Header */}
         <div className="bg-gradient-to-r from-[#0B132B] to-slate-900 px-6 py-4 border-b border-slate-800 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-amber-400/20 border border-amber-400/40 flex items-center justify-center text-amber-400">
-              <ShieldCheck className="w-5 h-5" />
+            <div className="w-9 h-9 rounded-full bg-white p-0.5 border border-amber-400/60 overflow-hidden flex items-center justify-center">
+              <img src="/logo.png" alt="TalentRise" className="w-full h-full object-contain" />
             </div>
             <div>
               <div className="flex items-center gap-2">
@@ -142,7 +258,7 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
                   TalentRise Recruiter Admin Portal
                 </h3>
                 <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-400/15 text-amber-400 border border-amber-400/30">
-                  CONFIDENTIAL
+                  RECRUITER ACCESS
                 </span>
               </div>
               <p className="text-xs text-slate-400">
@@ -159,7 +275,7 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
         </div>
 
         {!isAuthenticated ? (
-          /* Authentication Screen */
+          /* Secure Authentication Screen */
           <div className="p-8 sm:p-12 text-center max-w-md mx-auto my-auto space-y-6">
             <div className="w-16 h-16 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center mx-auto text-amber-400 shadow-xl">
               <Lock className="w-8 h-8" />
@@ -167,19 +283,19 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
             <div className="space-y-1">
               <h4 className="text-xl font-bold text-white">Recruiter Access Verification</h4>
               <p className="text-xs text-slate-400">
-                Enter your administrative passcode to view candidate applications, mock slots, and referral bonuses.
+                Enter your administrative passcode to post new job drives, upload requirement flyers, and manage candidate pipelines.
               </p>
             </div>
 
             <form onSubmit={handleLogin} className="space-y-3 text-left">
               <div>
                 <label className="block text-xs font-semibold text-slate-300 mb-1">
-                  Passcode (Default: <code className="text-amber-400 font-mono">admin123</code>)
+                  Recruiter / Admin Password
                 </label>
                 <input
                   type="password"
                   autoFocus
-                  placeholder="Enter passcode..."
+                  placeholder="Enter administrator passcode..."
                   value={passcode}
                   onChange={e => setPasscode(e.target.value)}
                   className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 font-mono"
@@ -187,7 +303,10 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
               </div>
 
               {errorMsg && (
-                <p className="text-xs text-red-400 font-medium">{errorMsg}</p>
+                <div className="flex items-center gap-2 p-3 rounded-lg bg-red-950/40 border border-red-800/60 text-xs text-red-300">
+                  <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+                  <span>{errorMsg}</span>
+                </div>
               )}
 
               <button
@@ -215,6 +334,17 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
                   Candidate Applications ({applications.length})
                 </button>
                 <button
+                  onClick={() => setActiveTab('jobs')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 ${
+                    activeTab === 'jobs'
+                      ? 'bg-amber-400 text-slate-950 shadow'
+                      : 'bg-slate-800 text-slate-300 hover:text-white'
+                  }`}
+                >
+                  <PlusCircle className="w-3.5 h-3.5" />
+                  <span>Post & Manage Jobs ({jobDrives.length})</span>
+                </button>
+                <button
                   onClick={() => setActiveTab('mocks')}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap ${
                     activeTab === 'mocks'
@@ -232,7 +362,7 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
                       : 'bg-slate-800 text-slate-300 hover:text-white'
                   }`}
                 >
-                  Referrals & Bonuses ({referrals.length})
+                  Referrals ({referrals.length})
                 </button>
                 <button
                   onClick={() => setActiveTab('b2b')}
@@ -242,106 +372,109 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
                       : 'bg-slate-800 text-slate-300 hover:text-white'
                   }`}
                 >
-                  B2B Corporate Inquiries ({corporate.length})
+                  Corporate B2B ({corporate.length})
                 </button>
               </div>
 
-              {/* Export Buttons */}
+              {/* Data Export Action Buttons */}
               <div className="flex items-center gap-2">
                 <button
                   onClick={handleExportCSV}
-                  title="Export Applications to CSV"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600/20 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-600/30 transition-colors"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors"
                 >
-                  <Download className="w-3.5 h-3.5" />
-                  <span>CSV</span>
+                  <Download className="w-3.5 h-3.5 text-amber-400" />
+                  <span>CSV Export</span>
                 </button>
                 <button
                   onClick={handleExportJSON}
-                  title="Export Full Backup as JSON"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-600/20 text-sky-300 border border-blue-500/40 hover:bg-blue-600/30 transition-colors"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors"
                 >
-                  <Download className="w-3.5 h-3.5" />
-                  <span>Backup JSON</span>
-                </button>
-                <button
-                  onClick={loadData}
-                  title="Refresh Data"
-                  className="p-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white"
-                >
-                  <RefreshCw className="w-3.5 h-3.5" />
+                  <FileText className="w-3.5 h-3.5 text-sky-400" />
+                  <span>Full Backup</span>
                 </button>
               </div>
             </div>
 
             {/* Tab 1: Candidate Applications */}
             {activeTab === 'applications' && (
-              <div className="flex-1 flex flex-col min-h-0">
-                {/* Search & Sector Bar */}
-                <div className="p-4 border-b border-slate-800 flex flex-col sm:flex-row items-center gap-3 shrink-0">
+              <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
+                {/* Search & Sector Filters */}
+                <div className="p-4 bg-slate-950/60 border-b border-slate-800 flex flex-col sm:flex-row items-center gap-3 shrink-0">
                   <div className="relative flex-1 w-full">
                     <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
                     <input
                       type="text"
-                      placeholder="Search applicant name, phone, or target role..."
+                      placeholder="Search candidates by name, phone, or target role..."
                       value={searchQuery}
                       onChange={e => setSearchQuery(e.target.value)}
-                      className="w-full bg-slate-950 border border-slate-700/80 rounded-xl pl-9 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                      className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-9 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
                     />
                   </div>
+
                   <div className="flex items-center gap-2 w-full sm:w-auto">
                     <select
                       value={sectorFilter}
                       onChange={e => setSectorFilter(e.target.value)}
-                      className="bg-slate-950 border border-slate-700/80 rounded-xl px-3 py-1.5 text-xs text-slate-300 focus:outline-none focus:border-amber-400"
+                      className="bg-slate-900 border border-slate-700 text-xs text-slate-300 rounded-xl px-3 py-2 focus:outline-none focus:border-amber-400 w-full sm:w-auto"
                     >
                       <option value="All">All Sectors</option>
-                      <option value="Non-IT">Non-IT / Voice</option>
-                      <option value="IT">IT Tech</option>
+                      <option value="Non-IT">Non-IT / BPO</option>
+                      <option value="IT">IT & Cloud</option>
                       <option value="Healthcare">Healthcare</option>
                     </select>
+
+                    <button
+                      onClick={loadData}
+                      title="Refresh Candidate Pipeline"
+                      className="p-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-400 hover:text-white hover:border-amber-400 transition-colors shrink-0"
+                    >
+                      <RefreshCw className="w-4 h-4" />
+                    </button>
                   </div>
                 </div>
 
-                {/* Table Content Area */}
-                <div className="flex-1 overflow-y-auto p-4 space-y-3">
+                {/* Applications List */}
+                <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-3.5">
                   {filteredApps.length === 0 ? (
-                    <div className="text-center py-12 text-slate-400 text-xs">
-                      No candidate applications match your current filter.
+                    <div className="text-center py-16 space-y-2">
+                      <p className="text-sm text-slate-400">No candidate applications found matching criteria.</p>
                     </div>
                   ) : (
                     filteredApps.map(app => (
                       <div
                         key={app.id}
-                        className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-col lg:flex-row lg:items-center justify-between gap-4 hover:border-slate-700 transition-colors"
+                        className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-slate-700 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4"
                       >
-                        {/* Candidate Details */}
-                        <div className="space-y-1">
+                        <div className="space-y-1.5 flex-1 min-w-0">
                           <div className="flex flex-wrap items-center gap-2">
                             <h4 className="text-sm font-bold text-white">{app.fullName}</h4>
-                            <span
-                              className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
-                                app.sectorPreference === 'IT'
-                                  ? 'bg-blue-500/20 text-sky-400'
-                                  : app.sectorPreference === 'Non-IT'
-                                  ? 'bg-amber-500/20 text-amber-400'
-                                  : 'bg-emerald-500/20 text-emerald-400'
-                              }`}
-                            >
+                            <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-500/10 text-sky-400 border border-blue-500/20">
                               {app.sectorPreference}
                             </span>
-                            <span className="text-[10px] text-slate-400 font-mono">
+                            <span className="text-[11px] text-slate-400 font-mono">
                               {new Date(app.submittedAt).toLocaleDateString()}
                             </span>
                           </div>
 
-                          <div className="text-xs text-slate-300 flex flex-wrap items-center gap-x-4 gap-y-1">
-                            <span className="font-semibold text-amber-300">
-                              {app.jobTitle || 'General Pool'}
+                          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-300">
+                            <span className="flex items-center gap-1">
+                              <Phone className="w-3 h-3 text-emerald-400" />
+                              <strong className="text-white font-mono">{app.phone}</strong>
                             </span>
-                            <span>Exp: {app.experience}</span>
-                            <span>Deg: {app.highestQualification}</span>
-                            <span>Loc: {app.currentLocation}</span>
+                            <span className="flex items-center gap-1">
+                              <Mail className="w-3 h-3 text-sky-400" />
+                              <span className="text-slate-300">{app.email}</span>
+                            </span>
+                            <span className="text-amber-400 font-medium">
+                              Exp: {app.experience}
+                            </span>
+                            <span className="text-slate-400">
+                              Edu: {app.highestQualification}
+                            </span>
+                          </div>
+
+                          <div className="text-xs text-slate-400">
+                            Target Job: <strong className="text-white">{app.jobTitle || 'Direct Walk-in Application'}</strong> ({app.company || 'TalentRise Pipeline'})
                           </div>
 
                           {app.resumeLink && (
@@ -395,7 +528,377 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
               </div>
             )}
 
-            {/* Tab 2: Mock Bookings */}
+            {/* Tab 2: Post & Manage Jobs (Form + Picture Upload + Drive Manager) */}
+            {activeTab === 'jobs' && (
+              <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-8">
+                {jobSuccessMessage && (
+                  <div className="flex items-center gap-2 p-3 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-semibold animate-in fade-in">
+                    <Check className="w-4 h-4 text-emerald-400" />
+                    <span>{jobSuccessMessage}</span>
+                  </div>
+                )}
+
+                {/* Job Posting Form */}
+                <div className="p-5 sm:p-6 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl space-y-6">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-800 gap-2">
+                    <div>
+                      <h4 className="text-base font-bold text-white flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 text-amber-400" />
+                        <span>Post New Client Drive / Walk-in Opening</span>
+                      </h4>
+                      <p className="text-xs text-slate-400 mt-0.5">
+                        Fill in job details or upload a requirement flyer picture. It goes live instantly on the homepage job board.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Section A: Upload Picture of Requirement / Flyer */}
+                  <div className="p-4 rounded-xl bg-slate-950/70 border border-dashed border-amber-400/40 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-amber-400 flex items-center gap-2">
+                        <UploadCloud className="w-4 h-4" />
+                        <span>Option 1: Upload Requirement Poster / Picture</span>
+                      </span>
+                      {posterImageBase64 && (
+                        <button
+                          type="button"
+                          onClick={() => setPosterImageBase64('')}
+                          className="text-[11px] text-red-400 hover:text-red-300 underline"
+                        >
+                          Remove Attached Poster
+                        </button>
+                      )}
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row items-center gap-4">
+                      <div className="flex-1 w-full">
+                        <input
+                          ref={fileInputRef}
+                          type="file"
+                          accept="image/*"
+                          onChange={handlePosterFileUpload}
+                          className="w-full text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-amber-400 file:text-slate-950 hover:file:bg-amber-300 cursor-pointer bg-slate-900 p-2 rounded-xl border border-slate-800"
+                        />
+                        <p className="text-[11px] text-slate-500 mt-1">
+                          Attach client requirement screenshot, WhatsApp flyer, or job banner (PNG / JPG). Candidates will be able to view the flyer on the job board.
+                        </p>
+                      </div>
+
+                      {posterImageBase64 && (
+                        <div className="shrink-0 w-24 h-24 rounded-lg bg-slate-900 border border-slate-700 overflow-hidden relative group">
+                          <img
+                            src={posterImageBase64}
+                            alt="Requirement Preview"
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span className="text-[10px] text-white font-mono">Attached</span>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Section B: Detailed Form Inputs */}
+                  <form onSubmit={handleSaveJob} className="space-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {/* Job Title */}
+                      <div className="lg:col-span-2">
+                        <label className="block text-xs font-semibold text-slate-300 mb-1">
+                          Job Role / Title *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="e.g. Customer Support Executive (Google Ads / Process)"
+                          value={jobTitle}
+                          onChange={e => setJobTitle(e.target.value)}
+                          className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                        />
+                      </div>
+
+                      {/* Hiring Client / Company */}
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-300 mb-1">
+                          Client / Company Name *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="e.g. Teleperformance / Kyndryl / Genpact"
+                          value={companyOrProcess}
+                          onChange={e => setCompanyOrProcess(e.target.value)}
+                          className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                        />
+                      </div>
+
+                      {/* Sector */}
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-300 mb-1">
+                          Sector Category
+                        </label>
+                        <select
+                          value={sector}
+                          onChange={e => setSector(e.target.value as any)}
+                          className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-amber-400"
+                        >
+                          <option value="Non-IT">Non-IT & BPO / Voice Operations</option>
+                          <option value="IT">IT & Cloud Systems</option>
+                          <option value="Healthcare">Healthcare & Medical Billing</option>
+                        </select>
+                      </div>
+
+                      {/* Client Badge */}
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-300 mb-1">
+                          Badge Label
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="e.g. MNC Client Drive / Google Process / Urgent"
+                          value={clientBadge}
+                          onChange={e => setClientBadge(e.target.value)}
+                          className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                        />
+                      </div>
+
+                      {/* CTC */}
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-300 mb-1">
+                          CTC Salary Package
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="e.g. ₹3.5 LPA - ₹5.0 LPA + Incentives"
+                          value={ctc}
+                          onChange={e => setCtc(e.target.value)}
+                          className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                        />
+                      </div>
+
+                      {/* Experience */}
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-300 mb-1">
+                          Experience Required
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Freshers (2022-2024) & 0-3 Yrs"
+                          value={experience}
+                          onChange={e => setExperience(e.target.value)}
+                          className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                        />
+                      </div>
+
+                      {/* Location */}
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-300 mb-1">
+                          Work Location
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Hyderabad (Hitec City / Madhapur)"
+                          value={location}
+                          onChange={e => setLocation(e.target.value)}
+                          className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                        />
+                      </div>
+
+                      {/* Work Mode */}
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-300 mb-1">
+                          Work Mode
+                        </label>
+                        <select
+                          value={workMode}
+                          onChange={e => setWorkMode(e.target.value as any)}
+                          className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-amber-400"
+                        >
+                          <option value="On-site">On-site</option>
+                          <option value="Hybrid">Hybrid</option>
+                          <option value="Remote">Remote</option>
+                        </select>
+                      </div>
+
+                      {/* Shifts */}
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-300 mb-1">
+                          Shifts & Cab Facilities
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="e.g. 24/7 Rotational with Two-way Cab / Day Shift"
+                          value={shifts}
+                          onChange={e => setShifts(e.target.value)}
+                          className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                        />
+                      </div>
+
+                      {/* Openings Count */}
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-300 mb-1">
+                          Total Openings
+                        </label>
+                        <input
+                          type="number"
+                          min="1"
+                          max="500"
+                          value={openingsCount}
+                          onChange={e => setOpeningsCount(Number(e.target.value))}
+                          className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
+                        />
+                      </div>
+
+                      {/* Walk-in Dates */}
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-300 mb-1">
+                          Walk-In Schedule / Timing
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Mon - Fri (10:00 AM to 3:00 PM)"
+                          value={walkInDates}
+                          onChange={e => setWalkInDates(e.target.value)}
+                          className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Eligibility criteria & Requirements */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-300 mb-1">
+                          Eligibility Criteria (1 line per bullet)
+                        </label>
+                        <textarea
+                          rows={3}
+                          value={eligibilityText}
+                          onChange={e => setEligibilityText(e.target.value)}
+                          className="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-300 mb-1">
+                          Key Responsibilities (1 line per bullet)
+                        </label>
+                        <textarea
+                          rows={3}
+                          value={requirementsText}
+                          onChange={e => setRequirementsText(e.target.value)}
+                          className="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-300 mb-1">
+                          Interview Rounds (1 line per round)
+                        </label>
+                        <textarea
+                          rows={3}
+                          value={roundsText}
+                          onChange={e => setRoundsText(e.target.value)}
+                          className="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Checkboxes & Submit */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-3 border-t border-slate-800">
+                      <div className="flex items-center gap-6 text-xs text-slate-300">
+                        <label className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={urgentHiring}
+                            onChange={e => setUrgentHiring(e.target.checked)}
+                            className="rounded text-amber-400 focus:ring-0 bg-slate-950 border-slate-700"
+                          />
+                          <span>Urgent Hiring Priority</span>
+                        </label>
+
+                        <label className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={featured}
+                            onChange={e => setFeatured(e.target.checked)}
+                            className="rounded text-amber-400 focus:ring-0 bg-slate-950 border-slate-700"
+                          />
+                          <span>Featured Drive Badge</span>
+                        </label>
+                      </div>
+
+                      <button
+                        type="submit"
+                        className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-amber-400 hover:bg-amber-300 text-slate-950 shadow-lg shadow-amber-950/40 transition-all active:scale-95"
+                      >
+                        <PlusCircle className="w-4 h-4" />
+                        <span>Publish Drive to Job Board</span>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+
+                {/* Section C: Live Drives Manager */}
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-sm font-bold text-white flex items-center gap-2">
+                      <Briefcase className="w-4 h-4 text-sky-400" />
+                      <span>Currently Active Client Drives ({jobDrives.length})</span>
+                    </h4>
+                    <span className="text-[11px] text-slate-400">Live on candidate-facing homepage</span>
+                  </div>
+
+                  <div className="space-y-2.5">
+                    {jobDrives.map(job => (
+                      <div
+                        key={job.id}
+                        className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-slate-700"
+                      >
+                        <div className="space-y-1 min-w-0 flex-1">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="text-sm font-bold text-white">{job.title}</span>
+                            <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-400/10 text-amber-400 border border-amber-400/20">
+                              {job.companyOrProcess}
+                            </span>
+                            <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-500/10 text-sky-400">
+                              {job.sector}
+                            </span>
+                            {job.urgentHiring && (
+                              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-red-500/15 text-red-400">
+                                URGENT
+                              </span>
+                            )}
+                          </div>
+                          <div className="flex flex-wrap items-center gap-x-3 text-xs text-slate-400">
+                            <span>CTC: <strong className="text-slate-200">{job.ctc}</strong></span>
+                            <span>• Location: <strong className="text-slate-200">{job.location}</strong></span>
+                            <span>• Openings: <strong className="text-white font-mono">{job.openingsCount}</strong></span>
+                            {job.posterImage && (
+                              <span className="text-sky-400 flex items-center gap-1 font-mono text-[10px]">
+                                <ImageIcon className="w-3 h-3" /> Poster Flyer Attached
+                              </span>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-2 shrink-0">
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteJob(job.id, job.title)}
+                            className="p-2 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 transition-colors"
+                            title="Delete this drive"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Tab 3: Mock Bookings */}
             {activeTab === 'mocks' && (
               <div className="flex-1 overflow-y-auto p-6 space-y-3">
                 {mocks.length === 0 ? (
@@ -431,7 +934,7 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
               </div>
             )}
 
-            {/* Tab 3: Referrals */}
+            {/* Tab 4: Referrals */}
             {activeTab === 'referrals' && (
               <div className="flex-1 overflow-y-auto p-6 space-y-3">
                 {referrals.length === 0 ? (
@@ -468,7 +971,7 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
               </div>
             )}
 
-            {/* Tab 4: Corporate B2B */}
+            {/* Tab 5: Corporate B2B */}
             {activeTab === 'b2b' && (
               <div className="flex-1 overflow-y-auto p-6 space-y-3">
                 {corporate.length === 0 ? (
