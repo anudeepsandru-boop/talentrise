@@ -36,18 +36,18 @@ const INITIAL_APPLICATIONS: CandidateApplication[] = [
   },
   {
     id: 'app-102',
-    jobId: 'drive-kyndryl-cloud',
-    jobTitle: 'Cloud Infrastructure & L1 Systems Support Engineer',
-    company: 'Kyndryl Enterprise',
+    jobId: 'drive-capgemini-catia',
+    jobTitle: 'Capgemini CATIA Hiring Drive (Aeronautical & Mechanical)',
+    company: 'Capgemini',
     fullName: 'Venkata Sai Kumar',
     phone: '+91 81254 99887',
     email: 'venkata.saikumar@yahoo.com',
-    experience: '1.8 Years',
-    highestQualification: 'B.Tech CSE',
+    experience: 'Fresher (2025 Passout)',
+    highestQualification: 'B.Tech Mechanical',
     currentLocation: 'Hyderabad (Madhapur)',
     sectorPreference: 'IT',
     resumeLink: 'https://drive.google.com/file/d/sample-saikumar/view',
-    additionalNotes: 'AWS Certified Cloud Practitioner with basic Linux scripting skills.',
+    additionalNotes: 'Proficient in CATIA V5 part modeling and assembly drawings.',
     submittedAt: new Date(Date.now() - 5 * 3600000).toISOString(),
     status: 'Screened',
   },
@@ -144,9 +144,9 @@ const INITIAL_REFERRALS: ReferralSubmission[] = [
     candidatePhone: '+91 94400 67890',
     candidateEmail: 'tarun.kumar@gmail.com',
     candidateExperience: '2 Years Linux Support',
-    targetRoleOrSector: 'Kyndryl Cloud Systems',
-    candidateQualification: 'B.Tech IT',
-    notes: 'Completed L1 round, awaiting client final offer.',
+    targetRoleOrSector: 'Capgemini CATIA Engineering',
+    candidateQualification: 'B.Tech Mechanical',
+    notes: 'Completed Assessment rounds, awaiting client final offer.',
     submittedAt: new Date(Date.now() - 18 * 3600000).toISOString(),
     bonusStatus: 'Placed - Bonus Eligible',
     bonusAmountEstimate: '₹3,500 Bonus on Closure',
@@ -365,11 +365,23 @@ export function getJobDrives(): JobDrive[] {
 
     const customRaw = localStorage.getItem(STORAGE_KEYS.CUSTOM_JOBS);
     const customJobs: JobDrive[] = (customRaw ? JSON.parse(customRaw) : []).filter(
-      (j: JobDrive) => j.id !== 'drive-wipro-servicedesk' && !j.title?.toLowerCase().includes('global it service desk')
+      (j: JobDrive) =>
+        j.id !== 'drive-wipro-servicedesk' &&
+        j.id !== 'drive-kyndryl-cloud' &&
+        j.id !== 'drive-cye-global-tech' &&
+        !j.title?.toLowerCase().includes('global it service desk') &&
+        !j.title?.toLowerCase().includes('cloud infrastructure & l1') &&
+        !j.title?.toLowerCase().includes('junior react & node')
     );
 
     // Filter preset jobs that haven't been deleted
-    const filteredPreset = JOB_DRIVES.filter(job => !deletedIds.includes(job.id) && job.id !== 'drive-wipro-servicedesk');
+    const filteredPreset = JOB_DRIVES.filter(
+      job =>
+        !deletedIds.includes(job.id) &&
+        job.id !== 'drive-wipro-servicedesk' &&
+        job.id !== 'drive-kyndryl-cloud' &&
+        job.id !== 'drive-cye-global-tech'
+    );
 
     // Combine custom jobs first (newer first) with filtered presets
     return [...customJobs, ...filteredPreset];
