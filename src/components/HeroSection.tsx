@@ -103,7 +103,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectSector, active
               >
                 <Briefcase className="w-4 h-4 text-sky-400" />
                 <span>💼 IT & Cloud Tech</span>
-                <span className="text-[11px] opacity-75 hidden sm:inline">(CYE Global, Kyndryl, Wipro)</span>
+                <span className="text-[11px] opacity-75 hidden sm:inline">(Capgemini, Kyndryl, CYE)</span>
               </button>
 
               <button
@@ -189,6 +189,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectSector, active
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 opacity-85">
             {[
+              'Capgemini',
               'Teleperformance',
               'Google Process',
               'Accenture',
@@ -197,7 +198,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectSector, active
               'Genpact',
               'CYE Global',
               'Access Healthcare',
-              'Wipro',
               'Vee Technologies',
               'Omega Healthcare',
               'WNS',

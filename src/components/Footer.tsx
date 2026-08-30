@@ -108,7 +108,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onSelectSectorFilte
                   onClick={() => onSelectSectorFilter('IT')}
                   className="hover:text-sky-400 transition-colors block"
                 >
-                  💼 IT Cloud & Systems (Kyndryl / Wipro)
+                  💼 IT & Engineering (Capgemini / Kyndryl)
                 </a>
               </li>
             </ul>

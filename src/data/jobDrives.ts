@@ -2,6 +2,39 @@ import { JobDrive } from '../types';
 
 export const JOB_DRIVES: JobDrive[] = [
   {
+    id: 'drive-capgemini-catia',
+    title: 'Capgemini CATIA Hiring Drive (Aeronautical & Mechanical)',
+    companyOrProcess: 'Capgemini',
+    clientBadge: 'Tier-1 IT Giant',
+    sector: 'IT',
+    ctc: '₹5.5 LPA',
+    experience: 'Freshers (2025 / 2026 Batch Passouts)',
+    location: 'Pan India',
+    workMode: 'Hybrid',
+    shifts: 'Standard Day Shifts (5 Days Working)',
+    openingsCount: 50,
+    urgentHiring: true,
+    walkInDates: 'Online Virtual Hiring Drive (Immediate Slot Allocation)',
+    eligibility: [
+      'Qualification: BE / B.Tech (2025 / 2026 Batch Passouts)',
+      'Eligible Streams: Aeronautical Engineering & Mechanical Engineering',
+      'Gender: Open for both Male & Female candidates',
+      'Strong academic foundation in engineering design and analytical fundamentals',
+    ],
+    keyRequirements: [
+      'Working knowledge of CATIA V5 / V6 3D modeling, parametric part modeling, and assembly concepts',
+      'Understanding of mechanical engineering drawings, GD&T, and engineering tolerance specifications',
+      'Strong logical thinking and fluent verbal/written communication for client interactions',
+    ],
+    rounds: [
+      'Assessment Round 1 (Online Aptitude & Core Logic)',
+      'Assessment Round 2 (Technical & Domain Assessment)',
+      'Technical Interview Round (CATIA & Engineering Fundamentals)',
+    ],
+    postedDaysAgo: 'Just Posted',
+    featured: true,
+  },
+  {
     id: 'drive-tp-google',
     title: 'Customer Support Executive (Google Ads / Process)',
     companyOrProcess: 'Teleperformance (Google Process)',

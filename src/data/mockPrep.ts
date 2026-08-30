@@ -59,7 +59,7 @@ export const MOCK_PREP_MODULES: MockPrepModule[] = [
       'Curated list of client-specific technical question patterns',
       'GitHub repository audit and resume technical keywords optimization',
     ],
-    popularFor: 'Kyndryl, Wipro, CYE Global & Tech Partner applicants',
+    popularFor: 'Capgemini, Kyndryl, CYE Global & Tech Partner applicants',
   },
   {
     id: 'module-salary-docs',
