@@ -95,45 +95,30 @@ export const ReferralBonusSection: React.FC<ReferralBonusSectionProps> = ({ onSu
               Know someone looking for high-paying roles at Teleperformance, Google Process, Accenture, Kyndryl, or US Healthcare Medical Billing in Hyderabad? Refer them to TalentRise!
             </p>
 
-            {/* Reward Tiers Grid */}
+            {/* Program Highlights & Features */}
             <div className="space-y-3">
-              <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-amber-400/20 text-amber-400 font-bold flex items-center justify-center text-xs">
-                    ₹₹
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-white">Non-IT / BPO / Voice Closure</h4>
-                    <p className="text-[11px] text-slate-400">TP Google Process, Accenture, Concentrix</p>
-                  </div>
+              <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start gap-3.5">
+                <div className="w-8 h-8 rounded-lg bg-amber-400/15 text-amber-400 font-bold flex items-center justify-center shrink-0 mt-0.5">
+                  <CheckCircle2 className="w-4 h-4" />
                 </div>
-                <span className="text-xs font-mono font-bold text-amber-400">₹1,500 – ₹2,500</span>
+                <div>
+                  <h4 className="text-sm font-bold text-white">Direct Client Walk-in Priority</h4>
+                  <p className="text-xs text-slate-400 mt-0.5">
+                    Referred candidates are directly scheduled for screening rounds and mock interview preparation.
+                  </p>
+                </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center text-xs">
-                    ₹₹₹
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-white">Healthcare & Medical Billing</h4>
-                    <p className="text-[11px] text-slate-400">AR Caller, Medical Coding Trainee</p>
-                  </div>
+              <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start gap-3.5">
+                <div className="w-8 h-8 rounded-lg bg-sky-500/15 text-sky-400 font-bold flex items-center justify-center shrink-0 mt-0.5">
+                  <Sparkles className="w-4 h-4" />
                 </div>
-                <span className="text-xs font-mono font-bold text-emerald-400">₹2,000 – ₹3,500</span>
-              </div>
-
-              <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-blue-500/20 text-sky-400 font-bold flex items-center justify-center text-xs">
-                    ₹₹₹₹
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-white">IT & Cloud Systems Closure</h4>
-                    <p className="text-[11px] text-slate-400">Kyndryl, Full Stack, Cloud Support</p>
-                  </div>
+                <div>
+                  <h4 className="text-sm font-bold text-white">Free Interview Coaching & Resume Polish</h4>
+                  <p className="text-xs text-slate-400 mt-0.5">
+                    Every candidate receives complimentary Versant voice guidance and technical screening before client submission.
+                  </p>
                 </div>
-                <span className="text-xs font-mono font-bold text-sky-400">₹3,000 – ₹5,000</span>
               </div>
             </div>
 

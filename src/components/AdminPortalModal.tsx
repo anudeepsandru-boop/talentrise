@@ -22,7 +22,13 @@ import {
   Sparkles,
   Briefcase,
   Check,
-  AlertCircle
+  AlertCircle,
+  Eye,
+  EyeOff,
+  KeyRound,
+  LogOut,
+  Power,
+  CopyPlus
 } from 'lucide-react';
 import { CandidateApplication, MockBookingSubmission, ReferralSubmission, CorporateInquiry, JobDrive } from '../types';
 import { 
@@ -46,11 +52,15 @@ interface AdminPortalModalProps {
   onClose: () => void;
 }
 
+const ADMIN_SESSION_KEY = 'talentrise_admin_session_v2';
+
 export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onClose }) => {
+  // Authentication & Passcode State
   const [passcode, setPasscode] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
-  const [activeTab, setActiveTab] = useState<'applications' | 'jobs' | 'mocks' | 'referrals' | 'b2b'>('applications');
+  const [activeTab, setActiveTab] = useState<'jobs' | 'applications' | 'mocks' | 'referrals' | 'b2b'>('jobs');
   const [searchQuery, setSearchQuery] = useState('');
   const [sectorFilter, setSectorFilter] = useState<string>('All');
   const [jobSuccessMessage, setJobSuccessMessage] = useState('');
@@ -83,6 +93,22 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // Check saved session on mount
+  useEffect(() => {
+    try {
+      const savedSession = localStorage.getItem(ADMIN_SESSION_KEY);
+      if (savedSession) {
+        const sessionData = JSON.parse(savedSession);
+        // Valid if within 7 days
+        if (sessionData && sessionData.auth === true && (Date.now() - sessionData.timestamp < 7 * 24 * 3600 * 1000)) {
+          setIsAuthenticated(true);
+        }
+      }
+    } catch (e) {
+      // ignore
+    }
+  }, []);
+
   const loadData = () => {
     setApplications(getApplications());
     setMocks(getMockBookings());
@@ -99,13 +125,45 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    const validCodes = ['admin123', 'talentrise2024', 'anudeep@talentrise', 'talentrise', 'recruiter123'];
-    if (validCodes.includes(passcode.trim())) {
+    setErrorMsg('');
+    const inputPass = passcode.trim();
+
+    const validPasscodes = [
+      'admin123',
+      'talentrise2024',
+      'talentrise',
+      'anudeep@talentrise',
+      '832824',
+      '8328246487',
+      'recruiter123'
+    ];
+
+    if (validPasscodes.includes(inputPass)) {
       setIsAuthenticated(true);
       setErrorMsg('');
+      setPasscode('');
+      try {
+        localStorage.setItem(ADMIN_SESSION_KEY, JSON.stringify({
+          auth: true,
+          timestamp: Date.now()
+        }));
+      } catch (e) {
+        // ignore
+      }
     } else {
-      setErrorMsg('Invalid administrative credentials. Please check with TalentRise leadership.');
+      setErrorMsg('Invalid administrative passcode. Please check your credentials.');
     }
+  };
+
+  const handleLogout = () => {
+    try {
+      localStorage.removeItem(ADMIN_SESSION_KEY);
+    } catch (e) {
+      // ignore
+    }
+    setIsAuthenticated(false);
+    setPasscode('');
+    setErrorMsg('');
   };
 
   const handleStatusChange = (appId: string, newStatus: CandidateApplication['status']) => {
@@ -199,10 +257,52 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
+  // Quick Duplicate & Edit Job
+  const handleDuplicateJob = (job: JobDrive) => {
+    setJobTitle(`${job.title} (New Batch)`);
+    setCompanyOrProcess(job.companyOrProcess);
+    setSector(job.sector);
+    setCtc(job.ctc);
+    setExperience(job.experience);
+    setLocation(job.location);
+    setWorkMode(job.workMode);
+    setShifts(job.shifts);
+    setOpeningsCount(job.openingsCount);
+    setClientBadge('Urgent Direct Walk-in');
+    setUrgentHiring(true);
+    setFeatured(true);
+    setEligibilityText(job.eligibility.join('\n'));
+    setRequirementsText(job.keyRequirements.join('\n'));
+    setRoundsText(job.rounds.join('\n'));
+    if (job.posterImage) setPosterImageBase64(job.posterImage);
+
+    setJobSuccessMessage(`Loaded "${job.title}" into creation form. Modify details and publish.`);
+    setTimeout(() => setJobSuccessMessage(''), 4000);
+  };
+
+  // Quick Close / Re-open Drive Toggle
+  const handleToggleUrgentOrClose = (job: JobDrive) => {
+    const isCurrentlyUrgent = job.urgentHiring;
+    saveJobDrive({
+      ...job,
+      urgentHiring: !isCurrentlyUrgent,
+      clientBadge: isCurrentlyUrgent ? 'Positions Filled / Closed' : 'Urgent Direct Walk-in'
+    });
+    loadData();
+    setJobSuccessMessage(
+      isCurrentlyUrgent
+        ? `Marked "${job.title}" as Closed/Filled.`
+        : `Marked "${job.title}" as Urgent Active Hiring.`
+    );
+    setTimeout(() => setJobSuccessMessage(''), 4000);
+  };
+
   const handleDeleteJob = (id: string, title: string) => {
-    if (window.confirm(`Are you sure you want to remove the job opening "${title}"?`)) {
+    if (window.confirm(`Are you sure you want to permanently remove "${title}"? It will be taken down immediately from the homepage.`)) {
       deleteJobDrive(id);
       loadData();
+      setJobSuccessMessage(`Job opening "${title}" removed immediately.`);
+      setTimeout(() => setJobSuccessMessage(''), 4000);
     }
   };
 
@@ -266,55 +366,89 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
               </p>
             </div>
           </div>
-          <button
-            onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <div className="flex items-center gap-3">
+            {isAuthenticated && (
+              <button
+                onClick={handleLogout}
+                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold text-red-300 bg-red-950/40 hover:bg-red-900/60 border border-red-800/50 transition-colors"
+                title="Logout admin session"
+              >
+                <LogOut className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Logout</span>
+              </button>
+            )}
+            <button
+              onClick={onClose}
+              className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
         {!isAuthenticated ? (
-          /* Secure Authentication Screen */
-          <div className="p-8 sm:p-12 text-center max-w-md mx-auto my-auto space-y-6">
-            <div className="w-16 h-16 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center mx-auto text-amber-400 shadow-xl">
-              <Lock className="w-8 h-8" />
+          /* Secure Passcode Authentication Screen */
+          <div className="p-6 sm:p-10 text-center max-w-md mx-auto my-auto space-y-6">
+            <div className="w-16 h-16 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center mx-auto text-amber-400 shadow-xl relative">
+              <KeyRound className="w-8 h-8" />
+              <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center border-2 border-[#0F172A]">
+                <ShieldCheck className="w-3 h-3 text-white" />
+              </div>
             </div>
-            <div className="space-y-1">
-              <h4 className="text-xl font-bold text-white">Recruiter Access Verification</h4>
-              <p className="text-xs text-slate-400">
-                Enter your administrative passcode to post new job drives, upload requirement flyers, and manage candidate pipelines.
+            <div className="space-y-1.5">
+              <h4 className="text-xl font-bold text-white">TalentRise Recruiter Access</h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Enter your administrative credentials to post daily hiring drives, upload requirement flyers, and manage candidate pipelines.
               </p>
             </div>
 
-            <form onSubmit={handleLogin} className="space-y-3 text-left">
+            <form onSubmit={handleLogin} className="space-y-4 text-left">
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">
-                  Recruiter / Admin Password
+                <label className="block text-xs font-semibold text-slate-300 mb-1.5 flex items-center justify-between">
+                  <span>Recruiter Master Passcode</span>
+                  <span className="text-[10px] text-amber-400 font-mono">TalentRise Admin</span>
                 </label>
-                <input
-                  type="password"
-                  autoFocus
-                  placeholder="Enter administrator passcode..."
-                  value={passcode}
-                  onChange={e => setPasscode(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 font-mono"
-                />
+                <div className="relative">
+                  <Lock className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    autoFocus
+                    placeholder="Enter admin passcode..."
+                    value={passcode}
+                    onChange={e => setPasscode(e.target.value)}
+                    className="w-full bg-slate-950 border border-slate-700 rounded-xl pl-10 pr-10 py-2.5 text-sm text-white font-mono placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-2.5 text-slate-400 hover:text-slate-200"
+                    title={showPassword ? 'Hide password' : 'Show password'}
+                  >
+                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
+                </div>
               </div>
 
               {errorMsg && (
-                <div className="flex items-center gap-2 p-3 rounded-lg bg-red-950/40 border border-red-800/60 text-xs text-red-300">
-                  <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+                <div className="flex items-start gap-2 p-3 rounded-lg bg-red-950/40 border border-red-800/60 text-xs text-red-300">
+                  <AlertCircle className="w-4 h-4 shrink-0 text-red-400 mt-0.5" />
                   <span>{errorMsg}</span>
                 </div>
               )}
 
               <button
                 type="submit"
-                className="w-full py-2.5 rounded-xl text-sm font-bold bg-amber-400 hover:bg-amber-300 text-slate-950 shadow-md transition-all active:scale-95"
+                className="w-full py-2.5 rounded-xl text-sm font-bold bg-amber-400 hover:bg-amber-300 text-slate-950 shadow-md transition-all active:scale-95 flex items-center justify-center gap-2"
               >
-                Authorize & Open Portal
+                <CheckCircle2 className="w-4 h-4" />
+                <span>Authorize & Open Portal</span>
               </button>
+
+              <div className="pt-2 text-center">
+                <p className="text-[11px] text-slate-500">
+                  Authorized for <strong className="text-slate-400">{FOUNDER_NAME}</strong> & TalentRise Recruiting Team ({DISPLAY_PHONE})
+                </p>
+              </div>
             </form>
           </div>
         ) : (
@@ -841,59 +975,113 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
                 {/* Section C: Live Drives Manager */}
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <h4 className="text-sm font-bold text-white flex items-center gap-2">
-                      <Briefcase className="w-4 h-4 text-sky-400" />
-                      <span>Currently Active Client Drives ({jobDrives.length})</span>
-                    </h4>
-                    <span className="text-[11px] text-slate-400">Live on candidate-facing homepage</span>
+                    <div>
+                      <h4 className="text-sm font-bold text-white flex items-center gap-2">
+                        <Briefcase className="w-4 h-4 text-sky-400" />
+                        <span>Currently Active Client Drives ({jobDrives.length})</span>
+                      </h4>
+                      <p className="text-[11px] text-slate-400">
+                        Dynamic daily control: Post new batches, close filled positions immediately, or duplicate requirements.
+                      </p>
+                    </div>
+                    <span className="text-[11px] text-emerald-400 font-medium px-2 py-0.5 bg-emerald-950/40 border border-emerald-800/40 rounded">
+                      Live on Homepage
+                    </span>
                   </div>
 
-                  <div className="space-y-2.5">
-                    {jobDrives.map(job => (
-                      <div
-                        key={job.id}
-                        className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-slate-700"
-                      >
-                        <div className="space-y-1 min-w-0 flex-1">
-                          <div className="flex flex-wrap items-center gap-2">
-                            <span className="text-sm font-bold text-white">{job.title}</span>
-                            <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-400/10 text-amber-400 border border-amber-400/20">
-                              {job.companyOrProcess}
-                            </span>
-                            <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-500/10 text-sky-400">
-                              {job.sector}
-                            </span>
-                            {job.urgentHiring && (
-                              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-red-500/15 text-red-400">
-                                URGENT
-                              </span>
-                            )}
-                          </div>
-                          <div className="flex flex-wrap items-center gap-x-3 text-xs text-slate-400">
-                            <span>CTC: <strong className="text-slate-200">{job.ctc}</strong></span>
-                            <span>• Location: <strong className="text-slate-200">{job.location}</strong></span>
-                            <span>• Openings: <strong className="text-white font-mono">{job.openingsCount}</strong></span>
-                            {job.posterImage && (
-                              <span className="text-sky-400 flex items-center gap-1 font-mono text-[10px]">
-                                <ImageIcon className="w-3 h-3" /> Poster Flyer Attached
-                              </span>
-                            )}
-                          </div>
-                        </div>
-
-                        <div className="flex items-center gap-2 shrink-0">
-                          <button
-                            type="button"
-                            onClick={() => handleDeleteJob(job.id, job.title)}
-                            className="p-2 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 transition-colors"
-                            title="Delete this drive"
+                  {jobDrives.length === 0 ? (
+                    <div className="p-8 text-center bg-slate-900/60 rounded-xl border border-slate-800 text-slate-400 text-xs">
+                      No active job postings. Create one above to publish immediately to your candidates.
+                    </div>
+                  ) : (
+                    <div className="space-y-2.5">
+                      {jobDrives.map(job => {
+                        const isClosed = !job.urgentHiring && job.clientBadge.toLowerCase().includes('closed');
+                        return (
+                          <div
+                            key={job.id}
+                            className={`p-3.5 rounded-xl border flex flex-col md:flex-row md:items-center justify-between gap-3 transition-all ${
+                              isClosed
+                                ? 'bg-slate-950/80 border-slate-800/60 opacity-75'
+                                : 'bg-slate-900 border-slate-800 hover:border-slate-700'
+                            }`}
                           >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                            <div className="space-y-1.5 min-w-0 flex-1">
+                              <div className="flex flex-wrap items-center gap-2">
+                                <span className={`text-sm font-bold ${isClosed ? 'text-slate-400 line-through' : 'text-white'}`}>
+                                  {job.title}
+                                </span>
+                                <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-400/10 text-amber-400 border border-amber-400/20">
+                                  {job.companyOrProcess}
+                                </span>
+                                <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-500/10 text-sky-400">
+                                  {job.sector}
+                                </span>
+                                {job.urgentHiring && (
+                                  <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-red-500/15 text-red-400 border border-red-500/30 animate-pulse">
+                                    URGENT
+                                  </span>
+                                )}
+                                {isClosed && (
+                                  <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-800 text-slate-400">
+                                    CLOSED / FILLED
+                                  </span>
+                                )}
+                              </div>
+                              <div className="flex flex-wrap items-center gap-x-3 text-xs text-slate-400">
+                                <span>CTC: <strong className="text-slate-200">{job.ctc}</strong></span>
+                                <span>• Location: <strong className="text-slate-200">{job.location}</strong></span>
+                                <span>• Openings: <strong className="text-white font-mono">{job.openingsCount}</strong></span>
+                                {job.posterImage && (
+                                  <span className="text-sky-400 flex items-center gap-1 font-mono text-[10px]">
+                                    <ImageIcon className="w-3 h-3" /> Poster Flyer Attached
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+
+                            <div className="flex items-center gap-2 shrink-0 flex-wrap sm:flex-nowrap">
+                              {/* Quick Close / Reopen Toggle */}
+                              <button
+                                type="button"
+                                onClick={() => handleToggleUrgentOrClose(job)}
+                                className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold border transition-colors flex items-center gap-1 ${
+                                  job.urgentHiring
+                                    ? 'bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border-amber-500/30'
+                                    : 'bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
+                                }`}
+                                title={job.urgentHiring ? 'Mark as Closed immediately' : 'Reactivate urgent hiring'}
+                              >
+                                <Power className="w-3.5 h-3.5" />
+                                <span>{job.urgentHiring ? 'Close Immediately' : 'Re-open Drive'}</span>
+                              </button>
+
+                              {/* Duplicate into Form */}
+                              <button
+                                type="button"
+                                onClick={() => handleDuplicateJob(job)}
+                                className="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors flex items-center gap-1"
+                                title="Duplicate requirement to post new batch"
+                              >
+                                <CopyPlus className="w-3.5 h-3.5 text-sky-400" />
+                                <span>Duplicate</span>
+                              </button>
+
+                              {/* Delete Drive */}
+                              <button
+                                type="button"
+                                onClick={() => handleDeleteJob(job.id, job.title)}
+                                className="p-2 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 transition-colors"
+                                title="Permanently remove job opening"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
               </div>
             )}
