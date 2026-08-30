@@ -220,32 +220,5 @@ export const JOB_DRIVES: JobDrive[] = [
     ],
     rounds: ['Medical Terminology Test', 'Anatomy Assessment', 'Technical Coding Interview'],
     postedDaysAgo: '2 days ago',
-  },
-  {
-    id: 'drive-wipro-servicedesk',
-    title: 'Global IT Service Desk & Technical Support Engineer',
-    companyOrProcess: 'Wipro Global Infrastructure Services',
-    clientBadge: 'Tier-1 IT',
-    sector: 'IT',
-    ctc: '₹3.5 LPA – ₹5.2 LPA',
-    experience: '0 – 3 Years',
-    location: 'Hyderabad (Gachibowli)',
-    workMode: 'Hybrid',
-    shifts: '24/7 Rotational with Night Allowances',
-    openingsCount: 25,
-    urgentHiring: false,
-    walkInDates: 'Virtual Screening via TalentRise',
-    eligibility: [
-      'B.Tech / B.Sc / BCA / Any Graduate with technical flair',
-      'Good troubleshooting skills in Windows OS, Office 365, VPN, and Outlook configuration',
-      'Fluent verbal communication for international end-user troubleshooting',
-    ],
-    keyRequirements: [
-      'Remote desktop troubleshooting, software installation, and password reset workflows',
-      'Logging tickets in ServiceNow and routing complex network issues to L2 teams',
-      'Providing quick first-call resolution to enterprise employees across the globe',
-    ],
-    rounds: ['Versant / Communication Screening', 'Technical Fundamentals', 'HR Discussion'],
-    postedDaysAgo: '5 days ago',
   }
 ];

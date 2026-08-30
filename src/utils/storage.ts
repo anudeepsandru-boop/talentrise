@@ -364,10 +364,12 @@ export function getJobDrives(): JobDrive[] {
     const deletedIds: string[] = deletedRaw ? JSON.parse(deletedRaw) : [];
 
     const customRaw = localStorage.getItem(STORAGE_KEYS.CUSTOM_JOBS);
-    const customJobs: JobDrive[] = customRaw ? JSON.parse(customRaw) : [];
+    const customJobs: JobDrive[] = (customRaw ? JSON.parse(customRaw) : []).filter(
+      (j: JobDrive) => j.id !== 'drive-wipro-servicedesk' && !j.title?.toLowerCase().includes('global it service desk')
+    );
 
     // Filter preset jobs that haven't been deleted
-    const filteredPreset = JOB_DRIVES.filter(job => !deletedIds.includes(job.id));
+    const filteredPreset = JOB_DRIVES.filter(job => !deletedIds.includes(job.id) && job.id !== 'drive-wipro-servicedesk');
 
     // Combine custom jobs first (newer first) with filtered presets
     return [...customJobs, ...filteredPreset];
