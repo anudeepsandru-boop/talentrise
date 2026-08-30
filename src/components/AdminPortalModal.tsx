@@ -47,8 +47,6 @@ interface AdminPortalModalProps {
 }
 
 export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onClose }) => {
-  if (!isOpen) return null;
-
   const [passcode, setPasscode] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -94,10 +92,10 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
   };
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAuthenticated && isOpen) {
       loadData();
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, isOpen]);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -242,6 +240,8 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
     }
     return true;
   });
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/85 backdrop-blur-md overflow-y-auto">

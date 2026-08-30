@@ -12,8 +12,6 @@ interface JobApplyModalProps {
 }
 
 export const JobApplyModal: React.FC<JobApplyModalProps> = ({ job, isOpen, onClose, onSuccessToast }) => {
-  if (!isOpen) return null;
-
   const [formData, setFormData] = useState({
     fullName: '',
     phone: '',
@@ -28,6 +26,23 @@ export const JobApplyModal: React.FC<JobApplyModalProps> = ({ job, isOpen, onClo
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedApp, setSubmittedApp] = useState<CandidateApplication | null>(null);
+
+  // Sync sectorPreference whenever job changes
+  React.useEffect(() => {
+    if (job?.sector) {
+      setFormData(prev => ({
+        ...prev,
+        sectorPreference: job.sector as 'IT' | 'Non-IT' | 'Healthcare'
+      }));
+    }
+  }, [job]);
+
+  // Reset submission state when modal closes/opens
+  React.useEffect(() => {
+    if (!isOpen) {
+      setSubmittedApp(null);
+    }
+  }, [isOpen]);
 
   const qualificationOptions = [
     'B.Tech / B.E (CSE / IT / ECE / Mechanical / Civil)',
@@ -98,6 +113,8 @@ export const JobApplyModal: React.FC<JobApplyModalProps> = ({ job, isOpen, onClo
     });
     openWhatsApp(msg);
   };
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
