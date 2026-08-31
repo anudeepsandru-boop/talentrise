@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SectorType, JobDrive } from './types';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { ActiveDrivesSection } from './components/ActiveDrivesSection';
-import { HealthcareSpotlight } from './components/HealthcareSpotlight';
+import { MedicalSection } from './components/MedicalSection';
 import { MockPrepSection } from './components/MockPrepSection';
 import { FounderSection } from './components/FounderSection';
 import { ReferralBonusSection } from './components/ReferralBonusSection';
@@ -14,6 +14,7 @@ import { WhatsAppWidget } from './components/WhatsAppWidget';
 import { JobApplyModal } from './components/JobApplyModal';
 import { AdminPortalModal } from './components/AdminPortalModal';
 import { ToastContainer, ToastMessage } from './components/Toast';
+import { getJobDrives, TALENTRISE_EVENTS } from './utils/storage';
 
 export default function App() {
   const [selectedSector, setSelectedSector] = useState<SectorType>('All');
@@ -21,6 +22,17 @@ export default function App() {
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
   const [isAdminPortalOpen, setIsAdminPortalOpen] = useState(false);
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
+  const [allJobs, setAllJobs] = useState<JobDrive[]>(() => getJobDrives());
+
+  useEffect(() => {
+    const handleJobsUpdated = () => {
+      setAllJobs(getJobDrives());
+    };
+    window.addEventListener(TALENTRISE_EVENTS.JOBS_UPDATED, handleJobsUpdated);
+    return () => window.removeEventListener(TALENTRISE_EVENTS.JOBS_UPDATED, handleJobsUpdated);
+  }, []);
+
+  const medicalJobs = allJobs.filter(j => j.sector === 'Healthcare');
 
   const addToast = (title: string, message?: string, type: 'success' | 'error' | 'info' = 'success') => {
     const id = `toast-${Date.now()}-${Math.random()}`;
@@ -42,7 +54,14 @@ export default function App() {
 
   const handleSelectSector = (sector: SectorType) => {
     setSelectedSector(sector);
-    // Smooth scroll to drives section if from hero
+    if (sector === 'Healthcare') {
+      const el = document.getElementById('medical');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+    }
+    // Smooth scroll to drives section
     const el = document.getElementById('drives');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -75,9 +94,10 @@ export default function App() {
           onSelectSector={setSelectedSector}
         />
 
-        {/* 3. Healthcare & Medical Billing Dedicated Spotlight */}
-        <HealthcareSpotlight
-          onOpenApplyModal={() => handleOpenApplyModal()}
+        {/* 3. Dedicated Medical & US Healthcare RCM Section */}
+        <MedicalSection
+          onOpenApplyModal={handleOpenApplyModal}
+          medicalJobs={medicalJobs}
         />
 
         {/* 4. Mock Interview Preparation & 1-on-1 Coaching */}

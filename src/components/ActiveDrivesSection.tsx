@@ -81,9 +81,9 @@ export const ActiveDrivesSection: React.FC<ActiveDrivesSectionProps> = ({
 
   const tabs: { id: SectorType; label: string; count: number }[] = [
     { id: 'All', label: 'All Drives', count: allJobs.length },
-    { id: 'IT', label: 'IT & Cloud Tech', count: allJobs.filter(j => j.sector === 'IT').length },
-    { id: 'Non-IT', label: 'Non-IT & BPO / Voice', count: allJobs.filter(j => j.sector === 'Non-IT').length },
-    { id: 'Healthcare', label: 'Healthcare & Medical Billing', count: allJobs.filter(j => j.sector === 'Healthcare').length },
+    { id: 'IT', label: 'IT & Engineering', count: allJobs.filter(j => j.sector === 'IT').length },
+    { id: 'Non-IT', label: 'Non-IT / Operations', count: allJobs.filter(j => j.sector === 'Non-IT').length },
+    { id: 'Healthcare', label: 'Medical & Healthcare RCM', count: allJobs.filter(j => j.sector === 'Healthcare').length },
   ];
 
   return (
@@ -144,7 +144,7 @@ export const ActiveDrivesSection: React.FC<ActiveDrivesSectionProps> = ({
               <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
               <input
                 type="text"
-                placeholder="Search by role, company (e.g. Teleperformance, Kyndryl), skill, or location..."
+                placeholder="Search by role, company (e.g. Capgemini, Access Healthcare), skill, or location..."
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
                 className="w-full bg-slate-950/80 border border-slate-700/70 rounded-xl pl-10 pr-4 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
@@ -204,8 +204,12 @@ export const ActiveDrivesSection: React.FC<ActiveDrivesSectionProps> = ({
                   {/* Card Top Badges */}
                   <div className="flex items-center justify-between gap-2 mb-3">
                     <div className="flex flex-wrap items-center gap-2">
+                      <span className="px-2 py-0.5 rounded font-mono font-bold text-xs bg-slate-800 text-amber-300 border border-slate-700/80">
+                        {job.id}
+                      </span>
+
                       <span
-                        className={`px-2.5 py-1 rounded-md text-[11px] font-bold tracking-wide uppercase ${
+                        className={`px-2.5 py-0.5 rounded-md text-[11px] font-bold tracking-wide uppercase ${
                           job.sector === 'IT'
                             ? 'bg-blue-500/15 text-sky-400 border border-blue-500/30'
                             : job.sector === 'Non-IT'
@@ -213,7 +217,7 @@ export const ActiveDrivesSection: React.FC<ActiveDrivesSectionProps> = ({
                             : 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
                         }`}
                       >
-                        {job.sector === 'IT' ? '💼 IT & Tech' : job.sector === 'Non-IT' ? '🎧 Non-IT / BPO' : '🏥 Healthcare ITES'}
+                        {job.sector === 'IT' ? '💼 IT & Tech' : job.sector === 'Non-IT' ? '🎧 Non-IT / BPO' : '🏥 Healthcare'}
                       </span>
 
                       {job.urgentHiring && (

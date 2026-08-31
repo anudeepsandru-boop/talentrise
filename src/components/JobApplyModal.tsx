@@ -122,15 +122,22 @@ export const JobApplyModal: React.FC<JobApplyModalProps> = ({ job, isOpen, onClo
         {/* Header */}
         <div className="bg-gradient-to-r from-[#0B132B] to-slate-900 p-5 border-b border-slate-800 flex items-center justify-between">
           <div>
-            <span className="text-[11px] font-bold uppercase tracking-wider text-amber-400">
-              TalentRise Candidate Portal
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-400">
+                TalentRise Candidate Portal
+              </span>
+              {job?.id && (
+                <span className="px-2 py-0.5 rounded font-mono font-bold text-xs bg-slate-800 text-amber-300 border border-slate-700">
+                  {job.id}
+                </span>
+              )}
+            </div>
             <h3 className="text-lg font-bold text-white mt-0.5">
               {job ? `Apply: ${job.title}` : 'Direct Candidate Profile Submission'}
             </h3>
             {job && (
               <p className="text-xs text-slate-400 mt-0.5">
-                Company: <span className="text-slate-200 font-semibold">{job.companyOrProcess}</span> • {job.location}
+                Company: <span className="text-slate-200 font-semibold">{job.companyOrProcess}</span> • {job.location} • CTC: <span className="text-amber-400 font-medium">{job.ctc}</span>
               </p>
             )}
           </div>

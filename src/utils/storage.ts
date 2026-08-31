@@ -19,24 +19,7 @@ export const TALENTRISE_EVENTS = {
 const INITIAL_APPLICATIONS: CandidateApplication[] = [
   {
     id: 'app-101',
-    jobId: 'drive-tp-google',
-    jobTitle: 'Customer Support Executive (Google Ads / Process)',
-    company: 'Teleperformance',
-    fullName: 'Ananya Deshmukh',
-    phone: '+91 98490 11234',
-    email: 'ananya.deshmukh@gmail.com',
-    experience: 'Fresher (2024 Passout)',
-    highestQualification: 'B.Com Computers',
-    currentLocation: 'Hyderabad (Kukatpally)',
-    sectorPreference: 'Non-IT',
-    resumeLink: 'https://drive.google.com/file/d/sample-ananya-resume/view',
-    additionalNotes: 'Fluent in English and Hindi. Available for direct walk-in this Friday.',
-    submittedAt: new Date(Date.now() - 2 * 3600000).toISOString(),
-    status: 'Scheduled for Drive',
-  },
-  {
-    id: 'app-102',
-    jobId: 'drive-capgemini-catia',
+    jobId: 'TR1001',
     jobTitle: 'Capgemini CATIA Hiring Drive (Aeronautical & Mechanical)',
     company: 'Capgemini',
     fullName: 'Venkata Sai Kumar',
@@ -48,42 +31,76 @@ const INITIAL_APPLICATIONS: CandidateApplication[] = [
     sectorPreference: 'IT',
     resumeLink: 'https://drive.google.com/file/d/sample-saikumar/view',
     additionalNotes: 'Proficient in CATIA V5 part modeling and assembly drawings.',
-    submittedAt: new Date(Date.now() - 5 * 3600000).toISOString(),
+    submittedAt: new Date(Date.now() - 2 * 3600000).toISOString(),
     status: 'Screened',
   },
   {
+    id: 'app-102',
+    jobId: 'TR1001',
+    jobTitle: 'Capgemini CATIA Hiring Drive (Aeronautical & Mechanical)',
+    company: 'Capgemini',
+    fullName: 'Rahul Varma',
+    phone: '+91 98490 22331',
+    email: 'rahul.varma@gmail.com',
+    experience: 'Fresher (2026 Batch)',
+    highestQualification: 'B.Tech Aeronautical',
+    currentLocation: 'Hyderabad (Kukatpally)',
+    sectorPreference: 'IT',
+    resumeLink: 'https://drive.google.com/file/d/sample-rahul/view',
+    additionalNotes: 'Trained on 3D parametric modeling and aerodynamic surfaces.',
+    submittedAt: new Date(Date.now() - 5 * 3600000).toISOString(),
+    status: 'Scheduled for Drive',
+  },
+  {
     id: 'app-103',
-    jobId: 'drive-healthcare-medical-billing',
-    jobTitle: 'US Healthcare AR Caller & Medical Billing Associate',
-    company: 'Access Healthcare Process',
-    fullName: 'Rhea Christina',
+    jobId: 'TR1002',
+    jobTitle: 'Teleperformance Google Process Hiring Drive (Customer Care & Ops)',
+    company: 'Teleperformance',
+    fullName: 'Pooja Sharma',
     phone: '+91 97033 44556',
-    email: 'rhea.christina@outlook.com',
-    experience: '0.6 Years (AR Trainee)',
-    highestQualification: 'B.Pharm (2023)',
-    currentLocation: 'Secunderabad',
-    sectorPreference: 'Healthcare',
-    resumeLink: 'https://drive.google.com/file/d/sample-rhea/view',
-    additionalNotes: 'Comfortable with US night shifts and home cab drops.',
-    submittedAt: new Date(Date.now() - 9 * 3600000).toISOString(),
+    email: 'pooja.sharma@outlook.com',
+    experience: 'Fresher (2024 Passout)',
+    highestQualification: 'B.Com Computers',
+    currentLocation: 'Hyderabad (Begumpet)',
+    sectorPreference: 'Non-IT',
+    resumeLink: 'https://drive.google.com/file/d/sample-pooja/view',
+    additionalNotes: 'Ready for rotational shifts. Excellent verbal communication.',
+    submittedAt: new Date(Date.now() - 1 * 3600000).toISOString(),
     status: 'New',
   },
   {
     id: 'app-104',
-    jobId: 'drive-accenture-customer-support',
-    jobTitle: 'Customer Experience Associate (International Voice)',
-    company: 'Accenture Operations',
-    fullName: 'Siddharth Rao',
-    phone: '+91 99890 22331',
-    email: 'sid.rao@gmail.com',
-    experience: '2.5 Years (International BPO)',
-    highestQualification: 'BBA',
-    currentLocation: 'Hyderabad (Banjara Hills)',
+    jobId: 'TR1003',
+    jobTitle: 'Cognizant Google Mapping Associate – Non-Voice (Work From Home)',
+    company: 'Cognizant',
+    fullName: 'Ananya Deshmukh',
+    phone: '+91 88866 54321',
+    email: 'ananya.deshmukh@gmail.com',
+    experience: 'Fresher (2025 Batch)',
+    highestQualification: 'B.Sc Data Science',
+    currentLocation: 'Hyderabad (Gachibowli)',
     sectorPreference: 'Non-IT',
-    resumeLink: 'https://drive.google.com/file/d/sample-siddharth/view',
-    additionalNotes: 'Versant score 65+ on previous assessment.',
-    submittedAt: new Date(Date.now() - 14 * 3600000).toISOString(),
-    status: 'Selected',
+    resumeLink: 'https://drive.google.com/file/d/sample-ananya/view',
+    additionalNotes: 'Interested in Google Mapping non-voice workflow and permanent WFH option.',
+    submittedAt: new Date(Date.now() - 45 * 60000).toISOString(),
+    status: 'Screened',
+  },
+  {
+    id: 'app-105',
+    jobId: 'TR1013',
+    jobTitle: 'R1 RCM Medical Billing & RCM Associate (US Healthcare Process)',
+    company: 'R1 RCM',
+    fullName: 'K. Sai Teja',
+    phone: '+91 91234 56789',
+    email: 'saiteja.k@gmail.com',
+    experience: 'Fresher (2024 Passout)',
+    highestQualification: 'B.Sc Biotechnology',
+    currentLocation: 'Hyderabad (Kukatpally)',
+    sectorPreference: 'Healthcare',
+    resumeLink: 'https://drive.google.com/file/d/sample-saiteja/view',
+    additionalNotes: 'Comfortable with US night shifts and 2-way cab pickup from Kukatpally.',
+    submittedAt: new Date(Date.now() - 20 * 60000).toISOString(),
+    status: 'New',
   }
 ];
 
@@ -93,63 +110,33 @@ const INITIAL_MOCK_BOOKINGS: MockBookingSubmission[] = [
     fullName: 'Harsha Vardhan Reddy',
     phone: '+91 90300 88776',
     email: 'harsha.v@gmail.com',
-    targetRole: 'Google Process / Customer Support',
-    targetSector: 'Non-IT',
+    targetRole: 'Capgemini CATIA Design Engineering',
+    targetSector: 'IT',
     preferredDate: 'Tomorrow',
     preferredTimeSlot: '5:00 PM – 6:00 PM',
-    focusModule: 'Versant, SVAR & Voice & Accent Assessment Coaching',
-    currentStruggle: 'Getting stuck during repeat sentence and story retelling audio sections.',
+    focusModule: 'Technical Fundamentals & Scenario-Based Interview Simulation',
+    currentStruggle: 'Explaining CAD geometry modeling and engineering tolerances.',
     submittedAt: new Date(Date.now() - 3 * 3600000).toISOString(),
     status: 'Confirmed',
-  },
-  {
-    id: 'mock-202',
-    fullName: 'Naveen Chandra',
-    phone: '+91 88866 54321',
-    email: 'naveen.tech@gmail.com',
-    targetRole: 'React & Node.js Developer',
-    targetSector: 'IT',
-    preferredDate: 'This Saturday',
-    preferredTimeSlot: '11:00 AM – 12:00 PM',
-    focusModule: 'Technical Fundamentals & Scenario-Based Interview Simulation',
-    currentStruggle: 'Explaining state management and asynchronous lifecycle optimizations.',
-    submittedAt: new Date(Date.now() - 7 * 3600000).toISOString(),
-    status: 'Pending Slot',
   }
 ];
 
 const INITIAL_REFERRALS: ReferralSubmission[] = [
   {
     id: 'ref-301',
-    referrerName: 'Karthik Varma (Alumni)',
-    referrerPhone: '+91 98480 99881',
-    referrerUpiOrEmail: 'karthik.varma@okaxis',
-    candidateName: 'Akash Goud',
-    candidatePhone: '+91 80088 12345',
-    candidateEmail: 'akash.goud@gmail.com',
-    candidateExperience: 'Fresher (B.Sc)',
-    targetRoleOrSector: 'Customer Support / Google Process',
-    candidateQualification: 'B.Sc Statistics (2024)',
-    notes: 'Very energetic speaker with strong English fluency.',
-    submittedAt: new Date(Date.now() - 6 * 3600000).toISOString(),
-    bonusStatus: 'Interview In-Progress',
-    bonusAmountEstimate: '₹2,000 Bonus on Closure',
-  },
-  {
-    id: 'ref-302',
     referrerName: 'Sai Teja Mandava',
     referrerPhone: '+91 91212 34567',
     referrerUpiOrEmail: 'saiteja@paytm',
     candidateName: 'Tarun Kumar',
     candidatePhone: '+91 94400 67890',
     candidateEmail: 'tarun.kumar@gmail.com',
-    candidateExperience: '2 Years Linux Support',
+    candidateExperience: 'B.Tech Mechanical (2025)',
     targetRoleOrSector: 'Capgemini CATIA Engineering',
     candidateQualification: 'B.Tech Mechanical',
     notes: 'Completed Assessment rounds, awaiting client final offer.',
-    submittedAt: new Date(Date.now() - 18 * 3600000).toISOString(),
-    bonusStatus: 'Placed - Bonus Eligible',
-    bonusAmountEstimate: '₹3,500 Bonus on Closure',
+    submittedAt: new Date(Date.now() - 11 * 3600000).toISOString(),
+    bonusStatus: 'Bonus Disbursed',
+    bonusAmountEstimate: '₹3,000 Bonus Paid via UPI',
   }
 ];
 
@@ -358,29 +345,55 @@ export function exportApplicationsAsCSV(): string {
   return [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
 }
 
+export function generateNextJobId(): string {
+  try {
+    const allJobs = getJobDrives();
+    let highestNum = 1000;
+    allJobs.forEach(j => {
+      const match = j.id?.match(/^TR(\d+)$/i);
+      if (match) {
+        const num = parseInt(match[1], 10);
+        if (!isNaN(num) && num > highestNum) {
+          highestNum = num;
+        }
+      }
+    });
+    return `TR${highestNum + 1}`;
+  } catch (e) {
+    return 'TR1001';
+  }
+}
+
 export function getJobDrives(): JobDrive[] {
   try {
     const deletedRaw = localStorage.getItem(STORAGE_KEYS.DELETED_JOB_IDS);
     const deletedIds: string[] = deletedRaw ? JSON.parse(deletedRaw) : [];
 
+    const removedPresetIds = [
+      'drive-capgemini-catia',
+      'drive-wipro-servicedesk',
+      'drive-kyndryl-cloud',
+      'drive-cye-global-tech',
+      'drive-tp-google',
+      'drive-accenture-customer-support',
+      'drive-concentrix-banking',
+      'drive-genpact-customer-ops',
+      'drive-healthcare-medical-billing',
+      'drive-medical-coding-trainee',
+    ];
+
     const customRaw = localStorage.getItem(STORAGE_KEYS.CUSTOM_JOBS);
     const customJobs: JobDrive[] = (customRaw ? JSON.parse(customRaw) : []).filter(
       (j: JobDrive) =>
-        j.id !== 'drive-wipro-servicedesk' &&
-        j.id !== 'drive-kyndryl-cloud' &&
-        j.id !== 'drive-cye-global-tech' &&
-        !j.title?.toLowerCase().includes('global it service desk') &&
-        !j.title?.toLowerCase().includes('cloud infrastructure & l1') &&
-        !j.title?.toLowerCase().includes('junior react & node')
+        !deletedIds.includes(j.id) &&
+        !removedPresetIds.includes(j.id)
     );
 
     // Filter preset jobs that haven't been deleted
     const filteredPreset = JOB_DRIVES.filter(
       job =>
         !deletedIds.includes(job.id) &&
-        job.id !== 'drive-wipro-servicedesk' &&
-        job.id !== 'drive-kyndryl-cloud' &&
-        job.id !== 'drive-cye-global-tech'
+        !removedPresetIds.includes(job.id)
     );
 
     // Combine custom jobs first (newer first) with filtered presets
@@ -395,8 +408,9 @@ export function saveJobDrive(job: Omit<JobDrive, 'id' | 'postedDaysAgo'> & { id?
   const currentCustom: JobDrive[] = customRaw ? JSON.parse(customRaw) : [];
 
   const existingIndex = currentCustom.findIndex(j => j.id === job.id);
+  const assignedId = job.id || generateNextJobId();
   const newRecord: JobDrive = {
-    id: job.id || `drive-custom-${Date.now()}`,
+    id: assignedId,
     postedDaysAgo: job.postedDaysAgo || 'Just now',
     title: job.title,
     companyOrProcess: job.companyOrProcess,

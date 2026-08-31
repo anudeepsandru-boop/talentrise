@@ -47,6 +47,11 @@ export const FounderSection: React.FC = () => {
                     <img
                       src="/founder.jpg"
                       alt={FOUNDER_NAME}
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        // Fallback to direct Google Drive image link
+                        e.currentTarget.src = "https://lh3.googleusercontent.com/d/1aRutKgTAE7szt8S3WbfuRJRyI8Tk9ed7";
+                      }}
                       className="w-full h-full object-cover object-top"
                     />
                   </div>
@@ -107,7 +112,7 @@ export const FounderSection: React.FC = () => {
             </p>
 
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              Under Sandru Anudeep's direct mentorship, TalentRise has achieved <strong className="text-emerald-400 font-semibold">over 300+ successful candidate closures</strong> across IT Cloud Systems, Non-IT Voice Operations (Google Process at Teleperformance, Accenture, Genpact, Concentrix), and US Healthcare ITES.
+              Under Sandru Anudeep's direct mentorship, TalentRise has achieved <strong className="text-emerald-400 font-semibold">over 300+ successful candidate closures</strong> across IT & Engineering (Capgemini CATIA), Technical Services, and Corporate Hiring drives.
             </p>
 
             {/* Core Leadership Pillars */}

@@ -7,12 +7,12 @@ import {
   Sparkles, 
   Briefcase, 
   Award, 
-  Stethoscope, 
   GraduationCap, 
   UserCheck, 
   Gift, 
   Building2, 
-  PhoneCall
+  PhoneCall,
+  HeartPulse
 } from 'lucide-react';
 import { openWhatsApp, DISPLAY_PHONE, FOUNDER_NAME } from '../utils/whatsappHelper';
 
@@ -34,11 +34,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onSelectSectorFilte
   }, []);
 
   const navLinks = [
-    { name: 'Active Drives', href: '#drives', icon: Briefcase, onClick: () => onSelectSectorFilter && onSelectSectorFilter('All') },
-    { name: 'IT Careers', href: '#drives', icon: Sparkles, onClick: () => onSelectSectorFilter && onSelectSectorFilter('IT') },
-    { name: 'Healthcare & Billing', href: '#healthcare', icon: Stethoscope },
+    { name: 'All Drives', href: '#drives', icon: Briefcase, onClick: () => onSelectSectorFilter && onSelectSectorFilter('All') },
+    { name: 'IT & Engg', href: '#drives', icon: Sparkles, onClick: () => onSelectSectorFilter && onSelectSectorFilter('IT') },
+    { name: 'Medical & RCM', href: '#medical', icon: HeartPulse, onClick: () => onSelectSectorFilter && onSelectSectorFilter('Healthcare') },
     { name: 'Mock Prep', href: '#mock-prep', icon: GraduationCap },
-    { name: 'Founder & Leadership', href: '#founder', icon: UserCheck },
+    { name: 'Founder', href: '#founder', icon: UserCheck },
     { name: 'Referral Bonus', href: '#referrals', icon: Gift },
     { name: 'B2B Staffing', href: '#b2b', icon: Building2 },
   ];

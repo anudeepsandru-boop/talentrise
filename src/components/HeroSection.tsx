@@ -30,14 +30,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectSector, active
     {
       value: '300+',
       label: 'Verified Candidate Closures',
-      sublabel: 'Across IT, BPO & Healthcare',
+      sublabel: 'Across IT, Engineering & MNCs',
       icon: Users,
       highlight: 'text-amber-400',
     },
     {
       value: '15+',
       label: 'MNC Hiring Partners',
-      sublabel: 'Tier-1 & Global Process Clients',
+      sublabel: 'Tier-1 & Global Enterprise Clients',
       icon: Building2,
       highlight: 'text-sky-400',
     },
@@ -84,7 +84,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectSector, active
 
           {/* Subtitle */}
           <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
-            Empowering job seekers across Hyderabad and pan-India with <strong className="text-white font-semibold">300+ successful closures</strong> in IT Cloud, Non-IT Global Voice (Google Process, Teleperformance, Accenture), and US Healthcare Medical Billing — personally mentored by <strong className="text-amber-400 font-semibold">{FOUNDER_NAME}</strong>.
+            Empowering job seekers across Hyderabad and pan-India with <strong className="text-white font-semibold">300+ successful closures</strong> in IT Engineering (Capgemini CATIA), Technical Services, and Corporate Placements — personally mentored by <strong className="text-amber-400 font-semibold">{FOUNDER_NAME}</strong>.
           </p>
 
           {/* Sector Quick-Filter Pills */}
@@ -94,6 +94,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectSector, active
             </p>
             <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
               <button
+                onClick={() => onSelectSector('All')}
+                className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all border ${
+                  activeSector === 'All'
+                    ? 'bg-amber-500 text-slate-950 border-amber-300 shadow-lg shadow-amber-950/40 font-bold'
+                    : 'bg-slate-900/80 hover:bg-slate-800 text-slate-300 border-slate-700/80 hover:border-slate-600'
+                }`}
+              >
+                <span>🔥 All Open Drives</span>
+              </button>
+
+              <button
                 onClick={() => onSelectSector('IT')}
                 className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all border ${
                   activeSector === 'IT'
@@ -102,34 +113,33 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectSector, active
                 }`}
               >
                 <Briefcase className="w-4 h-4 text-sky-400" />
-                <span>💼 IT & Cloud Tech</span>
-                <span className="text-[11px] opacity-75 hidden sm:inline">(Capgemini, Premier IT)</span>
+                <span>💼 IT & Engineering Drives</span>
+                <span className="text-[11px] opacity-75 hidden sm:inline">(Capgemini CATIA)</span>
               </button>
 
               <button
                 onClick={() => onSelectSector('Non-IT')}
                 className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all border ${
                   activeSector === 'Non-IT'
-                    ? 'bg-amber-500 text-slate-950 border-amber-300 shadow-lg shadow-amber-950/40 font-bold'
+                    ? 'bg-emerald-600 text-white border-emerald-400 shadow-lg shadow-emerald-950/40'
                     : 'bg-slate-900/80 hover:bg-slate-800 text-slate-300 border-slate-700/80 hover:border-slate-600'
                 }`}
               >
-                <Headphones className="w-4 h-4 text-amber-400" />
-                <span>🎧 Non-IT, Voice & Google Process</span>
-                <span className="text-[11px] opacity-75 hidden sm:inline">(TP, Accenture, Genpact)</span>
+                <Headphones className="w-4 h-4 text-emerald-400" />
+                <span>🎧 Non-IT Operations</span>
               </button>
 
               <button
                 onClick={() => onSelectSector('Healthcare')}
                 className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all border ${
                   activeSector === 'Healthcare'
-                    ? 'bg-emerald-600 text-white border-emerald-400 shadow-lg shadow-emerald-950/40'
+                    ? 'bg-teal-600 text-white border-teal-400 shadow-lg shadow-teal-950/40'
                     : 'bg-slate-900/80 hover:bg-slate-800 text-slate-300 border-slate-700/80 hover:border-slate-600'
                 }`}
               >
-                <Stethoscope className="w-4 h-4 text-emerald-400" />
-                <span>🏥 Healthcare & Medical Billing</span>
-                <span className="text-[11px] opacity-75 hidden sm:inline">(Freshers & Life Sciences)</span>
+                <Stethoscope className="w-4 h-4 text-teal-400" />
+                <span>🏥 Medical & RCM</span>
+                <span className="text-[11px] opacity-75 hidden sm:inline">(R1 RCM, IKS, Ascent)</span>
               </button>
             </div>
           </div>

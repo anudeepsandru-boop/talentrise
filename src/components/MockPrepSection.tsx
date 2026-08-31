@@ -231,7 +231,7 @@ export const MockPrepSection: React.FC<MockPrepSectionProps> = ({ onSuccessToast
                   Schedule 1-on-1 with Sandru Anudeep
                 </h4>
                 <p className="text-xs text-slate-300 leading-relaxed">
-                  Recommended for candidates appearing for upcoming drives at Teleperformance Google Process, Accenture, Kyndryl, or US Healthcare ITES.
+                  Recommended for candidates appearing for upcoming drives at Capgemini CATIA, US Healthcare ITES, or MNC Corporate drives.
                 </p>
 
                 <div className="p-3 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-300 space-y-1">
@@ -336,7 +336,7 @@ export const MockPrepSection: React.FC<MockPrepSectionProps> = ({ onSuccessToast
                   </label>
                   <input
                     type="text"
-                    placeholder="e.g. Teleperformance Google Process"
+                    placeholder="e.g. Capgemini CATIA / US Healthcare AR"
                     value={bookingFormData.targetRole}
                     onChange={e => setBookingFormData({ ...bookingFormData, targetRole: e.target.value })}
                     className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-amber-400"

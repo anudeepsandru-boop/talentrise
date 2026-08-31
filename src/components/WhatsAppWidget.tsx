@@ -19,20 +19,20 @@ export const WhatsAppWidget: React.FC = () => {
 
   const quickTemplates = [
     {
-      label: '🎧 Apply for Non-IT Drives (TP / Accenture / Genpact)',
-      text: `Hello ${FOUNDER_NAME} Sir, I want to apply for upcoming Non-IT drives (Teleperformance Google Process / Accenture / Genpact / Concentrix) in Hyderabad. Please share the walk-in schedule.`,
+      label: '💼 Apply for Capgemini CATIA Hiring Drive (₹5.5 LPA)',
+      text: `Hello ${FOUNDER_NAME} Sir, I want to apply for the Capgemini CATIA Hiring Drive (Aeronautical & Mechanical). Please guide me with slot allocation and screening.`,
     },
     {
-      label: '💼 Looking for IT & Cloud opportunities (Kyndryl / Dev)',
-      text: `Hello ${FOUNDER_NAME} Sir, I am looking for IT / Cloud Infrastructure or Software Developer opportunities in Hyderabad. Please review my profile.`,
-    },
-    {
-      label: '🏥 Medical Billing & Healthcare drives inquiry',
-      text: `Hello ${FOUNDER_NAME} Sir, I am interested in US Healthcare ITES and Medical Billing / AR Caller drives in Hyderabad.`,
+      label: '🎧 Non-IT / BPO Operations Walk-in inquiry',
+      text: `Hello ${FOUNDER_NAME} Sir, I want to inquire about upcoming Non-IT / BPO operations openings in Hyderabad. Please share current schedules.`,
     },
     {
       label: '🎓 Enroll for Mock Interview Preparation (1-on-1)',
-      text: `Hello ${FOUNDER_NAME} Sir, I would like to enroll for a 1-on-1 Mock Interview session with you for Versant / HR Polish.`,
+      text: `Hello ${FOUNDER_NAME} Sir, I would like to enroll for a 1-on-1 Mock Interview session with you for Technical / HR Polish.`,
+    },
+    {
+      label: '🏢 Corporate B2B Staffing Inquiry',
+      text: `Hello ${FOUNDER_NAME} Sir, We are looking to hire pre-screened talent via TalentRise for our corporate hiring requirements.`,
     },
   ];
 
@@ -62,6 +62,10 @@ export const WhatsAppWidget: React.FC = () => {
                 <img
                   src="/founder.jpg"
                   alt={FOUNDER_NAME}
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    e.currentTarget.src = "https://lh3.googleusercontent.com/d/1aRutKgTAE7szt8S3WbfuRJRyI8Tk9ed7";
+                  }}
                   className="w-10 h-10 rounded-full object-cover object-top border-2 border-amber-400 shadow-md bg-slate-900"
                 />
                 <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-[#0F172A]" />

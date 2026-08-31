@@ -69,46 +69,37 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onSelectSectorFilte
               <li>
                 <a
                   href="#drives"
-                  onClick={() => onSelectSectorFilter('Non-IT')}
-                  className="hover:text-amber-400 transition-colors block"
-                >
-                  🎧 Google Process (Teleperformance)
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#drives"
-                  onClick={() => onSelectSectorFilter('Non-IT')}
-                  className="hover:text-amber-400 transition-colors block"
-                >
-                  🎧 International Voice (Accenture / Genpact)
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#healthcare"
-                  onClick={() => onSelectSectorFilter('Healthcare')}
-                  className="hover:text-emerald-400 transition-colors block"
-                >
-                  🏥 US Healthcare & Medical Billing
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#healthcare"
-                  onClick={() => onSelectSectorFilter('Healthcare')}
-                  className="hover:text-emerald-400 transition-colors block"
-                >
-                  🏥 AR Caller & Medical Coding Trainees
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#drives"
                   onClick={() => onSelectSectorFilter('IT')}
                   className="hover:text-sky-400 transition-colors block"
                 >
                   💼 IT & Engineering (Capgemini CATIA)
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#medical"
+                  onClick={() => onSelectSectorFilter('Healthcare')}
+                  className="hover:text-teal-400 transition-colors block"
+                >
+                  🏥 Medical & US Healthcare RCM (R1 RCM, IKS, Ascent)
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#medical"
+                  onClick={() => onSelectSectorFilter('Healthcare')}
+                  className="hover:text-teal-400 transition-colors block"
+                >
+                  🏥 Medical Billing & AR Caller Trainees (Data Marshall)
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#drives"
+                  onClick={() => onSelectSectorFilter('Non-IT')}
+                  className="hover:text-amber-400 transition-colors block"
+                >
+                  🎧 Non-IT / BPO Operations
                 </a>
               </li>
             </ul>

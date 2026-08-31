@@ -92,7 +92,7 @@ export const ReferralBonusSection: React.FC<ReferralBonusSectionProps> = ({ onSu
             </div>
 
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              Know someone looking for high-paying roles at Teleperformance, Google Process, Accenture, Kyndryl, or US Healthcare Medical Billing in Hyderabad? Refer them to TalentRise!
+              Know someone looking for high-paying roles in Capgemini CATIA Engineering, US Healthcare Medical Billing, or MNC Corporate drives in Hyderabad? Refer them to TalentRise!
             </p>
 
             {/* Program Highlights & Features */}

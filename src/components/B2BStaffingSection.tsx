@@ -157,7 +157,7 @@ export const B2BStaffingSection: React.FC<B2BStaffingSectionProps> = ({ onSucces
                       <input
                         type="text"
                         required
-                        placeholder="e.g. Teleperformance / Tech Org"
+                        placeholder="e.g. Enterprise / Tech Org"
                         value={formData.companyName}
                         onChange={e => setFormData({ ...formData, companyName: e.target.value })}
                         className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-sky-400"

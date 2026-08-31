@@ -37,6 +37,7 @@ import {
   getReferrals, 
   getCorporateInquiries, 
   getJobDrives,
+  generateNextJobId,
   saveJobDrive,
   deleteJobDrive,
   updateApplicationStatus, 
@@ -735,6 +736,19 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
 
                   {/* Section B: Detailed Form Inputs */}
                   <form onSubmit={handleSaveJob} className="space-y-4">
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-xs">
+                      <div className="flex items-center gap-2">
+                        <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                        <span className="text-slate-300">Next Auto-Generated Job ID:</span>
+                        <span className="px-2 py-0.5 rounded font-mono font-bold text-xs bg-amber-400/20 text-amber-300 border border-amber-400/40">
+                          {generateNextJobId()}
+                        </span>
+                      </div>
+                      <span className="text-[11px] text-slate-400 hidden sm:inline">
+                        Auto-assigned in TR#### format for seamless addition & removal
+                      </span>
+                    </div>
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                       {/* Job Title */}
                       <div className="lg:col-span-2">
@@ -744,7 +758,7 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
                         <input
                           type="text"
                           required
-                          placeholder="e.g. Customer Support Executive (Google Ads / Process)"
+                          placeholder="e.g. Capgemini CATIA Hiring Drive (Aeronautical & Mechanical)"
                           value={jobTitle}
                           onChange={e => setJobTitle(e.target.value)}
                           className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
@@ -759,7 +773,7 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
                         <input
                           type="text"
                           required
-                          placeholder="e.g. Teleperformance / Kyndryl / Genpact"
+                          placeholder="e.g. Capgemini / Global Enterprise MNC"
                           value={companyOrProcess}
                           onChange={e => setCompanyOrProcess(e.target.value)}
                           className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
@@ -776,9 +790,9 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
                           onChange={e => setSector(e.target.value as any)}
                           className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-amber-400"
                         >
-                          <option value="Non-IT">Non-IT & BPO / Voice Operations</option>
-                          <option value="IT">IT & Cloud Systems</option>
-                          <option value="Healthcare">Healthcare & Medical Billing</option>
+                          <option value="IT">IT & Engineering Systems</option>
+                          <option value="Non-IT">Non-IT / Corporate Operations</option>
+                          <option value="Healthcare">Healthcare Operations</option>
                         </select>
                       </div>
 
@@ -1008,6 +1022,9 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
                           >
                             <div className="space-y-1.5 min-w-0 flex-1">
                               <div className="flex flex-wrap items-center gap-2">
+                                <span className="px-2 py-0.5 rounded font-mono font-bold text-xs bg-slate-800 text-amber-300 border border-slate-700">
+                                  {job.id}
+                                </span>
                                 <span className={`text-sm font-bold ${isClosed ? 'text-slate-400 line-through' : 'text-white'}`}>
                                   {job.title}
                                 </span>

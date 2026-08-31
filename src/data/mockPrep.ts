@@ -27,7 +27,7 @@ export const MOCK_PREP_MODULES: MockPrepModule[] = [
     badge: 'Module 2 • High Impact',
     iconName: 'Mic',
     duration: '60 Mins Intensive Drill',
-    description: 'Cracking automated AI voice assessments (Versant, SVAR, Pearson) used by Teleperformance, Accenture, Genpact, and Google Process.',
+    description: 'Cracking automated AI voice assessments (Versant, SVAR, Pearson) used across top MNC customer operations and voice drives.',
     keyTopics: [
       'Sentence mastery, repeat sentence accuracy, and phonetics tuning',
       'Eliminating Mother Tongue Influence (MTI) and fillers (uh, um, you know)',
@@ -39,7 +39,7 @@ export const MOCK_PREP_MODULES: MockPrepModule[] = [
       'Pronunciation phonetic correction audio notes',
       'Standardized sentence repetition practice audio files',
     ],
-    popularFor: 'Teleperformance (Google Process), Accenture, Concentrix & US Voice drives',
+    popularFor: 'International Voice, Customer Support & US Healthcare Voice applicants',
   },
   {
     id: 'module-tech-scenario',
@@ -47,19 +47,19 @@ export const MOCK_PREP_MODULES: MockPrepModule[] = [
     badge: 'Module 3 • Tech & ITES',
     iconName: 'Code',
     duration: '60 Mins Deep Technical Drill',
-    description: 'Targeted technical drill tailored for IT Cloud / Support (Linux, Cloud, Networking, ITIL) and Full Stack / Web Developer roles.',
+    description: 'Targeted technical drill tailored for IT Engineering (CATIA, CAD, Core Design) and Software / Cloud technical roles.',
     keyTopics: [
-      'Core architecture and conceptual questioning (React, Node, Cloud, SQL)',
+      'Core engineering concepts and domain questioning (CATIA, CAD, Mechanical, IT)',
       'Incident management simulation: "How would you handle a down production server?"',
       'Live problem-solving clarity and whiteboard articulation',
-      'Explaining real project challenges and overcoming production bottlenecks',
+      'Explaining real project challenges and overcoming design bottlenecks',
     ],
     deliverables: [
       'Detailed scorecard on logic, syntax, system design, and communication',
       'Curated list of client-specific technical question patterns',
-      'GitHub repository audit and resume technical keywords optimization',
+      'Engineering portfolio audit and resume technical keywords optimization',
     ],
-    popularFor: 'Capgemini, Kyndryl, CYE Global & Tech Partner applicants',
+    popularFor: 'Capgemini CATIA candidates, Tech & Engineering applicants',
   },
   {
     id: 'module-salary-docs',
