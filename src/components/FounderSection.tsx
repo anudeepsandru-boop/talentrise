@@ -12,15 +12,36 @@ import {
   Sparkles, 
   BadgeCheck
 } from 'lucide-react';
+import { PageType } from '../types';
+import { PageHeaderBanner } from './PageHeaderBanner';
 import { openWhatsApp, DISPLAY_PHONE, RAW_PHONE, FOUNDER_NAME, COMPANY_NAME, LOCATION_HQ } from '../utils/whatsappHelper';
 
-export const FounderSection: React.FC = () => {
+interface FounderSectionProps {
+  isStandalonePage?: boolean;
+  onNavigate?: (page: PageType) => void;
+}
+
+export const FounderSection: React.FC<FounderSectionProps> = ({
+  isStandalonePage = false,
+  onNavigate
+}) => {
   const handleConnectFounder = () => {
     openWhatsApp(`Hello ${FOUNDER_NAME} Sir, I would like to connect with you directly regarding recruitment mentorship, active drives, or corporate hiring partnership.`);
   };
 
   return (
-    <section id="founder" className="py-16 md:py-24 relative bg-[#090F21] scroll-mt-20">
+    <div className={isStandalonePage ? "min-h-screen bg-[#060913] pb-20" : ""}>
+      {isStandalonePage && onNavigate && (
+        <PageHeaderBanner
+          currentPage="founder"
+          title="Executive Leadership & Recruiter Desk"
+          subtitle="Direct mentorship and executive guidance under Sandru Anudeep — Founder & CEO of TalentRise Training and Placements."
+          badgeText="Verified Executive Leadership"
+          onNavigate={onNavigate}
+        />
+      )}
+
+      <section id="founder" className={`py-16 md:py-24 relative bg-[#060913] scroll-mt-20 ${!isStandalonePage ? 'border-t border-slate-800/80' : ''}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column: Executive Monogram Seal & Credentials */}
@@ -157,5 +178,6 @@ export const FounderSection: React.FC = () => {
         </div>
       </div>
     </section>
+    </div>
   );
 };

@@ -10,14 +10,22 @@ import {
   Award, 
   ArrowRight
 } from 'lucide-react';
+import { PageType } from '../types';
+import { PageHeaderBanner } from './PageHeaderBanner';
 import { saveReferral } from '../utils/storage';
 import { generateReferralMessage, openWhatsApp, DISPLAY_PHONE, FOUNDER_NAME } from '../utils/whatsappHelper';
 
 interface ReferralBonusSectionProps {
   onSuccessToast: (title: string, msg: string) => void;
+  isStandalonePage?: boolean;
+  onNavigate?: (page: PageType) => void;
 }
 
-export const ReferralBonusSection: React.FC<ReferralBonusSectionProps> = ({ onSuccessToast }) => {
+export const ReferralBonusSection: React.FC<ReferralBonusSectionProps> = ({ 
+  onSuccessToast,
+  isStandalonePage = false,
+  onNavigate
+}) => {
   const [formData, setFormData] = useState({
     referrerName: '',
     referrerPhone: '',
@@ -76,20 +84,33 @@ export const ReferralBonusSection: React.FC<ReferralBonusSectionProps> = ({ onSu
   };
 
   return (
-    <section id="referrals" className="py-16 md:py-24 relative bg-[#0B132B] scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          {/* Left 5 Cols: Reward Explanation */}
-          <div className="lg:col-span-5 space-y-6">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-amber-400/10 border border-amber-400/30 text-xs font-semibold text-amber-300 mb-3">
-                <Gift className="w-3.5 h-3.5 text-amber-400" />
-                <span>Candidate Referral Program</span>
-              </div>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-                Refer a Friend & Earn Instant Placement Bonuses
-              </h2>
-            </div>
+    <div className={isStandalonePage ? "min-h-screen bg-[#060913] pb-20" : ""}>
+      {isStandalonePage && onNavigate && (
+        <PageHeaderBanner
+          currentPage="referrals"
+          title="Candidate Referral Bonus Program"
+          subtitle="Earn direct UPI cash rewards between ₹1,000 to ₹5,000 for every successfully placed friend or classmate in IT, Non-IT, or Healthcare drives."
+          badgeText="Instant Cash Rewards"
+          onNavigate={onNavigate}
+        />
+      )}
+
+      <section id="referrals" className={`py-16 md:py-24 relative bg-[#060913] scroll-mt-20 ${!isStandalonePage ? 'border-t border-slate-800/80' : ''}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            {/* Left 5 Cols: Reward Explanation */}
+            <div className="lg:col-span-5 space-y-6">
+              {!isStandalonePage && (
+                <div>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-amber-400/10 border border-amber-400/30 text-xs font-semibold text-amber-300 mb-3">
+                    <Gift className="w-3.5 h-3.5 text-amber-400" />
+                    <span>Candidate Referral Program</span>
+                  </div>
+                  <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+                    Refer a Friend & Earn Instant Placement Bonuses
+                  </h2>
+                </div>
+              )}
 
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
               Know someone looking for high-paying roles in Capgemini CATIA Engineering, US Healthcare Medical Billing, or MNC Corporate drives in Hyderabad? Refer them to TalentRise!
@@ -304,5 +325,6 @@ export const ReferralBonusSection: React.FC<ReferralBonusSectionProps> = ({ onSu
         </div>
       </div>
     </section>
+    </div>
   );
 };

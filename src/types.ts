@@ -1,5 +1,7 @@
 export type SectorType = 'IT' | 'Non-IT' | 'Healthcare' | 'All';
 
+export type PageType = 'all' | 'it' | 'non-it' | 'medical' | 'mock-prep' | 'founder' | 'referrals' | 'b2b';
+
 export interface JobDrive {
   id: string;
   title: string;

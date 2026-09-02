@@ -12,18 +12,28 @@ import {
   Briefcase, 
   Headphones, 
   Stethoscope, 
-  Award
+  Award,
+  Flame
 } from 'lucide-react';
 import { openWhatsApp, DISPLAY_PHONE, FOUNDER_NAME } from '../utils/whatsappHelper';
+import { PageType, SectorType } from '../types';
 
 interface HeroSectionProps {
-  onSelectSector: (sector: 'IT' | 'Non-IT' | 'Healthcare' | 'All') => void;
-  activeSector: 'IT' | 'Non-IT' | 'Healthcare' | 'All';
+  onSelectSector: (sector: SectorType) => void;
+  activeSector: SectorType;
+  onNavigate?: (page: PageType) => void;
 }
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectSector, activeSector }) => {
+export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectSector, activeSector, onNavigate }) => {
   const handleDirectWhatsApp = () => {
     openWhatsApp(`Hello ${FOUNDER_NAME} Sir, I am reaching out from the TalentRise portal. I would like to know about current open placement drives in Hyderabad and schedule a profile review.`);
+  };
+
+  const handleSectorClick = (sector: SectorType, targetPage: PageType) => {
+    onSelectSector(sector);
+    if (onNavigate && targetPage !== 'all') {
+      onNavigate(targetPage);
+    }
   };
 
   const metrics = [
@@ -87,25 +97,26 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectSector, active
             Empowering job seekers across Hyderabad and pan-India with <strong className="text-white font-semibold">300+ successful closures</strong> in IT Engineering (Capgemini CATIA), Technical Services, and Corporate Placements — personally mentored by <strong className="text-amber-400 font-semibold">{FOUNDER_NAME}</strong>.
           </p>
 
-          {/* Sector Quick-Filter Pills */}
+          {/* Sector Quick-Filter Pills with Single Icons */}
           <div className="mb-10">
             <p className="text-xs uppercase tracking-wider font-semibold text-slate-400 mb-3">
               Explore Active Hiring Streams:
             </p>
             <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
               <button
-                onClick={() => onSelectSector('All')}
+                onClick={() => handleSectorClick('All', 'all')}
                 className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all border ${
                   activeSector === 'All'
                     ? 'bg-amber-500 text-slate-950 border-amber-300 shadow-lg shadow-amber-950/40 font-bold'
                     : 'bg-slate-900/80 hover:bg-slate-800 text-slate-300 border-slate-700/80 hover:border-slate-600'
                 }`}
               >
-                <span>🔥 All Open Drives</span>
+                <Flame className="w-4 h-4 text-amber-400" />
+                <span>All Open Drives</span>
               </button>
 
               <button
-                onClick={() => onSelectSector('IT')}
+                onClick={() => handleSectorClick('IT', 'it')}
                 className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all border ${
                   activeSector === 'IT'
                     ? 'bg-blue-600 text-white border-blue-400 shadow-lg shadow-blue-900/40'
@@ -113,12 +124,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectSector, active
                 }`}
               >
                 <Briefcase className="w-4 h-4 text-sky-400" />
-                <span>💼 IT & Engineering Drives</span>
+                <span>IT & Engineering Drives</span>
                 <span className="text-[11px] opacity-75 hidden sm:inline">(Capgemini CATIA)</span>
               </button>
 
               <button
-                onClick={() => onSelectSector('Non-IT')}
+                onClick={() => handleSectorClick('Non-IT', 'non-it')}
                 className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all border ${
                   activeSector === 'Non-IT'
                     ? 'bg-emerald-600 text-white border-emerald-400 shadow-lg shadow-emerald-950/40'
@@ -126,11 +137,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectSector, active
                 }`}
               >
                 <Headphones className="w-4 h-4 text-emerald-400" />
-                <span>🎧 Non-IT Operations</span>
+                <span>Non-IT Operations</span>
               </button>
 
               <button
-                onClick={() => onSelectSector('Healthcare')}
+                onClick={() => handleSectorClick('Healthcare', 'medical')}
                 className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all border ${
                   activeSector === 'Healthcare'
                     ? 'bg-teal-600 text-white border-teal-400 shadow-lg shadow-teal-950/40'
@@ -138,7 +149,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectSector, active
                 }`}
               >
                 <Stethoscope className="w-4 h-4 text-teal-400" />
-                <span>🏥 Medical & RCM</span>
+                <span>Medical & RCM</span>
                 <span className="text-[11px] opacity-75 hidden sm:inline">(R1 RCM, IKS, Ascent)</span>
               </button>
             </div>

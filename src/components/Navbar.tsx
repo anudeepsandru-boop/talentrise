@@ -6,22 +6,23 @@ import {
   X, 
   Sparkles, 
   Briefcase, 
-  Award, 
   GraduationCap, 
   UserCheck, 
   Gift, 
   Building2, 
-  PhoneCall,
-  HeartPulse
+  HeartPulse,
+  Headphones
 } from 'lucide-react';
 import { openWhatsApp, DISPLAY_PHONE, FOUNDER_NAME } from '../utils/whatsappHelper';
+import { PageType } from '../types';
 
 interface NavbarProps {
   onOpenAdmin: () => void;
-  onSelectSectorFilter?: (sector: 'IT' | 'Non-IT' | 'Healthcare' | 'All') => void;
+  activePage: PageType;
+  onNavigate: (page: PageType) => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onSelectSectorFilter }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, activePage, onNavigate }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -33,18 +34,24 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onSelectSectorFilte
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'All Drives', href: '#drives', icon: Briefcase, onClick: () => onSelectSectorFilter && onSelectSectorFilter('All') },
-    { name: 'IT & Engg', href: '#drives', icon: Sparkles, onClick: () => onSelectSectorFilter && onSelectSectorFilter('IT') },
-    { name: 'Medical & RCM', href: '#medical', icon: HeartPulse, onClick: () => onSelectSectorFilter && onSelectSectorFilter('Healthcare') },
-    { name: 'Mock Prep', href: '#mock-prep', icon: GraduationCap },
-    { name: 'Founder', href: '#founder', icon: UserCheck },
-    { name: 'Referral Bonus', href: '#referrals', icon: Gift },
-    { name: 'B2B Staffing', href: '#b2b', icon: Building2 },
+  const navLinks: { id: PageType; name: string; icon: React.ElementType }[] = [
+    { id: 'all', name: 'All Drives', icon: Briefcase },
+    { id: 'it', name: 'IT & Engg', icon: Sparkles },
+    { id: 'non-it', name: 'Non-IT', icon: Headphones },
+    { id: 'medical', name: 'Medical & RCM', icon: HeartPulse },
+    { id: 'mock-prep', name: 'Mock Prep', icon: GraduationCap },
+    { id: 'founder', name: 'Founder', icon: UserCheck },
+    { id: 'referrals', name: 'Referral Bonus', icon: Gift },
+    { id: 'b2b', name: 'B2B Staffing', icon: Building2 },
   ];
 
   const handleWhatsAppClick = () => {
     openWhatsApp(`Hello ${FOUNDER_NAME} Sir, I am contacting you from the TalentRise website regarding current placement drives & mock prep in Hyderabad.`);
+  };
+
+  const handleLinkClick = (pageId: PageType) => {
+    onNavigate(pageId);
+    setMobileMenuOpen(false);
   };
 
   return (
@@ -52,14 +59,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onSelectSectorFilte
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-[#0B132B]/95 backdrop-blur-md border-b border-slate-800/80 shadow-lg shadow-black/30 py-3'
-            : 'bg-gradient-to-b from-[#0B132B]/90 to-transparent py-4'
+            ? 'bg-[#060913]/95 backdrop-blur-xl border-b border-slate-800/80 shadow-xl shadow-black/50 py-2.5'
+            : 'bg-gradient-to-b from-[#060913]/90 via-[#060913]/60 to-transparent py-3.5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Brand Logo */}
-          <a href="#" className="flex items-center gap-3 group focus:outline-none">
-            <div className="w-10 h-10 rounded-full bg-white p-0.5 border border-amber-400/50 shadow-md shadow-amber-500/20 group-hover:scale-105 transition-transform duration-200 overflow-hidden flex items-center justify-center">
+          <button 
+            onClick={() => handleLinkClick('all')} 
+            className="flex items-center gap-3 group focus:outline-none text-left"
+          >
+            <div className="w-10 h-10 rounded-full bg-white p-0.5 border border-cyan-500/40 shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform duration-200 overflow-hidden flex items-center justify-center">
               <img
                 src="/logo.png"
                 alt="TalentRise Training and Placements Logo"
@@ -68,31 +78,36 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onSelectSectorFilte
             </div>
             <div className="flex flex-col">
               <div className="flex items-center gap-1.5">
-                <span className="text-xl font-bold tracking-tight text-white group-hover:text-amber-400 transition-colors">
+                <span className="text-xl font-bold tracking-tight text-white group-hover:text-cyan-400 transition-colors">
                   Talent<span className="text-amber-400">Rise</span>
                 </span>
-                <span className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20">
-                  Direct Drives
-                </span>
               </div>
-              <span className="text-[11px] font-medium text-sky-400/90 tracking-wide uppercase">
+              <span className="text-[10px] font-medium text-cyan-400/90 tracking-wider uppercase">
                 Training and Placements
               </span>
             </div>
-          </a>
+          </button>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
-            {navLinks.map(link => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={link.onClick}
-                className="px-2.5 xl:px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors whitespace-nowrap"
-              >
-                {link.name}
-              </a>
-            ))}
+          <nav className="hidden lg:flex items-center gap-1 p-1 bg-slate-900/60 backdrop-blur-md rounded-full border border-slate-800/80">
+            {navLinks.map(link => {
+              const Icon = link.icon;
+              const isActive = activePage === link.id;
+              return (
+                <button
+                  key={link.id}
+                  onClick={() => handleLinkClick(link.id)}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
+                    isActive
+                      ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 shadow-sm shadow-cyan-500/20'
+                      : 'text-slate-300 hover:text-white hover:bg-slate-800/60 border border-transparent'
+                  }`}
+                >
+                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-cyan-400' : 'text-slate-400'}`} />
+                  <span>{link.name}</span>
+                </button>
+              );
+            })}
           </nav>
 
           {/* Action CTAs */}
@@ -139,11 +154,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onSelectSectorFilte
           />
 
           {/* Drawer Panel */}
-          <div className="fixed top-0 right-0 bottom-0 w-[280px] sm:w-[320px] bg-[#0B132B] border-l border-slate-800 p-6 flex flex-col justify-between shadow-2xl z-50 overflow-y-auto">
+          <div className="fixed top-0 right-0 bottom-0 w-[280px] sm:w-[320px] bg-[#060913] border-l border-slate-800 p-6 flex flex-col justify-between shadow-2xl z-50 overflow-y-auto">
             <div>
               <div className="flex items-center justify-between pb-5 border-b border-slate-800">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-full bg-white p-0.5 border border-amber-400/50 overflow-hidden flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-full bg-white p-0.5 border border-cyan-400/50 overflow-hidden flex items-center justify-center">
                     <img
                       src="/logo.png"
                       alt="TalentRise Logo"
@@ -152,7 +167,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onSelectSectorFilte
                   </div>
                   <div>
                     <span className="text-base font-bold text-white">Talent<span className="text-amber-400">Rise</span></span>
-                    <p className="text-[10px] text-sky-400 uppercase font-medium">Training and Placements</p>
+                    <p className="text-[10px] text-cyan-400 uppercase font-medium">Training and Placements</p>
                   </div>
                 </div>
                 <button
@@ -166,19 +181,23 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onSelectSectorFilte
               <div className="mt-6 flex flex-col gap-1">
                 {navLinks.map(link => {
                   const Icon = link.icon;
+                  const isActive = activePage === link.id;
                   return (
-                    <a
-                      key={link.name}
-                      href={link.href}
-                      onClick={() => {
-                        if (link.onClick) link.onClick();
-                        setMobileMenuOpen(false);
-                      }}
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-amber-400 hover:bg-slate-800/80 transition-colors"
+                    <button
+                      key={link.id}
+                      onClick={() => handleLinkClick(link.id)}
+                      className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-colors w-full text-left ${
+                        isActive
+                          ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-400/40'
+                          : 'text-slate-300 hover:text-white hover:bg-slate-800/80'
+                      }`}
                     >
-                      <Icon className="w-4 h-4 text-sky-400" />
-                      {link.name}
-                    </a>
+                      <div className="flex items-center gap-3">
+                        <Icon className={`w-4 h-4 ${isActive ? 'text-cyan-400' : 'text-slate-400'}`} />
+                        <span>{link.name}</span>
+                      </div>
+                      {isActive && <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />}
+                    </button>
                   );
                 })}
               </div>

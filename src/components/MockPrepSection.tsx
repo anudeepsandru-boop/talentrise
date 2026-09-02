@@ -15,16 +15,23 @@ import {
   X, 
   Award
 } from 'lucide-react';
-import { MockPrepModule, MockBookingSubmission } from '../types';
+import { MockPrepModule, MockBookingSubmission, PageType } from '../types';
 import { MOCK_PREP_MODULES } from '../data/mockPrep';
 import { saveMockBooking } from '../utils/storage';
 import { generateMockPrepMessage, openWhatsApp, DISPLAY_PHONE, FOUNDER_NAME } from '../utils/whatsappHelper';
+import { PageHeaderBanner } from './PageHeaderBanner';
 
 interface MockPrepSectionProps {
   onSuccessToast: (title: string, msg: string) => void;
+  isStandalonePage?: boolean;
+  onNavigate?: (page: PageType) => void;
 }
 
-export const MockPrepSection: React.FC<MockPrepSectionProps> = ({ onSuccessToast }) => {
+export const MockPrepSection: React.FC<MockPrepSectionProps> = ({ 
+  onSuccessToast,
+  isStandalonePage = false,
+  onNavigate
+}) => {
   const [selectedModule, setSelectedModule] = useState<MockPrepModule>(MOCK_PREP_MODULES[1]); // Versant default
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [bookingFormData, setBookingFormData] = useState({
@@ -101,21 +108,34 @@ export const MockPrepSection: React.FC<MockPrepSectionProps> = ({ onSuccessToast
   };
 
   return (
-    <section id="mock-prep" className="py-16 md:py-24 relative bg-[#0B132B] scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/30 text-xs font-semibold text-amber-300 mb-3 shadow-lg shadow-amber-950/20">
-            <GraduationCap className="w-4 h-4" />
-            <span>1-on-1 Personalized Mentorship by Sandru Anudeep</span>
-          </div>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Mock Interview Preparation & Career Coaching
-          </h2>
-          <p className="text-sm sm:text-base text-slate-300 mt-2 leading-relaxed">
-            90% of candidate rejections in MNC drives occur in the first 5 minutes of Versant voice screening or HR introduction. We coach you step-by-step so you walk into the drive with 100% confidence.
-          </p>
-        </div>
+    <div className={isStandalonePage ? "min-h-screen bg-[#060913] pb-20" : ""}>
+      {isStandalonePage && onNavigate && (
+        <PageHeaderBanner
+          currentPage="mock-prep"
+          title="Mock Interview Preparation & 1-on-1 Coaching"
+          subtitle="Master Versant voice assessments, technical system walkthroughs, HR screening, and resume framing directly with Founder Sandru Anudeep."
+          badgeText="Placement Guarantee Readiness"
+          onNavigate={onNavigate}
+        />
+      )}
+
+      <section id="mock-prep" className={`py-16 md:py-24 relative bg-[#060913] scroll-mt-20 ${!isStandalonePage ? 'border-t border-slate-800/80' : ''}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          {!isStandalonePage && (
+            <div className="text-center max-w-3xl mx-auto mb-14">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/30 text-xs font-semibold text-amber-300 mb-3 shadow-lg shadow-amber-950/20">
+                <GraduationCap className="w-4 h-4" />
+                <span>1-on-1 Personalized Mentorship by Sandru Anudeep</span>
+              </div>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+                Mock Interview Preparation & Career Coaching
+              </h2>
+              <p className="text-sm sm:text-base text-slate-300 mt-2 leading-relaxed">
+                90% of candidate rejections in MNC drives occur in the first 5 minutes of Versant voice screening or HR introduction. We coach you step-by-step so you walk into the drive with 100% confidence.
+              </p>
+            </div>
+          )}
 
         {/* 4 Interactive Modules Selection Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
@@ -438,5 +458,6 @@ export const MockPrepSection: React.FC<MockPrepSectionProps> = ({ onSuccessToast
         </div>
       )}
     </section>
+    </div>
   );
 };

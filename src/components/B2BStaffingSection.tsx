@@ -11,14 +11,22 @@ import {
   Zap, 
   Handshake
 } from 'lucide-react';
+import { PageType } from '../types';
+import { PageHeaderBanner } from './PageHeaderBanner';
 import { saveCorporateInquiry } from '../utils/storage';
 import { generateB2BInquiryMessage, openWhatsApp, DISPLAY_PHONE, FOUNDER_NAME } from '../utils/whatsappHelper';
 
 interface B2BStaffingSectionProps {
   onSuccessToast: (title: string, msg: string) => void;
+  isStandalonePage?: boolean;
+  onNavigate?: (page: PageType) => void;
 }
 
-export const B2BStaffingSection: React.FC<B2BStaffingSectionProps> = ({ onSuccessToast }) => {
+export const B2BStaffingSection: React.FC<B2BStaffingSectionProps> = ({ 
+  onSuccessToast,
+  isStandalonePage = false,
+  onNavigate
+}) => {
   const [formData, setFormData] = useState({
     companyName: '',
     hrContactName: '',
@@ -76,20 +84,33 @@ export const B2BStaffingSection: React.FC<B2BStaffingSectionProps> = ({ onSucces
   };
 
   return (
-    <section id="b2b" className="py-16 md:py-24 relative bg-[#090F21] scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left 6 Cols: B2B Overview */}
-          <div className="lg:col-span-6 space-y-6">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-sky-400 mb-3">
-                <Handshake className="w-3.5 h-3.5" />
-                <span>Enterprise & Vendor Recruitment Solutions</span>
-              </div>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-                B2B Corporate Staffing & Vendor Partnerships
-              </h2>
-            </div>
+    <div className={isStandalonePage ? "min-h-screen bg-[#060913] pb-20" : ""}>
+      {isStandalonePage && onNavigate && (
+        <PageHeaderBanner
+          currentPage="b2b"
+          title="B2B Corporate Staffing & Vendor Solutions"
+          subtitle="Pre-screened bulk candidate pipelines, specialized IT hiring, and SLA-driven enterprise recruitment in Hyderabad under founder guidance."
+          badgeText="Enterprise Recruitment Partner"
+          onNavigate={onNavigate}
+        />
+      )}
+
+      <section id="b2b" className={`py-16 md:py-24 relative bg-[#060913] scroll-mt-20 ${!isStandalonePage ? 'border-t border-slate-800/80' : ''}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left 6 Cols: B2B Overview */}
+            <div className="lg:col-span-6 space-y-6">
+              {!isStandalonePage && (
+                <div>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-sky-400 mb-3">
+                    <Handshake className="w-3.5 h-3.5" />
+                    <span>Enterprise & Vendor Recruitment Solutions</span>
+                  </div>
+                  <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+                    B2B Corporate Staffing & Vendor Partnerships
+                  </h2>
+                </div>
+              )}
 
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
               Are you an HR Director, Talent Acquisition Lead, or MSP Agency looking for rapid, pre-screened batch closures in Hyderabad? TalentRise operates direct recruitment pipelines tailored to strict MNC SLAs.
@@ -270,5 +291,6 @@ export const B2BStaffingSection: React.FC<B2BStaffingSectionProps> = ({ onSucces
         </div>
       </div>
     </section>
+    </div>
   );
 };

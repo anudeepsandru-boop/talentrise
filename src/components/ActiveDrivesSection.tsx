@@ -211,13 +211,13 @@ export const ActiveDrivesSection: React.FC<ActiveDrivesSectionProps> = ({
                       <span
                         className={`px-2.5 py-0.5 rounded-md text-[11px] font-bold tracking-wide uppercase ${
                           job.sector === 'IT'
-                            ? 'bg-blue-500/15 text-sky-400 border border-blue-500/30'
+                            ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/30'
                             : job.sector === 'Non-IT'
-                            ? 'bg-amber-500/15 text-amber-400 border border-amber-500/30'
-                            : 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
+                            ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/30'
+                            : 'bg-teal-500/15 text-teal-300 border border-teal-500/30'
                         }`}
                       >
-                        {job.sector === 'IT' ? '💼 IT & Tech' : job.sector === 'Non-IT' ? '🎧 Non-IT / BPO' : '🏥 Healthcare'}
+                        {job.sector === 'IT' ? 'IT & Tech' : job.sector === 'Non-IT' ? 'Non-IT / BPO' : 'Healthcare'}
                       </span>
 
                       {job.urgentHiring && (

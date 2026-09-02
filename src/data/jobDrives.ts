@@ -586,6 +586,39 @@ export const JOB_DRIVES: JobDrive[] = [
     ],
     postedDaysAgo: 'Released Today',
     featured: true,
+  },
+  {
+    id: 'TR1019',
+    title: 'Teleperformance Travel Industry Documentation & Compliance (Freshers Drive)',
+    companyOrProcess: 'Teleperformance',
+    clientBadge: 'Confidential Global Travel Client',
+    sector: 'Non-IT',
+    ctc: 'Up to ₹4.20 LPA',
+    experience: 'Only Freshers (Any 12th / Graduate / PG)',
+    location: 'Hyderabad (Work From Office)',
+    workMode: 'On-site',
+    shifts: 'Rotational Shifts (2-Way Cab Facility Provided)',
+    openingsCount: 45,
+    urgentHiring: true,
+    walkInDates: '15 Working Day Fast-Track Process',
+    eligibility: [
+      'Note: ONLY FRESHERS CAN APPLY (Immediate Joining)',
+      'Education: Any 12th / Graduate / Post Graduate (All batch passouts eligible)',
+      'Domain: Travel Industry (Documentation & Compliance)',
+      'Transport & Facility: Dedicated 2-Way Cab Facility Provided',
+    ],
+    keyRequirements: [
+      'Manage international travel documentation, reservation verification, and airline compliance workflows',
+      'Verify passenger identification records and maintain high-accuracy customer travel itineraries',
+      'Undergo dedicated 15 working day process with comprehensive domain training provided by Teleperformance',
+    ],
+    rounds: [
+      'HR Communication & English Versant Evaluation',
+      'Basic Travel Documentation Aptitude Assessment',
+      'Operations Team Fitment & Final Selection',
+    ],
+    postedDaysAgo: 'Released Today',
+    featured: true,
   }
 ];
 

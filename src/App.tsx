@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { SectorType, JobDrive } from './types';
+import { SectorType, JobDrive, PageType } from './types';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { ActiveDrivesSection } from './components/ActiveDrivesSection';
+import { ITDrivesPage } from './components/ITDrivesPage';
+import { NonITDrivesPage } from './components/NonITDrivesPage';
 import { MedicalSection } from './components/MedicalSection';
 import { MockPrepSection } from './components/MockPrepSection';
 import { FounderSection } from './components/FounderSection';
@@ -17,12 +19,36 @@ import { ToastContainer, ToastMessage } from './components/Toast';
 import { getJobDrives, TALENTRISE_EVENTS } from './utils/storage';
 
 export default function App() {
+  const [activePage, setActivePage] = useState<PageType>(() => {
+    const hash = window.location.hash.replace('#', '').toLowerCase();
+    const validPages: PageType[] = ['all', 'it', 'non-it', 'medical', 'mock-prep', 'founder', 'referrals', 'b2b'];
+    if (validPages.includes(hash as PageType)) {
+      return hash as PageType;
+    }
+    return 'all';
+  });
+
   const [selectedSector, setSelectedSector] = useState<SectorType>('All');
   const [selectedJobForModal, setSelectedJobForModal] = useState<JobDrive | null>(null);
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
   const [isAdminPortalOpen, setIsAdminPortalOpen] = useState(false);
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
   const [allJobs, setAllJobs] = useState<JobDrive[]>(() => getJobDrives());
+
+  // Hash change synchronization for browser navigation (back/forward)
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '').toLowerCase();
+      const validPages: PageType[] = ['all', 'it', 'non-it', 'medical', 'mock-prep', 'founder', 'referrals', 'b2b'];
+      if (validPages.includes(hash as PageType)) {
+        setActivePage(hash as PageType);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   useEffect(() => {
     const handleJobsUpdated = () => {
@@ -52,80 +78,123 @@ export default function App() {
     setIsApplyModalOpen(true);
   };
 
+  const handleNavigate = (page: PageType) => {
+    setActivePage(page);
+    window.location.hash = page === 'all' ? '' : page;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleSelectSector = (sector: SectorType) => {
     setSelectedSector(sector);
-    if (sector === 'Healthcare') {
-      const el = document.getElementById('medical');
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-        return;
-      }
-    }
-    // Smooth scroll to drives section
-    const el = document.getElementById('drives');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    if (sector === 'IT') {
+      handleNavigate('it');
+    } else if (sector === 'Non-IT') {
+      handleNavigate('non-it');
+    } else if (sector === 'Healthcare') {
+      handleNavigate('medical');
+    } else {
+      handleNavigate('all');
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#0B132B] text-slate-100 flex flex-col font-['Plus_Jakarta_Sans',sans-serif]">
+    <div className="min-h-screen bg-[#060913] text-slate-100 flex flex-col font-['Plus_Jakarta_Sans',sans-serif]">
       {/* Toast Notification Layer */}
       <ToastContainer toasts={toasts} onDismiss={removeToast} />
 
       {/* Sticky Header Navbar */}
       <Navbar
+        activePage={activePage}
+        onNavigate={handleNavigate}
         onOpenAdmin={() => setIsAdminPortalOpen(true)}
         onSelectSectorFilter={handleSelectSector}
       />
 
-      {/* Main Page Flow */}
+      {/* Main Page Flow - Conditional on activePage */}
       <main className="flex-1">
-        {/* 1. Hero Section with Live Metrics */}
-        <HeroSection
-          onSelectSector={handleSelectSector}
-          activeSector={selectedSector}
-        />
+        {activePage === 'all' && (
+          <>
+            {/* 1. Hero Section with Live Metrics */}
+            <HeroSection
+              onSelectSector={handleSelectSector}
+              activeSector={selectedSector}
+              onNavigate={handleNavigate}
+            />
 
-        {/* 2. Active Drives & Job Board */}
-        <ActiveDrivesSection
-          onOpenApplyModal={handleOpenApplyModal}
-          selectedSector={selectedSector}
-          onSelectSector={setSelectedSector}
-        />
+            {/* 2. Active Drives & Job Board */}
+            <ActiveDrivesSection
+              onOpenApplyModal={handleOpenApplyModal}
+              selectedSector={selectedSector}
+              onSelectSector={setSelectedSector}
+            />
 
-        {/* 3. Dedicated Medical & US Healthcare RCM Section */}
-        <MedicalSection
-          onOpenApplyModal={handleOpenApplyModal}
-          medicalJobs={medicalJobs}
-        />
+            {/* 3. Verified Candidate Testimonials & Wall of Placement */}
+            <TestimonialsSection />
+          </>
+        )}
 
-        {/* 4. Mock Interview Preparation & 1-on-1 Coaching */}
-        <MockPrepSection
-          onSuccessToast={(title, msg) => addToast(title, msg, 'success')}
-        />
+        {activePage === 'it' && (
+          <ITDrivesPage
+            jobs={allJobs}
+            onOpenApplyModal={handleOpenApplyModal}
+            onNavigate={handleNavigate}
+          />
+        )}
 
-        {/* 5. Founder & Leadership (Sandru Anudeep - Executive Seal) */}
-        <FounderSection />
+        {activePage === 'non-it' && (
+          <NonITDrivesPage
+            jobs={allJobs}
+            onOpenApplyModal={handleOpenApplyModal}
+            onNavigate={handleNavigate}
+          />
+        )}
 
-        {/* 6. Candidate Referral Bonus Program */}
-        <ReferralBonusSection
-          onSuccessToast={(title, msg) => addToast(title, msg, 'success')}
-        />
+        {activePage === 'medical' && (
+          <MedicalSection
+            onOpenApplyModal={handleOpenApplyModal}
+            medicalJobs={medicalJobs}
+            isStandalonePage={true}
+            onNavigate={handleNavigate}
+          />
+        )}
 
-        {/* 7. B2B Corporate Staffing & Vendor Solutions */}
-        <B2BStaffingSection
-          onSuccessToast={(title, msg) => addToast(title, msg, 'success')}
-        />
+        {activePage === 'mock-prep' && (
+          <MockPrepSection
+            onSuccessToast={(title, msg) => addToast(title, msg, 'success')}
+            isStandalonePage={true}
+            onNavigate={handleNavigate}
+          />
+        )}
 
-        {/* 8. Verified Candidate Testimonials & Wall of Placement */}
-        <TestimonialsSection />
+        {activePage === 'founder' && (
+          <FounderSection
+            isStandalonePage={true}
+            onNavigate={handleNavigate}
+          />
+        )}
+
+        {activePage === 'referrals' && (
+          <ReferralBonusSection
+            onSuccessToast={(title, msg) => addToast(title, msg, 'success')}
+            isStandalonePage={true}
+            onNavigate={handleNavigate}
+          />
+        )}
+
+        {activePage === 'b2b' && (
+          <B2BStaffingSection
+            onSuccessToast={(title, msg) => addToast(title, msg, 'success')}
+            isStandalonePage={true}
+            onNavigate={handleNavigate}
+          />
+        )}
       </main>
 
       {/* Footer */}
       <Footer
         onOpenAdmin={() => setIsAdminPortalOpen(true)}
         onSelectSectorFilter={handleSelectSector}
+        onNavigate={handleNavigate}
       />
 
       {/* Interactive Floating WhatsApp Recruiter Widget */}
