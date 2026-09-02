@@ -1,18 +1,15 @@
 import React from 'react';
 import { 
-  Sparkles, 
   MapPin, 
   Phone, 
   MessageSquare, 
   ShieldCheck, 
-  Heart, 
   Lock,
   Briefcase,
   Headphones,
   HeartPulse,
   GraduationCap,
-  Gift,
-  Building2
+  Gift
 } from 'lucide-react';
 import { openWhatsApp, DISPLAY_PHONE, FOUNDER_NAME, LOCATION_HQ } from '../utils/whatsappHelper';
 import { PageType, SectorType } from '../types';
@@ -35,13 +32,13 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onSelectSectorFilte
   };
 
   return (
-    <footer className="bg-[#050811] border-t border-slate-800/80 text-slate-400 text-xs">
+    <footer className="bg-white border-t border-slate-200 text-slate-600 text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Col 1: Brand & Founder Credential (5 cols) */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white p-0.5 border border-cyan-500/40 flex items-center justify-center shadow-md overflow-hidden">
+              <div className="w-10 h-10 rounded-xl bg-purple-50 p-1 border border-purple-200 flex items-center justify-center shadow-xs overflow-hidden">
                 <img
                   src="/logo.png"
                   alt="TalentRise Logo"
@@ -49,28 +46,28 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onSelectSectorFilte
                 />
               </div>
               <div>
-                <span className="text-xl font-bold text-white tracking-tight">
-                  Talent<span className="text-amber-400">Rise</span>
+                <span className="text-xl font-extrabold text-slate-950 tracking-tight">
+                  Talent<span className="text-purple-600">Rise</span>
                 </span>
-                <p className="text-[11px] text-cyan-400 font-medium uppercase tracking-wider">
+                <p className="text-[11px] text-pink-600 font-bold uppercase tracking-wider">
                   Training and Placements
                 </p>
               </div>
             </div>
 
-            <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
+            <p className="text-xs text-slate-500 leading-relaxed max-w-sm font-normal">
               Hyderabad's dedicated training and placement consultancy connecting freshers and experienced candidates directly to Tier-1 MNC hiring drives and US Healthcare ITES pipelines.
             </p>
 
-            <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800/80 space-y-1.5 max-w-sm">
-              <div className="flex items-center gap-2 text-white font-semibold text-xs">
-                <ShieldCheck className="w-4 h-4 text-cyan-400" />
+            <div className="p-3.5 rounded-xl bg-purple-50/50 border border-purple-200/70 space-y-1.5 max-w-sm">
+              <div className="flex items-center gap-2 text-slate-950 font-bold text-xs">
+                <ShieldCheck className="w-4 h-4 text-purple-600" />
                 <span>Executive Leadership: {FOUNDER_NAME}</span>
               </div>
-              <p className="text-[11px] text-slate-400">
+              <p className="text-[11px] text-slate-600 font-normal">
                 Founder & CEO • 300+ Verified Candidate Closures Since 2024
               </p>
-              <div className="pt-1 text-[11px] text-amber-400 font-mono">
+              <div className="pt-1 text-[11px] text-purple-700 font-mono font-bold">
                 Direct Recruiter Line: {DISPLAY_PHONE}
               </div>
             </div>
@@ -78,61 +75,61 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onSelectSectorFilte
 
           {/* Col 2: Hiring Streams (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-950">
               Hiring Streams
             </h4>
-            <ul className="space-y-2">
+            <ul className="space-y-2 font-medium">
               <li>
                 <button
                   onClick={() => handleNav('it', 'IT')}
-                  className="hover:text-cyan-400 transition-colors flex items-center gap-2 text-left"
+                  className="hover:text-purple-600 transition-colors flex items-center gap-2 text-left"
                 >
-                  <Briefcase className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                  <Briefcase className="w-3.5 h-3.5 text-purple-600 shrink-0" />
                   <span>IT & Engineering (Capgemini CATIA)</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => handleNav('medical', 'Healthcare')}
-                  className="hover:text-teal-400 transition-colors flex items-center gap-2 text-left"
+                  className="hover:text-cyan-600 transition-colors flex items-center gap-2 text-left"
                 >
-                  <HeartPulse className="w-3.5 h-3.5 text-teal-400 shrink-0" />
-                  <span>Medical & US Healthcare RCM (R1 RCM, IKS, Ascent)</span>
+                  <HeartPulse className="w-3.5 h-3.5 text-cyan-600 shrink-0" />
+                  <span>Medical & US Healthcare RCM</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => handleNav('medical', 'Healthcare')}
-                  className="hover:text-teal-400 transition-colors flex items-center gap-2 text-left"
+                  className="hover:text-cyan-600 transition-colors flex items-center gap-2 text-left"
                 >
-                  <HeartPulse className="w-3.5 h-3.5 text-teal-400 shrink-0" />
-                  <span>Medical Billing & AR Caller (Data Marshall)</span>
+                  <HeartPulse className="w-3.5 h-3.5 text-cyan-600 shrink-0" />
+                  <span>Medical Billing & AR Caller</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => handleNav('non-it', 'Non-IT')}
-                  className="hover:text-emerald-400 transition-colors flex items-center gap-2 text-left"
+                  className="hover:text-emerald-600 transition-colors flex items-center gap-2 text-left"
                 >
-                  <Headphones className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <Headphones className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                   <span>Non-IT / BPO Operations</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => handleNav('mock-prep')}
-                  className="hover:text-amber-400 transition-colors flex items-center gap-2 text-left"
+                  className="hover:text-pink-600 transition-colors flex items-center gap-2 text-left"
                 >
-                  <GraduationCap className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <GraduationCap className="w-3.5 h-3.5 text-pink-600 shrink-0" />
                   <span>Mock Interview Prep</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => handleNav('referrals')}
-                  className="hover:text-yellow-400 transition-colors flex items-center gap-2 text-left"
+                  className="hover:text-purple-600 transition-colors flex items-center gap-2 text-left"
                 >
-                  <Gift className="w-3.5 h-3.5 text-yellow-400 shrink-0" />
+                  <Gift className="w-3.5 h-3.5 text-purple-600 shrink-0" />
                   <span>Referral Bonus Program</span>
                 </button>
               </li>
@@ -141,23 +138,23 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onSelectSectorFilte
 
           {/* Col 3: Direct Navigation & Contact (4 cols) */}
           <div className="lg:col-span-4 space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-950">
               Contact & Recruiter Desk
             </h4>
-            <div className="space-y-2.5 text-xs text-slate-300">
+            <div className="space-y-2.5 text-xs text-slate-600">
               <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
                 <span>{LOCATION_HQ}</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-cyan-400 shrink-0" />
-                <span className="font-mono">{DISPLAY_PHONE}</span>
+                <Phone className="w-4 h-4 text-purple-600 shrink-0" />
+                <span className="font-mono font-bold text-slate-800">{DISPLAY_PHONE}</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <MessageSquare className="w-4 h-4 text-emerald-400 shrink-0" />
+                <MessageSquare className="w-4 h-4 text-emerald-600 shrink-0" />
                 <button
                   onClick={() => openWhatsApp(`Hello ${FOUNDER_NAME} Sir, I am contacting you from the TalentRise website footer.`)}
-                  className="text-[#25D366] hover:underline font-semibold"
+                  className="text-emerald-600 hover:underline font-bold"
                 >
                   Chat with Sandru Anudeep (+91 8328246487)
                 </button>
@@ -167,9 +164,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onSelectSectorFilte
             <div className="pt-3 flex items-center gap-2">
               <button
                 onClick={onOpenAdmin}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-[11px] text-slate-300 hover:text-white transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 text-[11px] text-slate-700 hover:text-slate-950 transition-colors font-medium"
               >
-                <Lock className="w-3 h-3 text-cyan-400" />
+                <Lock className="w-3 h-3 text-purple-600" />
                 <span>Recruiter Portal Login</span>
               </button>
             </div>
@@ -177,16 +174,16 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onSelectSectorFilte
         </div>
 
         {/* Bottom Strip */}
-        <div className="mt-12 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-400">
+        <div className="mt-12 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-400">
           <p>
-            © {new Date().getFullYear()} <strong className="text-slate-300">TalentRise Training and Placements</strong>. All rights reserved.
+            © {new Date().getFullYear()} <strong className="text-slate-700">TalentRise Training and Placements</strong>. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
-            <button onClick={() => handleNav('b2b')} className="hover:text-slate-300 transition-colors">
+          <div className="flex items-center gap-4 font-medium">
+            <button onClick={() => handleNav('b2b')} className="hover:text-purple-600 transition-colors">
               B2B Corporate Staffing
             </button>
             <span>•</span>
-            <button onClick={() => handleNav('founder')} className="hover:text-slate-300 transition-colors">
+            <button onClick={() => handleNav('founder')} className="hover:text-purple-600 transition-colors">
               Leadership
             </button>
             <span>•</span>

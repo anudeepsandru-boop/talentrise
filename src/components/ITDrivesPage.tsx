@@ -4,17 +4,13 @@ import {
   Search, 
   Building2, 
   Clock, 
-  Calendar, 
   CheckCircle2, 
   ArrowRight, 
   MessageSquare, 
-  Sparkles, 
   Code2, 
   Cpu, 
-  Layers, 
   ShieldCheck,
-  Flame,
-  FileText
+  Flame
 } from 'lucide-react';
 import { JobDrive, PageType } from '../types';
 import { PageHeaderBanner } from './PageHeaderBanner';
@@ -57,7 +53,7 @@ export const ITDrivesPage: React.FC<ITDrivesPageProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-[#060913] pb-20">
+    <div className="min-h-screen bg-[#fafbff] pb-20">
       {/* Header Banner */}
       <PageHeaderBanner
         currentPage="it"
@@ -70,54 +66,54 @@ export const ITDrivesPage: React.FC<ITDrivesPageProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
         {/* Technology Highlights Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-          <div className="p-5 rounded-2xl bg-slate-900/80 border border-cyan-500/30 shadow-lg">
+          <div className="p-5 rounded-2xl bg-white border border-cyan-200/80 shadow-sm hover:shadow-md transition-all">
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-9 h-9 rounded-xl bg-cyan-500/15 text-cyan-400 flex items-center justify-center">
+              <div className="w-9 h-9 rounded-xl bg-cyan-50 text-cyan-700 flex items-center justify-center">
                 <Cpu className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-white font-bold text-sm">Capgemini CATIA V5</h3>
-                <span className="text-[11px] text-cyan-400 font-mono font-semibold">Specialized Mechanical & CAD</span>
+                <h3 className="text-slate-950 font-extrabold text-sm">Capgemini CATIA V5</h3>
+                <span className="text-[11px] text-cyan-700 font-mono font-bold">Specialized Mechanical & CAD</span>
               </div>
             </div>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <p className="text-xs text-slate-600 leading-relaxed">
               Direct client drive for B.Tech Mechanical & Automobile engineers with CATIA modeling skills and immediate joining in Hyderabad.
             </p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-slate-900/80 border border-blue-500/30 shadow-lg">
+          <div className="p-5 rounded-2xl bg-white border border-purple-200/80 shadow-sm hover:shadow-md transition-all">
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-9 h-9 rounded-xl bg-blue-500/15 text-blue-400 flex items-center justify-center">
+              <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center">
                 <Code2 className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-white font-bold text-sm">Associate Software Engineers</h3>
-                <span className="text-[11px] text-blue-400 font-mono font-semibold">Full-Stack & Cloud Services</span>
+                <h3 className="text-slate-950 font-extrabold text-sm">Associate Software Engineers</h3>
+                <span className="text-[11px] text-purple-700 font-mono font-bold">Full-Stack & Cloud Services</span>
               </div>
             </div>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <p className="text-xs text-slate-600 leading-relaxed">
               Fresher & experienced openings across Technomold, Capgemini Guidewire, and product partners with ₹3.50 – ₹6.00 LPA CTC packages.
             </p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-slate-900/80 border border-emerald-500/30 shadow-lg">
+          <div className="p-5 rounded-2xl bg-white border border-pink-200/80 shadow-sm hover:shadow-md transition-all">
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-9 h-9 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center">
+              <div className="w-9 h-9 rounded-xl bg-pink-50 text-pink-700 flex items-center justify-center">
                 <ShieldCheck className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-white font-bold text-sm">1-on-1 Technical Mock Prep</h3>
-                <span className="text-[11px] text-emerald-400 font-mono font-semibold">Founder Mentorship</span>
+                <h3 className="text-slate-950 font-extrabold text-sm">1-on-1 Technical Mock Prep</h3>
+                <span className="text-[11px] text-pink-700 font-mono font-bold">Founder Mentorship</span>
               </div>
             </div>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <p className="text-xs text-slate-600 leading-relaxed">
               Rigorous coding walkthroughs, system design basics, and HR round clearing guidance before every client drive.
             </p>
           </div>
         </div>
 
         {/* Search & Filter Bar */}
-        <div className="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-xl mb-8 flex flex-col sm:flex-row items-center gap-3">
+        <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm mb-8 flex flex-col sm:flex-row items-center gap-3">
           <div className="relative flex-1 w-full">
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
             <input
@@ -125,12 +121,12 @@ export const ITDrivesPage: React.FC<ITDrivesPageProps> = ({
               placeholder="Search IT drives by role (CATIA, ASE, Guidewire), company, or skills..."
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              className="w-full bg-slate-950/80 border border-slate-700/70 rounded-xl pl-10 pr-4 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
+              className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-purple-500 focus:bg-white"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-2.5 text-xs text-slate-400 hover:text-white"
+                className="absolute right-3 top-2.5 text-xs text-slate-400 hover:text-slate-700 font-semibold"
               >
                 Clear
               </button>
@@ -140,7 +136,7 @@ export const ITDrivesPage: React.FC<ITDrivesPageProps> = ({
           <select
             value={selectedWorkMode}
             onChange={e => setSelectedWorkMode(e.target.value)}
-            className="w-full sm:w-auto bg-slate-950/80 border border-slate-700/70 rounded-xl px-3 py-2 text-xs sm:text-sm text-slate-300 focus:outline-none focus:border-cyan-400"
+            className="w-full sm:w-auto bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs sm:text-sm text-slate-700 focus:outline-none focus:border-purple-500 focus:bg-white font-medium"
           >
             <option value="All">All Work Modes</option>
             <option value="On-site">On-site (Hyderabad)</option>
@@ -151,16 +147,16 @@ export const ITDrivesPage: React.FC<ITDrivesPageProps> = ({
 
         {/* IT Job Cards Grid */}
         {itJobs.length === 0 ? (
-          <div className="text-center py-16 px-4 rounded-2xl bg-slate-900/50 border border-slate-800">
-            <Briefcase className="w-12 h-12 text-slate-600 mx-auto mb-3" />
-            <h3 className="text-base font-bold text-white mb-1">No IT drives match your filters</h3>
-            <p className="text-xs text-slate-400 mb-4">Try clearing your search query or view all open drives.</p>
+          <div className="text-center py-16 px-4 rounded-2xl bg-white border border-slate-200">
+            <Briefcase className="w-12 h-12 text-slate-300 mx-auto mb-3" />
+            <h3 className="text-base font-bold text-slate-900 mb-1">No IT drives match your filters</h3>
+            <p className="text-xs text-slate-500 mb-4">Try clearing your search query or view all open drives.</p>
             <button
               onClick={() => {
                 setSearchQuery('');
                 setSelectedWorkMode('All');
               }}
-              className="px-4 py-2 rounded-xl bg-cyan-600 text-white text-xs font-semibold"
+              className="px-4 py-2 rounded-xl bg-slate-100 text-purple-700 text-xs font-bold hover:bg-slate-200"
             >
               Reset Filters
             </button>
@@ -170,68 +166,68 @@ export const ITDrivesPage: React.FC<ITDrivesPageProps> = ({
             {itJobs.map(job => (
               <div
                 key={job.id}
-                className="flex flex-col justify-between rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 p-5 sm:p-6 shadow-xl hover:shadow-2xl hover:shadow-cyan-950/30 transition-all group"
+                className="flex flex-col justify-between rounded-2xl bg-white border border-slate-200/90 hover:border-purple-300 p-5 sm:p-6 shadow-sm hover:shadow-xl hover:shadow-purple-500/5 transition-all group"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
                     <div className="flex items-center gap-2">
-                      <span className="px-2 py-0.5 rounded font-mono font-bold text-xs bg-slate-800 text-amber-300 border border-slate-700/80">
+                      <span className="px-2 py-0.5 rounded font-mono font-bold text-xs bg-slate-100 text-slate-700 border border-slate-200">
                         {job.id}
                       </span>
-                      <span className="px-2.5 py-0.5 rounded-md text-[11px] font-bold uppercase bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
+                      <span className="px-2.5 py-0.5 rounded-md text-[11px] font-bold uppercase bg-cyan-50 text-cyan-700 border border-cyan-200">
                         IT & Tech
                       </span>
                       {job.urgentHiring && (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold bg-red-500/15 text-red-400 border border-red-500/30">
-                          <Flame className="w-3 h-3 fill-current" />
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200">
+                          <Flame className="w-3 h-3 fill-current text-rose-600" />
                           Urgent
                         </span>
                       )}
                     </div>
-                    <span className="text-[11px] text-slate-400 font-mono">
+                    <span className="text-[11px] text-slate-400 font-mono font-medium">
                       {job.postedDaysAgo}
                     </span>
                   </div>
 
-                  <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-cyan-400 transition-colors leading-snug">
+                  <h3 className="text-lg sm:text-xl font-extrabold text-slate-950 group-hover:text-purple-700 transition-colors leading-snug">
                     {job.title}
                   </h3>
 
-                  <div className="flex items-center gap-2 mt-1 mb-4 text-slate-300 text-xs sm:text-sm">
+                  <div className="flex items-center gap-2 mt-1 mb-4 text-slate-600 text-xs sm:text-sm">
                     <Building2 className="w-4 h-4 text-slate-400 shrink-0" />
-                    <span className="font-semibold text-slate-200">{job.companyOrProcess}</span>
+                    <span className="font-bold text-slate-800">{job.companyOrProcess}</span>
                   </div>
 
                   {/* Highlights */}
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs mb-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs mb-4">
                     <div>
-                      <span className="text-[10px] text-slate-400 block uppercase">Package / CTC</span>
-                      <span className="font-bold text-cyan-400">{job.ctc}</span>
+                      <span className="text-[10px] text-slate-400 block uppercase font-semibold">Package / CTC</span>
+                      <span className="font-extrabold text-purple-700">{job.ctc}</span>
                     </div>
                     <div>
-                      <span className="text-[10px] text-slate-400 block uppercase">Experience</span>
-                      <span className="font-semibold text-slate-200">{job.experience}</span>
+                      <span className="text-[10px] text-slate-400 block uppercase font-semibold">Experience</span>
+                      <span className="font-bold text-slate-800">{job.experience}</span>
                     </div>
                     <div className="col-span-2 sm:col-span-1">
-                      <span className="text-[10px] text-slate-400 block uppercase">Location</span>
-                      <span className="font-semibold text-slate-200 truncate block">{job.location}</span>
+                      <span className="text-[10px] text-slate-400 block uppercase font-semibold">Location</span>
+                      <span className="font-bold text-slate-800 truncate block">{job.location}</span>
                     </div>
                   </div>
 
                   {/* Shift info */}
-                  <div className="flex items-center gap-2 text-xs text-slate-300 mb-4 pb-3 border-b border-slate-800/80">
-                    <Clock className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                  <div className="flex items-center gap-2 text-xs text-slate-600 mb-4 pb-3 border-b border-slate-100">
+                    <Clock className="w-3.5 h-3.5 text-cyan-600 shrink-0" />
                     <span>{job.shifts}</span>
                   </div>
 
                   {/* Requirements */}
-                  <div className="space-y-1.5 mb-5 text-xs text-slate-300">
-                    <p className="font-semibold text-slate-400 uppercase text-[10px] tracking-wider">
+                  <div className="space-y-1.5 mb-5 text-xs text-slate-600">
+                    <p className="font-bold text-slate-500 uppercase text-[10px] tracking-wider">
                       Key Technical Requirements:
                     </p>
                     {job.keyRequirements.slice(0, 3).map((req, i) => (
                       <div key={i} className="flex items-start gap-2">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
                         <span className="leading-relaxed">{req}</span>
                       </div>
                     ))}
@@ -239,13 +235,13 @@ export const ITDrivesPage: React.FC<ITDrivesPageProps> = ({
                 </div>
 
                 {/* Card Action Buttons */}
-                <div className="pt-4 border-t border-slate-800/80 flex items-center gap-2">
+                <div className="pt-4 border-t border-slate-100 flex items-center gap-2">
                   <button
                     onClick={() => onOpenApplyModal(job)}
-                    className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold bg-cyan-600 hover:bg-cyan-500 text-white shadow-md shadow-cyan-950/40 transition-all active:scale-95"
+                    className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold bg-slate-950 hover:bg-slate-800 text-white shadow-sm transition-all active:scale-95"
                   >
                     <span>Apply for Drive</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-4 h-4 text-cyan-400" />
                   </button>
 
                   <button

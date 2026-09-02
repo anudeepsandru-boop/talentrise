@@ -27,7 +27,6 @@ export const PageHeaderBanner: React.FC<PageHeaderBannerProps> = ({
   title,
   subtitle,
   badgeText,
-  badgeColor = 'cyan',
   onNavigate,
 }) => {
   const quickLinks: { id: PageType; label: string; icon: React.ElementType }[] = [
@@ -42,28 +41,28 @@ export const PageHeaderBanner: React.FC<PageHeaderBannerProps> = ({
   ];
 
   return (
-    <div className="relative pt-28 pb-10 md:pt-32 md:pb-12 tech-grid-bg border-b border-slate-800/80 overflow-hidden">
-      {/* Background Cyber Accents */}
-      <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[500px] h-[250px] bg-cyan-500/10 blur-[130px] rounded-full pointer-events-none" />
-      <div className="absolute top-1/2 right-10 -translate-y-1/2 w-[350px] h-[200px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
+    <div className="relative pt-28 pb-10 md:pt-36 md:pb-12 tech-mesh-bg border-b border-slate-200/80 overflow-hidden">
+      {/* Subtle Atmospheric Light Glows */}
+      <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[500px] h-[250px] bg-cyan-400/10 blur-[130px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 right-10 -translate-y-1/2 w-[350px] h-[200px] bg-fuchsia-400/15 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Breadcrumb row */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-          <nav className="flex items-center gap-2 text-xs text-slate-400 font-medium">
+          <nav className="flex items-center gap-2 text-xs text-slate-500 font-medium">
             <button
               onClick={() => onNavigate('all')}
-              className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"
+              className="hover:text-purple-600 transition-colors flex items-center gap-1.5 font-semibold"
             >
               <span>Home</span>
             </button>
-            <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
-            <span className="text-cyan-300 font-semibold">{title}</span>
+            <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+            <span className="text-purple-700 font-bold">{title}</span>
           </nav>
 
           <button
             onClick={() => onNavigate('all')}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700/80 text-xs font-semibold transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-950 border border-slate-200 text-xs font-bold shadow-2xs transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to All Drives</span>
@@ -73,27 +72,27 @@ export const PageHeaderBanner: React.FC<PageHeaderBannerProps> = ({
         {/* Title and Subtitle */}
         <div className="max-w-3xl">
           {badgeText && (
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-xs font-semibold text-cyan-300 shadow-sm shadow-cyan-950/40 mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-xs font-bold text-purple-700 shadow-2xs mb-3">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
               </span>
               <span>{badgeText}</span>
             </div>
           )}
 
-          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-3">
+          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-950 tracking-tight leading-tight mb-3">
             {title}
           </h1>
 
-          <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl font-normal">
             {subtitle}
           </p>
         </div>
 
         {/* Quick Route Switches */}
-        <div className="mt-8 pt-6 border-t border-slate-800/80 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-          <span className="text-xs uppercase tracking-wider font-semibold text-slate-500 shrink-0 mr-2">
+        <div className="mt-8 pt-6 border-t border-slate-200 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+          <span className="text-xs uppercase tracking-wider font-bold text-slate-400 shrink-0 mr-2">
             Switch View:
           </span>
           {quickLinks.map(link => {
@@ -103,13 +102,13 @@ export const PageHeaderBanner: React.FC<PageHeaderBannerProps> = ({
               <button
                 key={link.id}
                 onClick={() => onNavigate(link.id)}
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all ${
                   isCurrent
-                    ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-400/50 shadow-sm shadow-cyan-950/40'
-                    : 'bg-slate-900/60 hover:bg-slate-800 text-slate-400 hover:text-white border border-slate-800'
+                    ? 'bg-slate-950 text-white border border-slate-950 shadow-sm'
+                    : 'bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-950 border border-slate-200'
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${isCurrent ? 'text-cyan-400' : 'text-slate-500'}`} />
+                <Icon className={`w-3.5 h-3.5 ${isCurrent ? 'text-pink-400' : 'text-slate-400'}`} />
                 <span>{link.label}</span>
               </button>
             );
