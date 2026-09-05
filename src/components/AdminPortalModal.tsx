@@ -44,7 +44,9 @@ import {
   updateMockStatus, 
   updateReferralStatus, 
   exportDataAsJSON, 
-  exportApplicationsAsCSV 
+  exportApplicationsAsCSV,
+  RETIRED_JOB_IDS,
+  isJobIdRetired
 } from '../utils/storage';
 import { openWhatsApp, DISPLAY_PHONE, FOUNDER_NAME } from '../utils/whatsappHelper';
 
@@ -76,7 +78,7 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
   // Job Posting Form State
   const [jobTitle, setJobTitle] = useState('');
   const [companyOrProcess, setCompanyOrProcess] = useState('');
-  const [clientBadge, setClientBadge] = useState('Urgent Direct Walk-in');
+  const [clientBadge, setClientBadge] = useState('Direct Interview');
   const [sector, setSector] = useState<'IT' | 'Non-IT' | 'Healthcare'>('Non-IT');
   const [ctc, setCtc] = useState('₹3.5 LPA - ₹4.5 LPA');
   const [experience, setExperience] = useState('Freshers & Experienced (0-2 Yrs)');
@@ -231,7 +233,7 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
     const newJob = saveJobDrive({
       title: jobTitle.trim(),
       companyOrProcess: companyOrProcess.trim(),
-      clientBadge: clientBadge.trim() || 'Direct Walk-in',
+      clientBadge: clientBadge.trim() || 'Direct Client Drive',
       sector,
       ctc: ctc.trim() || 'Best in Industry',
       experience: experience.trim() || '0 - 2 Years',
@@ -269,8 +271,8 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
     setWorkMode(job.workMode);
     setShifts(job.shifts);
     setOpeningsCount(job.openingsCount);
-    setClientBadge('Urgent Direct Walk-in');
-    setUrgentHiring(true);
+    setClientBadge('Direct Interview');
+    setUrgentHiring(false);
     setFeatured(true);
     setEligibilityText(job.eligibility.join('\n'));
     setRequirementsText(job.keyRequirements.join('\n'));
@@ -287,7 +289,7 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
     saveJobDrive({
       ...job,
       urgentHiring: !isCurrentlyUrgent,
-      clientBadge: isCurrentlyUrgent ? 'Positions Filled / Closed' : 'Urgent Direct Walk-in'
+      clientBadge: isCurrentlyUrgent ? 'Positions Filled / Closed' : 'Direct Interview'
     });
     loadData();
     setJobSuccessMessage(
@@ -743,9 +745,12 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
                         <span className="px-2 py-0.5 rounded font-mono font-bold text-xs bg-amber-400/20 text-amber-300 border border-amber-400/40">
                           {generateNextJobId()}
                         </span>
+                        <span className="text-[10px] text-slate-500 font-mono">
+                          (TR1011 permanently retired)
+                        </span>
                       </div>
                       <span className="text-[11px] text-slate-400 hidden sm:inline">
-                        Auto-assigned in TR#### format for seamless addition & removal
+                        Sequential TR#### series • Retired IDs are permanently reserved
                       </span>
                     </div>
 
@@ -1034,11 +1039,6 @@ export const AdminPortalModal: React.FC<AdminPortalModalProps> = ({ isOpen, onCl
                                 <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-500/10 text-sky-400">
                                   {job.sector}
                                 </span>
-                                {job.urgentHiring && (
-                                  <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-red-500/15 text-red-400 border border-red-500/30 animate-pulse">
-                                    URGENT
-                                  </span>
-                                )}
                                 {isClosed && (
                                   <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-800 text-slate-400">
                                     CLOSED / FILLED

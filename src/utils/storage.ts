@@ -345,6 +345,15 @@ export function exportApplicationsAsCSV(): string {
   return [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
 }
 
+// Permanently retired Job IDs that must NEVER be reused for future openings
+export const RETIRED_JOB_IDS = ['TR1011', '1011'];
+
+export function isJobIdRetired(id: string): boolean {
+  if (!id) return false;
+  const clean = id.trim().toUpperCase();
+  return RETIRED_JOB_IDS.some(r => r.toUpperCase() === clean || `TR${r.toUpperCase()}` === clean);
+}
+
 export function generateNextJobId(): string {
   try {
     const allJobs = getJobDrives();
@@ -358,9 +367,13 @@ export function generateNextJobId(): string {
         }
       }
     });
-    return `TR${highestNum + 1}`;
+    let nextNum = highestNum + 1;
+    while (isJobIdRetired(`TR${nextNum}`) || isJobIdRetired(`${nextNum}`)) {
+      nextNum++;
+    }
+    return `TR${nextNum}`;
   } catch (e) {
-    return 'TR1001';
+    return 'TR1021';
   }
 }
 
@@ -370,6 +383,8 @@ export function getJobDrives(): JobDrive[] {
     const deletedIds: string[] = deletedRaw ? JSON.parse(deletedRaw) : [];
 
     const removedPresetIds = [
+      'TR1011',
+      '1011',
       'drive-capgemini-catia',
       'drive-wipro-servicedesk',
       'drive-kyndryl-cloud',
@@ -386,20 +401,22 @@ export function getJobDrives(): JobDrive[] {
     const customJobs: JobDrive[] = (customRaw ? JSON.parse(customRaw) : []).filter(
       (j: JobDrive) =>
         !deletedIds.includes(j.id) &&
-        !removedPresetIds.includes(j.id)
+        !removedPresetIds.includes(j.id) &&
+        !isJobIdRetired(j.id)
     );
 
-    // Filter preset jobs that haven't been deleted
+    // Filter preset jobs that haven't been deleted or retired
     const filteredPreset = JOB_DRIVES.filter(
       job =>
         !deletedIds.includes(job.id) &&
-        !removedPresetIds.includes(job.id)
+        !removedPresetIds.includes(job.id) &&
+        !isJobIdRetired(job.id)
     );
 
     // Combine custom jobs first (newer first) with filtered presets
     return [...customJobs, ...filteredPreset];
   } catch (e) {
-    return JOB_DRIVES;
+    return JOB_DRIVES.filter(j => !isJobIdRetired(j.id));
   }
 }
 
@@ -407,11 +424,15 @@ export function saveJobDrive(job: Omit<JobDrive, 'id' | 'postedDaysAgo'> & { id?
   const customRaw = localStorage.getItem(STORAGE_KEYS.CUSTOM_JOBS);
   const currentCustom: JobDrive[] = customRaw ? JSON.parse(customRaw) : [];
 
-  const existingIndex = currentCustom.findIndex(j => j.id === job.id);
-  const assignedId = job.id || generateNextJobId();
+  let assignedId = job.id?.trim();
+  if (!assignedId || isJobIdRetired(assignedId)) {
+    assignedId = generateNextJobId();
+  }
+
+  const existingIndex = currentCustom.findIndex(j => j.id === assignedId);
   const newRecord: JobDrive = {
     id: assignedId,
-    postedDaysAgo: job.postedDaysAgo || 'Just now',
+    postedDaysAgo: job.postedDaysAgo || 'Active Drive',
     title: job.title,
     companyOrProcess: job.companyOrProcess,
     clientBadge: job.clientBadge || 'Direct Walk-in',

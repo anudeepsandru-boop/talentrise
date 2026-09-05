@@ -9,8 +9,7 @@ import {
   MessageSquare, 
   Code2, 
   Cpu, 
-  ShieldCheck,
-  Flame
+  ShieldCheck
 } from 'lucide-react';
 import { JobDrive, PageType } from '../types';
 import { PageHeaderBanner } from './PageHeaderBanner';
@@ -92,7 +91,7 @@ export const ITDrivesPage: React.FC<ITDrivesPageProps> = ({
               </div>
             </div>
             <p className="text-xs text-slate-600 leading-relaxed">
-              Fresher & experienced openings across Technomold, Capgemini Guidewire, and product partners with ₹3.50 – ₹6.00 LPA CTC packages.
+              Fresher & experienced openings across Capgemini, Tier-1 IT services, and product partners with ₹3.50 – ₹14.00 LPA CTC packages.
             </p>
           </div>
 
@@ -177,16 +176,12 @@ export const ITDrivesPage: React.FC<ITDrivesPageProps> = ({
                       <span className="px-2.5 py-0.5 rounded-md text-[11px] font-bold uppercase bg-cyan-50 text-cyan-700 border border-cyan-200">
                         IT & Tech
                       </span>
-                      {job.urgentHiring && (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200">
-                          <Flame className="w-3 h-3 fill-current text-rose-600" />
-                          Urgent
-                        </span>
-                      )}
                     </div>
-                    <span className="text-[11px] text-slate-400 font-mono font-medium">
-                      {job.postedDaysAgo}
-                    </span>
+                    {job.postedDaysAgo && job.postedDaysAgo !== 'Released Today' && (
+                      <span className="text-[11px] text-slate-400 font-mono font-medium">
+                        {job.postedDaysAgo}
+                      </span>
+                    )}
                   </div>
 
                   <h3 className="text-lg sm:text-xl font-extrabold text-slate-950 group-hover:text-purple-700 transition-colors leading-snug">

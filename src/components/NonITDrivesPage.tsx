@@ -197,16 +197,12 @@ export const NonITDrivesPage: React.FC<NonITDrivesPageProps> = ({
                       <span className="px-2.5 py-0.5 rounded-md text-[11px] font-bold uppercase bg-pink-50 text-pink-700 border border-pink-200">
                         Non-IT / BPO
                       </span>
-                      {job.urgentHiring && (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200">
-                          <Flame className="w-3 h-3 fill-current text-rose-600" />
-                          Urgent
-                        </span>
-                      )}
                     </div>
-                    <span className="text-[11px] text-slate-400 font-mono font-medium">
-                      {job.postedDaysAgo}
-                    </span>
+                    {job.postedDaysAgo && job.postedDaysAgo !== 'Released Today' && (
+                      <span className="text-[11px] text-slate-400 font-mono font-medium">
+                        {job.postedDaysAgo}
+                      </span>
+                    )}
                   </div>
 
                   <h3 className="text-lg sm:text-xl font-extrabold text-slate-950 group-hover:text-purple-700 transition-colors leading-snug">

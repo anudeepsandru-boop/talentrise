@@ -11,7 +11,6 @@ import {
   Building2, 
   ArrowUpRight,
   Image as ImageIcon,
-  Flame,
   X
 } from 'lucide-react';
 import { JobDrive, SectorType } from '../types';
@@ -214,13 +213,6 @@ export const ActiveDrivesSection: React.FC<ActiveDrivesSectionProps> = ({
                         {job.sector === 'IT' ? 'IT & Tech' : job.sector === 'Non-IT' ? 'Non-IT / BPO' : 'Healthcare'}
                       </span>
 
-                      {job.urgentHiring && (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200">
-                          <Flame className="w-3 h-3 fill-current text-rose-600" />
-                          Urgent Walk-in
-                        </span>
-                      )}
-
                       {job.clientBadge && (
                         <span className="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-slate-100 text-slate-700 border border-slate-200">
                           {job.clientBadge}
@@ -228,9 +220,11 @@ export const ActiveDrivesSection: React.FC<ActiveDrivesSectionProps> = ({
                       )}
                     </div>
 
-                    <span className="text-[11px] text-slate-400 shrink-0 font-mono font-medium">
-                      {job.postedDaysAgo}
-                    </span>
+                    {job.postedDaysAgo && job.postedDaysAgo !== 'Released Today' && (
+                      <span className="text-[11px] text-slate-400 shrink-0 font-mono font-medium">
+                        {job.postedDaysAgo}
+                      </span>
+                    )}
                   </div>
 
                   {/* Title & Company */}

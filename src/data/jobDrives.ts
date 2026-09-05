@@ -64,7 +64,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Voice / Aptitude Evaluation',
       'Client Operations Final Round',
     ],
-    postedDaysAgo: 'Released Today',
+    postedDaysAgo: 'Active Drive',
     featured: true,
   },
   {
@@ -96,7 +96,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Mapping Domain Aptitude & Navigation Assessment',
       'Operations Manager Fitment Round',
     ],
-    postedDaysAgo: 'Released Today',
+    postedDaysAgo: 'Active Drive',
     featured: true,
   },
   {
@@ -128,7 +128,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Written Communication & Grammar Test',
       'Technical Operations Interview',
     ],
-    postedDaysAgo: 'Released Today',
+    postedDaysAgo: 'Active Drive',
     featured: true,
   },
   {
@@ -160,7 +160,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Computer Literacy & Typing Assessment',
       'Operations Fitment Round',
     ],
-    postedDaysAgo: 'Released Today',
+    postedDaysAgo: 'Active Drive',
     featured: true,
   },
   {
@@ -192,7 +192,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Email & Chat Versant Evaluation',
       'Operations Manager Final Round',
     ],
-    postedDaysAgo: 'Released Today',
+    postedDaysAgo: 'Active Drive',
     featured: true,
   },
   {
@@ -224,7 +224,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Customer Simulation & Tone Assessment',
       'HR Final Offer Rollout',
     ],
-    postedDaysAgo: 'Released Today',
+    postedDaysAgo: 'Active Drive',
     featured: true,
   },
   {
@@ -256,7 +256,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Written Communication & Non-Voice Simulation',
       'Operations Lead Final Round',
     ],
-    postedDaysAgo: 'Released Today',
+    postedDaysAgo: 'Active Drive',
     featured: true,
   },
   {
@@ -289,7 +289,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Versant Language & Logic Test',
       'Operations Manager Interview',
     ],
-    postedDaysAgo: 'Released Today',
+    postedDaysAgo: 'Active Drive',
     featured: true,
   },
   {
@@ -321,39 +321,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Chat Grammar & Accuracy Assessment',
       'Operations Fitment Round',
     ],
-    postedDaysAgo: 'Released Today',
-    featured: true,
-  },
-  {
-    id: 'TR1011',
-    title: 'Technomold Associate Software Engineer (Python / React / DevOps / QA)',
-    companyOrProcess: 'Technomold IT Solutions Pvt Ltd',
-    clientBadge: '15+ Years IT Industry Leader',
-    sector: 'IT',
-    ctc: '₹4.50 LPA (₹22,000/Mo under Probation)',
-    experience: 'Freshers (2023 – 2026 Passouts)',
-    location: 'Hyderabad (Work From Office)',
-    workMode: 'On-site',
-    shifts: 'Standard Day Shifts (5 Working Days)',
-    openingsCount: 30,
-    urgentHiring: true,
-    walkInDates: 'Immediate Technical Screening & Direct Slot Allocation',
-    eligibility: [
-      'Qualification: Any Degree (2023, 2024, 2025, 2026 Batch Passouts)',
-      'Required Skills: Python (Frontend & Backend), React.js, Digital Marketing, Testing Automation (Playwright), AWS DevOps',
-      'Health Insurance & structured career growth provided after successful probation',
-    ],
-    keyRequirements: [
-      'Software engineering and web application development across modern technology stacks',
-      'Hands-on problem solving in Python, React.js UI workflows, Playwright automation, or AWS DevOps cloud environments',
-      'High learning agility in an established IT solutions company with 15+ years of industry experience',
-    ],
-    rounds: [
-      'Written / Online Aptitude & Coding Screening',
-      'Technical Interview (Python, React / QA / Cloud)',
-      'HR & Management Fitment Round',
-    ],
-    postedDaysAgo: 'Released Today',
+    postedDaysAgo: 'Active Drive',
     featured: true,
   },
   {
@@ -386,7 +354,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Guidewire Core Architecture & Hands-on Technical Round',
       'Project Delivery Manager Final Assessment',
     ],
-    postedDaysAgo: 'Released Today',
+    postedDaysAgo: 'Active Drive',
     featured: true,
   },
   {
@@ -419,7 +387,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'US Healthcare Aptitude & Basic English Evaluation',
       'Operations Fitment Round',
     ],
-    postedDaysAgo: 'Released Today',
+    postedDaysAgo: 'Active Drive',
     featured: true,
   },
   {
@@ -452,7 +420,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Voice Quality & Communication Evaluation',
       'Operations Team Lead Interview',
     ],
-    postedDaysAgo: 'Released Today',
+    postedDaysAgo: 'Active Drive',
     featured: true,
   },
   {
@@ -485,7 +453,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Basic Healthcare Aptitude & Computer Test',
       'Process Manager Final Interview',
     ],
-    postedDaysAgo: 'Released Today',
+    postedDaysAgo: 'Active Drive',
     featured: true,
   },
   {
@@ -518,7 +486,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Logical Reasoning & Domain Orientation',
       'Operations Fitment Interview',
     ],
-    postedDaysAgo: 'Released Today',
+    postedDaysAgo: 'Active Drive',
     featured: true,
   },
   {
@@ -551,7 +519,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Process Knowledge & People Management Evaluation',
       'Senior Operations Manager / Client Final Round',
     ],
-    postedDaysAgo: 'Released Today',
+    postedDaysAgo: 'Active Drive',
     featured: true,
   },
   {
@@ -584,7 +552,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Google Policy Aptitude & Scenario-based Moderation Assessment',
       'Operations Fitment & Final Selection Round',
     ],
-    postedDaysAgo: 'Released Today',
+    postedDaysAgo: 'Active Drive',
     featured: true,
   },
   {
@@ -617,7 +585,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Basic Travel Documentation Aptitude Assessment',
       'Operations Team Fitment & Final Selection',
     ],
-    postedDaysAgo: 'Released Today',
+    postedDaysAgo: 'Active Drive',
     featured: true,
   },
   {
