@@ -11,7 +11,10 @@ import {
   ShieldCheck, 
   Flame, 
   Plane,
-  Briefcase
+  Briefcase,
+  Image as ImageIcon,
+  X,
+  MapPin
 } from 'lucide-react';
 import { JobDrive, PageType } from '../types';
 import { PageHeaderBanner } from './PageHeaderBanner';
@@ -30,6 +33,7 @@ export const NonITDrivesPage: React.FC<NonITDrivesPageProps> = ({
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedWorkMode, setSelectedWorkMode] = useState('All');
+  const [previewPosterJob, setPreviewPosterJob] = useState<JobDrive | null>(null);
 
   const nonItJobs = useMemo(() => {
     return jobs
@@ -66,15 +70,30 @@ export const NonITDrivesPage: React.FC<NonITDrivesPageProps> = ({
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
         {/* Value Highlights Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+          <div className="p-5 rounded-2xl bg-white border border-purple-200/90 shadow-sm hover:shadow-md transition-all ring-1 ring-purple-100">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center">
+                <Flame className="w-5 h-5 text-purple-600 fill-current" />
+              </div>
+              <div>
+                <h3 className="text-slate-950 font-extrabold text-sm">Cognizant SME Mapping</h3>
+                <span className="text-[11px] text-purple-700 font-mono font-bold">3.5+ Yrs • ₹5.5 - ₹6.0 LPA</span>
+              </div>
+            </div>
+            <p className="text-xs text-slate-600 leading-relaxed">
+              Direct Panel Management at Kokapet, Hyderabad. Single-round F2F interview, two-way cab (40–45 KMs radius).
+            </p>
+          </div>
+
           <div className="p-5 rounded-2xl bg-white border border-pink-200/80 shadow-sm hover:shadow-md transition-all">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-9 h-9 rounded-xl bg-pink-50 text-pink-700 flex items-center justify-center">
                 <Plane className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-slate-950 font-extrabold text-sm">Teleperformance Travel Industry</h3>
-                <span className="text-[11px] text-pink-700 font-mono font-bold">Freshers & Exp • ₹2.60 - ₹3.40 LPA</span>
+                <h3 className="text-slate-950 font-extrabold text-sm">Teleperformance Travel</h3>
+                <span className="text-[11px] text-pink-700 font-mono font-bold">Freshers & Exp • Up to ₹4.20 LPA</span>
               </div>
             </div>
             <p className="text-xs text-slate-600 leading-relaxed">
@@ -93,22 +112,22 @@ export const NonITDrivesPage: React.FC<NonITDrivesPageProps> = ({
               </div>
             </div>
             <p className="text-xs text-slate-600 leading-relaxed">
-              Tier-1 client processes in Hyderabad for digital safety, policy enforcement, and geospatial data tagging.
+              Tier-1 client processes in Hyderabad for digital safety, creator moderation, and geospatial mapping workflows.
             </p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-white border border-purple-200/80 shadow-sm hover:shadow-md transition-all">
+          <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md transition-all">
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center">
-                <Car className="w-5 h-5" />
+              <div className="w-9 h-9 rounded-xl bg-slate-50 text-slate-700 flex items-center justify-center">
+                <Car className="w-5 h-5 text-purple-600" />
               </div>
               <div>
                 <h3 className="text-slate-950 font-extrabold text-sm">2-Way Home Transportation</h3>
-                <span className="text-[11px] text-purple-700 font-mono font-bold">Safe & Timely Commutes</span>
+                <span className="text-[11px] text-slate-700 font-mono font-bold">Safe & Timely Commutes</span>
               </div>
             </div>
             <p className="text-xs text-slate-600 leading-relaxed">
-              Door-to-door cab pickups across major Hyderabad zones (Gachibowli, Madhapur, Hitec City, Uppal, Secunderabad).
+              Door-to-door cab pickups across major Hyderabad zones (Gachibowli, Kokapet, Madhapur, Hitec City, Uppal).
             </p>
           </div>
         </div>
@@ -233,6 +252,23 @@ export const NonITDrivesPage: React.FC<NonITDrivesPageProps> = ({
                       </div>
                     ))}
                   </div>
+
+                  {/* Optional Poster Image Attachment Preview */}
+                  {job.posterImage && (
+                    <div className="mb-4">
+                      <button
+                        type="button"
+                        onClick={() => setPreviewPosterJob(job)}
+                        className="w-full flex items-center justify-between p-2 rounded-xl bg-purple-50/80 hover:bg-purple-100/80 border border-purple-200/80 text-xs text-purple-800 transition-colors font-semibold"
+                      >
+                        <div className="flex items-center gap-2">
+                          <ImageIcon className="w-3.5 h-3.5 text-purple-600" />
+                          <span>View Official Requirement Flyer</span>
+                        </div>
+                        <span className="text-[10px] text-purple-700 underline font-mono font-bold">Enlarge ↗</span>
+                      </button>
+                    </div>
+                  )}
                 </div>
 
                 {/* Card Action Buttons */}
@@ -258,6 +294,46 @@ export const NonITDrivesPage: React.FC<NonITDrivesPageProps> = ({
           </div>
         )}
       </div>
+
+      {/* Poster Preview Modal */}
+      {previewPosterJob && previewPosterJob.posterImage && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm animate-in fade-in">
+          <div className="relative max-w-2xl w-full bg-white rounded-2xl border border-slate-200 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+            <div className="flex items-center justify-between p-4 border-b border-slate-200 bg-slate-50">
+              <div>
+                <h4 className="text-sm font-bold text-slate-950">{previewPosterJob.title}</h4>
+                <p className="text-xs text-slate-500">{previewPosterJob.companyOrProcess} • {previewPosterJob.location}</p>
+              </div>
+              <button
+                onClick={() => setPreviewPosterJob(null)}
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-900 hover:bg-slate-200"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="p-4 overflow-y-auto flex items-center justify-center bg-slate-100">
+              <img
+                src={previewPosterJob.posterImage}
+                alt="Requirement Poster"
+                className="max-h-[65vh] w-auto object-contain rounded-lg border border-slate-200 shadow-sm"
+              />
+            </div>
+            <div className="p-3 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+              <span className="text-xs text-slate-500 font-mono">Original Recruiter Flyer Attachment</span>
+              <button
+                onClick={() => {
+                  const job = previewPosterJob;
+                  setPreviewPosterJob(null);
+                  onOpenApplyModal(job);
+                }}
+                className="px-4 py-2 rounded-xl bg-slate-950 hover:bg-slate-800 text-white font-bold text-xs shadow-sm"
+              >
+                Apply for this Drive Now
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

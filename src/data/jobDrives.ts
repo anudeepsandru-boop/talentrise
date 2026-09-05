@@ -619,6 +619,42 @@ export const JOB_DRIVES: JobDrive[] = [
     ],
     postedDaysAgo: 'Released Today',
     featured: true,
+  },
+  {
+    id: 'TR1020',
+    title: 'Cognizant SME Mapping Associate (Direct Panel Management)',
+    companyOrProcess: 'Cognizant',
+    clientBadge: 'Direct Panel Management',
+    sector: 'Non-IT',
+    ctc: '₹5.50 LPA – ₹6.00 LPA (Depends on previous LPA)',
+    experience: '3.5+ Years Relevant Experience',
+    location: 'Hyderabad (Kokapet)',
+    workMode: 'On-site',
+    shifts: 'Work From Office • Two-way Cab Provided (40 to 45 KMS Radius)',
+    openingsCount: 30,
+    urgentHiring: true,
+    walkInDates: 'Single Round F2F Interview • 15 to 20 Days Process',
+    eligibility: [
+      'Experience: 3.5+ Years and above relevant experience in Subject Matter Expertise / Mapping operations',
+      'Communication Skills: Strong verbal and written English communication skills mandatory',
+      'Work Mode: Work From Office at Cognizant Kokapet Campus, Hyderabad',
+      'Facility: Two-way Cab facility provided covering 40 to 45 KMS radius',
+      'Process Turnaround: 15 to 20 days end-to-end selection to offer rollout',
+    ],
+    keyRequirements: [
+      'Serve as Subject Matter Expert (SME) guiding mapping workflows and quality calibrations',
+      'Direct Panel Management with 100% easy selections via single-round face-to-face (F2F) interview',
+      'Monitor operational SLAs, deliver quality audits, and resolve tier-2 mapping escalations',
+      'Excellent analytical thinking, spatial data familiarity, and team leadership guidance',
+    ],
+    rounds: [
+      'Eligibility & Document Profile Verification',
+      'Single Round Face-to-Face (F2F) Interview with Direct Client Panel',
+      'Final Offer Release & Onboarding (15–20 Days Process)',
+    ],
+    postedDaysAgo: 'Just Posted',
+    featured: true,
+    posterImage: '/posters/cognizant_sme_flyer.jpg',
   }
 ];
 
