@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { SectorType, JobDrive, PageType } from './types';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
@@ -224,6 +225,9 @@ export default function App() {
         isOpen={isAdminPortalOpen}
         onClose={() => setIsAdminPortalOpen(false)}
       />
+
+      {/* Vercel Speed Insights */}
+      <SpeedInsights />
     </div>
   );
 }
