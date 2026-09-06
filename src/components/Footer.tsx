@@ -85,7 +85,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onSelectSectorFilte
                   className="hover:text-purple-600 transition-colors flex items-center gap-2 text-left"
                 >
                   <Briefcase className="w-3.5 h-3.5 text-purple-600 shrink-0" />
-                  <span>IT & Engineering (Capgemini CATIA)</span>
+                  <span>IT & Software Engineering</span>
                 </button>
               </li>
               <li>
@@ -163,11 +163,14 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onSelectSectorFilte
 
             <div className="pt-3 flex items-center gap-2">
               <button
-                onClick={onOpenAdmin}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 text-[11px] text-slate-700 hover:text-slate-950 transition-colors font-medium"
+                type="button"
+                disabled
+                title="Recruiter Portal Login is disabled"
+                aria-disabled="true"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-[11px] text-slate-400 font-medium cursor-not-allowed opacity-60"
               >
-                <Lock className="w-3 h-3 text-purple-600" />
-                <span>Recruiter Portal Login</span>
+                <Lock className="w-3 h-3 text-slate-400" />
+                <span>Recruiter Portal Login (Disabled)</span>
               </button>
             </div>
           </div>

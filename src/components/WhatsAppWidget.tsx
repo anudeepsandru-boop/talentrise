@@ -17,8 +17,8 @@ export const WhatsAppWidget: React.FC = () => {
       text: `Hello ${FOUNDER_NAME} Sir, I want to apply for the Cognizant SME Mapping Walk-in Drive (TR1020) at Kokapet, Hyderabad. I have 3.5+ years relevant experience. Please guide me with direct panel screening.`,
     },
     {
-      label: '💼 Apply for Capgemini CATIA Hiring Drive (₹5.5 LPA)',
-      text: `Hello ${FOUNDER_NAME} Sir, I want to apply for the Capgemini CATIA Hiring Drive (Aeronautical & Mechanical). Please guide me with slot allocation and screening.`,
+      label: '💼 Apply for Capgemini Engineering Drive (₹5.5 LPA)',
+      text: `Hello ${FOUNDER_NAME} Sir, I want to apply for the Capgemini Engineering Hiring Drive (Aeronautical & Mechanical). Please guide me with slot allocation and screening.`,
     },
     {
       label: '🎧 Non-IT / BPO Operations Walk-in inquiry',

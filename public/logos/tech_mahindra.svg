@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" fill="none">
+  <!-- Red parallelogram icon on left -->
+  <polygon points="12,78 68,62 68,26 12,42" fill="#E31837"/>
+  <!-- TECH mahindra text -->
+  <text x="82" y="52" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="900" fill="#383838" letter-spacing="2">TECH</text>
+  <text x="82" y="92" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="800" fill="#E31837" letter-spacing="-0.5">mahindra</text>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 110" fill="none">
+  <!-- Capgemini Script Text -->
+  <text x="15" y="74" font-family="'Segoe Script', 'Brush Script MT', cursive, sans-serif" font-size="52" font-weight="bold" fill="#0070AD" font-style="italic" letter-spacing="-0.5">Capgemini</text>
+  <!-- Capgemini Spade Icon -->
+  <g transform="translate(268, 25)">
+    <path d="M35 10 C20 18 10 32 12 48 C14 60 25 65 35 55 C45 65 56 60 58 48 C60 32 50 18 35 10 Z" fill="#0070AD"/>
+    <path d="M35 52 L31 70 L39 70 Z" fill="#0070AD"/>
+    <path d="M35 25 C26 31 22 40 23 48 C24 53 28 55 35 50 Z" fill="#00B2FE" opacity="0.85"/>
+  </g>
+</svg>

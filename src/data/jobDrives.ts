@@ -3,7 +3,7 @@ import { JobDrive } from '../types';
 export const JOB_DRIVES: JobDrive[] = [
   {
     id: 'TR1001',
-    title: 'Capgemini CATIA Hiring Drive (Aeronautical & Mechanical)',
+    title: 'Capgemini Engineering Hiring Drive (Aeronautical & Mechanical)',
     companyOrProcess: 'Capgemini',
     clientBadge: 'Tier-1 IT Giant',
     sector: 'IT',
@@ -31,7 +31,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Assessment Round 2 (Technical & Domain Assessment)',
       'Technical Interview Round (CATIA & Engineering Fundamentals)',
     ],
-    postedDaysAgo: 'Just Posted',
+    postedDaysAgo: '06 Sep 2026',
     featured: true,
   },
   {
@@ -64,7 +64,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Voice / Aptitude Evaluation',
       'Client Operations Final Round',
     ],
-    postedDaysAgo: 'Active Drive',
+    postedDaysAgo: '06 Sep 2026',
     featured: true,
   },
   {
@@ -96,7 +96,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Mapping Domain Aptitude & Navigation Assessment',
       'Operations Manager Fitment Round',
     ],
-    postedDaysAgo: 'Active Drive',
+    postedDaysAgo: '05 Sep 2026',
     featured: true,
   },
   {
@@ -128,7 +128,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Written Communication & Grammar Test',
       'Technical Operations Interview',
     ],
-    postedDaysAgo: 'Active Drive',
+    postedDaysAgo: '05 Sep 2026',
     featured: true,
   },
   {
@@ -160,7 +160,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Computer Literacy & Typing Assessment',
       'Operations Fitment Round',
     ],
-    postedDaysAgo: 'Active Drive',
+    postedDaysAgo: '04 Sep 2026',
     featured: true,
   },
   {
@@ -192,7 +192,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Email & Chat Versant Evaluation',
       'Operations Manager Final Round',
     ],
-    postedDaysAgo: 'Active Drive',
+    postedDaysAgo: '04 Sep 2026',
     featured: true,
   },
   {
@@ -224,7 +224,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Customer Simulation & Tone Assessment',
       'HR Final Offer Rollout',
     ],
-    postedDaysAgo: 'Active Drive',
+    postedDaysAgo: '03 Sep 2026',
     featured: true,
   },
   {
@@ -256,7 +256,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Written Communication & Non-Voice Simulation',
       'Operations Lead Final Round',
     ],
-    postedDaysAgo: 'Active Drive',
+    postedDaysAgo: '03 Sep 2026',
     featured: true,
   },
   {
@@ -289,7 +289,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Versant Language & Logic Test',
       'Operations Manager Interview',
     ],
-    postedDaysAgo: 'Active Drive',
+    postedDaysAgo: '02 Sep 2026',
     featured: true,
   },
   {
@@ -321,7 +321,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Chat Grammar & Accuracy Assessment',
       'Operations Fitment Round',
     ],
-    postedDaysAgo: 'Active Drive',
+    postedDaysAgo: '02 Sep 2026',
     featured: true,
   },
   {
@@ -354,7 +354,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Guidewire Core Architecture & Hands-on Technical Round',
       'Project Delivery Manager Final Assessment',
     ],
-    postedDaysAgo: 'Active Drive',
+    postedDaysAgo: '01 Sep 2026',
     featured: true,
   },
   {
@@ -387,7 +387,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'US Healthcare Aptitude & Basic English Evaluation',
       'Operations Fitment Round',
     ],
-    postedDaysAgo: 'Active Drive',
+    postedDaysAgo: '31 Aug 2026',
     featured: true,
   },
   {
@@ -420,7 +420,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Voice Quality & Communication Evaluation',
       'Operations Team Lead Interview',
     ],
-    postedDaysAgo: 'Active Drive',
+    postedDaysAgo: '30 Aug 2026',
     featured: true,
   },
   {
@@ -453,7 +453,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Basic Healthcare Aptitude & Computer Test',
       'Process Manager Final Interview',
     ],
-    postedDaysAgo: 'Active Drive',
+    postedDaysAgo: '29 Aug 2026',
     featured: true,
   },
   {
@@ -486,7 +486,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Logical Reasoning & Domain Orientation',
       'Operations Fitment Interview',
     ],
-    postedDaysAgo: 'Active Drive',
+    postedDaysAgo: '28 Aug 2026',
     featured: true,
   },
   {
@@ -519,7 +519,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Process Knowledge & People Management Evaluation',
       'Senior Operations Manager / Client Final Round',
     ],
-    postedDaysAgo: 'Active Drive',
+    postedDaysAgo: '27 Aug 2026',
     featured: true,
   },
   {
@@ -552,7 +552,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Google Policy Aptitude & Scenario-based Moderation Assessment',
       'Operations Fitment & Final Selection Round',
     ],
-    postedDaysAgo: 'Active Drive',
+    postedDaysAgo: '26 Aug 2026',
     featured: true,
   },
   {
@@ -585,7 +585,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Basic Travel Documentation Aptitude Assessment',
       'Operations Team Fitment & Final Selection',
     ],
-    postedDaysAgo: 'Active Drive',
+    postedDaysAgo: '25 Aug 2026',
     featured: true,
   },
   {
@@ -620,7 +620,7 @@ export const JOB_DRIVES: JobDrive[] = [
       'Single Round Face-to-Face (F2F) Interview with Direct Client Panel',
       'Final Offer Release & Onboarding (15–20 Days Process)',
     ],
-    postedDaysAgo: 'Just Posted',
+    postedDaysAgo: '24 Aug 2026',
     featured: true,
     posterImage: '/posters/cognizant_sme_flyer.jpg',
   }

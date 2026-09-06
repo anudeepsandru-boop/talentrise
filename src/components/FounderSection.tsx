@@ -129,7 +129,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({
               </p>
 
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-                Under Sandru Anudeep's direct mentorship, TalentRise has achieved <strong className="text-emerald-600 font-bold">over 300+ successful candidate closures</strong> across IT & Engineering (Capgemini CATIA), Technical Services, and Corporate Hiring drives.
+                Under Sandru Anudeep's direct mentorship, TalentRise has achieved <strong className="text-emerald-600 font-bold">over 300+ successful candidate closures</strong> across IT & Engineering, Technical Services, and Corporate Hiring drives.
               </p>
 
               {/* Core Leadership Pillars */}

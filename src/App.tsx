@@ -13,6 +13,8 @@ import { B2BStaffingSection } from './components/B2BStaffingSection';
 import { TestimonialsSection } from './components/TestimonialsSection';
 import { Footer } from './components/Footer';
 import { WhatsAppWidget } from './components/WhatsAppWidget';
+import { FloatingMncShowcase } from './components/FloatingMncShowcase';
+import { MncHiringBanner } from './components/MncHiringBanner';
 import { JobApplyModal } from './components/JobApplyModal';
 import { AdminPortalModal } from './components/AdminPortalModal';
 import { ToastContainer, ToastMessage } from './components/Toast';
@@ -121,6 +123,9 @@ export default function App() {
               onNavigate={handleNavigate}
             />
 
+            {/* Floating MNC Hiring Marquee Banner */}
+            <MncHiringBanner onSelectSector={handleSelectSector} />
+
             {/* 2. Active Drives & Job Board */}
             <ActiveDrivesSection
               onOpenApplyModal={handleOpenApplyModal}
@@ -196,6 +201,9 @@ export default function App() {
         onSelectSectorFilter={handleSelectSector}
         onNavigate={handleNavigate}
       />
+
+      {/* Floating MNC Recruiter Showcase Dock */}
+      <FloatingMncShowcase />
 
       {/* Interactive Floating WhatsApp Recruiter Widget */}
       <WhatsAppWidget />

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 120" fill="none">
+  <!-- WNS letters -->
+  <text x="10" y="70" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Impact, Arial, sans-serif" font-size="70" font-weight="900" fill="#111111" letter-spacing="1">W</text>
+  <!-- N with red triangle accent -->
+  <text x="88" y="70" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Impact, Arial, sans-serif" font-size="70" font-weight="900" fill="#111111" letter-spacing="1">N</text>
+  <polygon points="122,65 142,65 122,35" fill="#E53935"/>
+  <text x="156" y="70" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Impact, Arial, sans-serif" font-size="70" font-weight="900" fill="#111111" letter-spacing="1">S</text>
+  <!-- Part of Capgemini subtitle -->
+  <text x="12" y="102" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="700" fill="#1F2937">Part of Capgemini</text>
+</svg>

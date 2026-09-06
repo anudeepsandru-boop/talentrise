@@ -14,7 +14,8 @@ import {
   Briefcase,
   Image as ImageIcon,
   X,
-  MapPin
+  MapPin,
+  Calendar
 } from 'lucide-react';
 import { JobDrive, PageType } from '../types';
 import { PageHeaderBanner } from './PageHeaderBanner';
@@ -198,9 +199,10 @@ export const NonITDrivesPage: React.FC<NonITDrivesPageProps> = ({
                         Non-IT / BPO
                       </span>
                     </div>
-                    {job.postedDaysAgo && job.postedDaysAgo !== 'Released Today' && (
-                      <span className="text-[11px] text-slate-400 font-mono font-medium">
-                        {job.postedDaysAgo}
+                    {job.postedDaysAgo && (
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-slate-100/90 border border-slate-200/80 text-[11px] text-slate-600 font-mono font-medium">
+                        <Calendar className="w-3 h-3 text-slate-500" />
+                        <span>Posted: {job.postedDaysAgo.replace(/^Posted:?\s*/i, '')}</span>
                       </span>
                     )}
                   </div>

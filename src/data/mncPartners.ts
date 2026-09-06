@@ -1,0 +1,120 @@
+export interface MncPartner {
+  id: string;
+  name: string;
+  shortName: string;
+  logo: string;
+  badge: string;
+  hiringRoles: string;
+  ctc: string;
+  workMode: string;
+  accentColor: string;
+  bgLight: string;
+  borderLight: string;
+}
+
+export const MNC_PARTNERS: MncPartner[] = [
+  {
+    id: 'cognizant',
+    name: 'Cognizant',
+    shortName: 'Cognizant',
+    logo: '/logos/cognizant.svg',
+    badge: 'Tier-1 IT Leader',
+    hiringRoles: 'Google Mapping, Tech Support, Software Associate',
+    ctc: '₹2.80 - ₹4.50 LPA',
+    workMode: 'WFH & On-Site',
+    accentColor: '#0033A0',
+    bgLight: 'bg-blue-50/70',
+    borderLight: 'border-blue-200/80',
+  },
+  {
+    id: 'capgemini',
+    name: 'Capgemini',
+    shortName: 'Capgemini',
+    logo: '/logos/capgemini.svg',
+    badge: 'Global Tech Giant',
+    hiringRoles: 'Software Engineering, Cloud, Technical Services',
+    ctc: '₹4.00 - ₹6.50 LPA',
+    workMode: 'Hybrid / On-Site',
+    accentColor: '#0070AD',
+    bgLight: 'bg-sky-50/70',
+    borderLight: 'border-sky-200/80',
+  },
+  {
+    id: 'teleperformance',
+    name: 'Teleperformance',
+    shortName: 'Teleperformance',
+    logo: '/logos/teleperformance.svg',
+    badge: 'Google Client Partner',
+    hiringRoles: 'Customer Support, Digital Ops, Google Process',
+    ctc: '₹2.20 - ₹3.50 LPA',
+    workMode: 'On-Site (Cab Provided)',
+    accentColor: '#D81B60',
+    bgLight: 'bg-pink-50/70',
+    borderLight: 'border-pink-200/80',
+  },
+  {
+    id: 'tech_mahindra',
+    name: 'Tech Mahindra',
+    shortName: 'Tech Mahindra',
+    logo: '/logos/tech_mahindra.svg',
+    badge: 'MNC Tech Conglomerate',
+    hiringRoles: 'Enterprise Support, Telecom Ops, Associate Engineer',
+    ctc: '₹2.50 - ₹4.20 LPA',
+    workMode: 'Hyderabad / Pan India',
+    accentColor: '#E31837',
+    bgLight: 'bg-rose-50/70',
+    borderLight: 'border-rose-200/80',
+  },
+  {
+    id: 'wns',
+    name: 'WNS (Part of Capgemini)',
+    shortName: 'WNS',
+    logo: '/logos/wns.svg',
+    badge: 'Part of Capgemini',
+    hiringRoles: 'BPO Services, Insurance Ops, Financial Processing',
+    ctc: '₹2.40 - ₹3.80 LPA',
+    workMode: 'Day / Rotational Shifts',
+    accentColor: '#1F2937',
+    bgLight: 'bg-slate-50/70',
+    borderLight: 'border-slate-300/80',
+  },
+  {
+    id: 'wipro',
+    name: 'Wipro',
+    shortName: 'Wipro',
+    logo: '/logos/wipro.svg',
+    badge: 'Global IT Giant',
+    hiringRoles: 'Cloud Infrastructure, Service Desk, Engineering',
+    ctc: '₹3.50 - ₹5.00 LPA',
+    workMode: 'Hyderabad Office',
+    accentColor: '#321356',
+    bgLight: 'bg-purple-50/70',
+    borderLight: 'border-purple-200/80',
+  },
+  {
+    id: 'concentrix',
+    name: 'Concentrix',
+    shortName: 'Concentrix',
+    logo: '/logos/concentrix.svg',
+    badge: 'Global CX Leader',
+    hiringRoles: 'E-Commerce Ops, Voice/Non-Voice, Tech Resolution',
+    ctc: '₹2.40 - ₹3.60 LPA',
+    workMode: 'Day & Rotational',
+    accentColor: '#002D4C',
+    bgLight: 'bg-cyan-50/70',
+    borderLight: 'border-cyan-200/80',
+  },
+  {
+    id: 'firstsource',
+    name: 'Firstsource',
+    shortName: 'Firstsource',
+    logo: '/logos/firstsource.svg',
+    badge: 'Global BPM & Telecom',
+    hiringRoles: 'Customer Experience, Digital Operations, Banking Ops',
+    ctc: '₹2.20 - ₹3.40 LPA',
+    workMode: 'Day Shifts',
+    accentColor: '#0E2B5C',
+    bgLight: 'bg-amber-50/70',
+    borderLight: 'border-amber-200/80',
+  },
+];

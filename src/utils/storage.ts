@@ -413,10 +413,25 @@ export function getJobDrives(): JobDrive[] {
         !isJobIdRetired(job.id)
     );
 
+    // Normalize posting dates to guarantee clean dates (never 'Just Posted' or 'Active Drive')
+    const sanitizeJobDate = (j: JobDrive): JobDrive => {
+      let dateStr = j.postedDaysAgo || '';
+      if (!dateStr || dateStr === 'Just Posted' || dateStr === 'Active Drive' || dateStr === 'Released Today' || dateStr.toLowerCase().includes('just')) {
+        dateStr = '06 Sep 2026';
+      }
+      return {
+        ...j,
+        postedDaysAgo: dateStr,
+      };
+    };
+
     // Combine custom jobs first (newer first) with filtered presets
-    return [...customJobs, ...filteredPreset];
+    return [...customJobs.map(sanitizeJobDate), ...filteredPreset.map(sanitizeJobDate)];
   } catch (e) {
-    return JOB_DRIVES.filter(j => !isJobIdRetired(j.id));
+    return JOB_DRIVES.filter(j => !isJobIdRetired(j.id)).map(j => ({
+      ...j,
+      postedDaysAgo: j.postedDaysAgo && j.postedDaysAgo !== 'Just Posted' && j.postedDaysAgo !== 'Active Drive' ? j.postedDaysAgo : '06 Sep 2026',
+    }));
   }
 }
 
@@ -429,10 +444,13 @@ export function saveJobDrive(job: Omit<JobDrive, 'id' | 'postedDaysAgo'> & { id?
     assignedId = generateNextJobId();
   }
 
+  const defaultDate = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  const cleanedDate = job.postedDaysAgo && job.postedDaysAgo !== 'Just Posted' && job.postedDaysAgo !== 'Active Drive' ? job.postedDaysAgo : defaultDate;
+
   const existingIndex = currentCustom.findIndex(j => j.id === assignedId);
   const newRecord: JobDrive = {
     id: assignedId,
-    postedDaysAgo: job.postedDaysAgo || 'Active Drive',
+    postedDaysAgo: cleanedDate,
     title: job.title,
     companyOrProcess: job.companyOrProcess,
     clientBadge: job.clientBadge || 'Direct Walk-in',

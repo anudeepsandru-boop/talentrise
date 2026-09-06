@@ -220,9 +220,10 @@ export const ActiveDrivesSection: React.FC<ActiveDrivesSectionProps> = ({
                       )}
                     </div>
 
-                    {job.postedDaysAgo && job.postedDaysAgo !== 'Released Today' && (
-                      <span className="text-[11px] text-slate-400 shrink-0 font-mono font-medium">
-                        {job.postedDaysAgo}
+                    {job.postedDaysAgo && (
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-slate-100/90 border border-slate-200/80 text-[11px] text-slate-600 shrink-0 font-mono font-medium">
+                        <Calendar className="w-3 h-3 text-slate-500" />
+                        <span>Posted: {job.postedDaysAgo.replace(/^Posted:?\s*/i, '')}</span>
                       </span>
                     )}
                   </div>

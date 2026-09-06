@@ -125,14 +125,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, activePage, onNavig
               <span className="md:hidden">WhatsApp</span>
             </button>
 
-            {/* Recruiter Portal Lock Button */}
+            {/* Recruiter Portal Lock Button (Disabled) */}
             <button
-              onClick={onOpenAdmin}
-              title="Recruiter Admin Portal"
-              className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold text-white bg-slate-950 hover:bg-slate-800 shadow-sm border border-slate-900 transition-all"
+              type="button"
+              disabled
+              title="Recruiter Portal Login is disabled"
+              aria-disabled="true"
+              className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-400 bg-slate-100 border border-slate-200 cursor-not-allowed opacity-60 shadow-none transition-none"
             >
-              <Lock className="w-3.5 h-3.5 text-pink-400" />
-              <span className="hidden xl:inline text-xs">Portal</span>
+              <Lock className="w-3.5 h-3.5 text-slate-400" />
+              <span className="hidden xl:inline text-xs">Portal (Disabled)</span>
             </button>
 
             {/* Mobile Menu Toggle */}
@@ -225,14 +227,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, activePage, onNavig
               </button>
 
               <button
-                onClick={() => {
-                  onOpenAdmin();
-                  setMobileMenuOpen(false);
-                }}
-                className="w-full flex items-center justify-center gap-2 py-2 rounded-xl text-xs font-semibold bg-slate-950 text-white hover:bg-slate-800"
+                type="button"
+                disabled
+                aria-disabled="true"
+                className="w-full flex items-center justify-center gap-2 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed opacity-60"
               >
-                <Lock className="w-3.5 h-3.5 text-pink-400" />
-                Recruiter Admin Login
+                <Lock className="w-3.5 h-3.5 text-slate-400" />
+                Recruiter Admin Login (Disabled)
               </button>
             </div>
           </div>
