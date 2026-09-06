@@ -13,7 +13,6 @@ import {
 } from 'lucide-react';
 import { openWhatsApp, DISPLAY_PHONE, FOUNDER_NAME } from '../utils/whatsappHelper';
 import { PageType, SectorType } from '../types';
-import { MNC_PARTNERS } from '../data/mncPartners';
 
 interface HeroSectionProps {
   onSelectSector: (sector: SectorType) => void;
@@ -278,36 +277,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectSector, active
               </div>
             );
           })}
-        </div>
-
-        {/* Hiring Partners Ticker / Logos */}
-        <div className="mt-12 pt-8 border-t border-slate-200 text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-50 border border-purple-200 text-xs font-bold text-purple-900 mb-4">
-            <span className="w-2 h-2 rounded-full bg-purple-600" />
-            <span>DIRECT RECRUITMENT PIPELINES & MNC CLIENT DRIVES</span>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 max-w-6xl mx-auto">
-            {MNC_PARTNERS.map((partner) => (
-              <div
-                key={partner.id}
-                onClick={() => openWhatsApp(`Hello ${FOUNDER_NAME} Sir, I am interested in recruitment drives at ${partner.name}. Please guide me on upcoming interviews.`)}
-                className="group cursor-pointer p-2.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/90 hover:border-purple-300 shadow-2xs hover:shadow-md transition-all flex flex-col items-center justify-center text-center"
-                title={`Recruiting for ${partner.name} - Click to apply`}
-              >
-                <div className="h-8 w-full flex items-center justify-center p-0.5">
-                  <img
-                    src={partner.logo}
-                    alt={partner.name}
-                    className="max-h-full max-w-full object-contain filter group-hover:scale-105 transition-transform"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="text-[10px] font-bold text-slate-700 group-hover:text-purple-700 transition-colors mt-1 truncate w-full">
-                  {partner.shortName}
-                </span>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>
