@@ -90,7 +90,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectSector, active
             <img src="/logos/cognizant.svg" alt="Cognizant" className="max-h-full max-w-full object-contain" />
           </div>
           <p className="text-xs font-bold text-slate-900 group-hover:text-purple-700 transition-colors truncate">Cognizant Tech & Ops</p>
-          <p className="text-[11px] font-extrabold text-emerald-600">₹2.80 – ₹4.50 LPA</p>
+          <p className="text-[11px] font-semibold text-purple-700">Hyderabad (WFH & On-Site)</p>
         </div>
 
         <div 
@@ -108,7 +108,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectSector, active
             <img src="/logos/teleperformance.svg" alt="Teleperformance" className="max-h-full max-w-full object-contain" />
           </div>
           <p className="text-xs font-bold text-slate-900 group-hover:text-purple-700 transition-colors truncate">Teleperformance</p>
-          <p className="text-[11px] font-extrabold text-emerald-600">₹2.20 – ₹3.50 LPA</p>
+          <p className="text-[11px] font-semibold text-purple-700">Non-Voice & Blended</p>
         </div>
       </div>
 
@@ -122,13 +122,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectSector, active
               <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
               Tier-1 IT
             </span>
-            <span className="text-[10px] font-bold text-slate-400">₹5.50 LPA</span>
+            <span className="text-[10px] font-bold text-slate-400">Direct Slot</span>
           </div>
           <div className="h-8 mb-1.5 flex items-center">
             <img src="/logos/capgemini.svg" alt="Capgemini" className="max-h-full max-w-full object-contain" />
           </div>
           <p className="text-xs font-bold text-slate-900 group-hover:text-purple-700 transition-colors truncate">Capgemini Engineering</p>
-          <p className="text-[11px] font-extrabold text-emerald-600">BE / B.Tech Freshers</p>
+          <p className="text-[11px] font-semibold text-purple-700">BE / B.Tech Freshers</p>
         </div>
 
         <div 
@@ -146,7 +146,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSelectSector, active
             <img src="/logos/wipro.svg" alt="Wipro" className="max-h-full max-w-full object-contain" />
           </div>
           <p className="text-xs font-bold text-slate-900 group-hover:text-purple-700 transition-colors truncate">Wipro IT & Cloud</p>
-          <p className="text-[11px] font-extrabold text-emerald-600">₹3.50 – ₹5.00 LPA</p>
+          <p className="text-[11px] font-semibold text-purple-700">Freshers & Experienced</p>
         </div>
       </div>
 

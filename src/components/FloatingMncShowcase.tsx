@@ -13,7 +13,7 @@ export const FloatingMncShowcase: React.FC<FloatingMncShowcaseProps> = ({ onSele
 
   const handleApplyMnc = (partner: MncPartner) => {
     openWhatsApp(
-      `Hello ${FOUNDER_NAME} Sir, I saw that TalentRise is recruiting for ${partner.name}. I am interested in ${partner.hiringRoles} with expected CTC around ${partner.ctc}. Please guide me on direct interview schedule and slot allocation.`
+      `Hello ${FOUNDER_NAME} Sir, I saw that TalentRise is recruiting for ${partner.name}. I am interested in ${partner.hiringRoles}. Please guide me on direct interview schedule and slot allocation.`
     );
   };
 
@@ -121,8 +121,8 @@ export const FloatingMncShowcase: React.FC<FloatingMncShowcaseProps> = ({ onSele
                     <p className="text-[10px] text-slate-500 truncate">
                       {partner.hiringRoles}
                     </p>
-                    <p className="text-[11px] font-bold text-emerald-600">
-                      {partner.ctc}
+                    <p className="text-[10px] text-purple-700 font-semibold truncate">
+                      {partner.workMode}
                     </p>
                   </div>
 

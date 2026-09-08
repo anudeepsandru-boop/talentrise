@@ -13,11 +13,11 @@ export const WhatsAppWidget: React.FC = () => {
 
   const quickTemplates = [
     {
-      label: '💼 Apply for Cognizant SME Mapping (₹5.5 - 6.0 LPA)',
+      label: '💼 Apply for Cognizant SME Mapping Walk-in',
       text: `Hello ${FOUNDER_NAME} Sir, I want to apply for the Cognizant SME Mapping Walk-in Drive (TR1020) at Kokapet, Hyderabad. I have 3.5+ years relevant experience. Please guide me with direct panel screening.`,
     },
     {
-      label: '💼 Apply for Capgemini Engineering Drive (₹5.5 LPA)',
+      label: '💼 Apply for Capgemini Engineering Drive',
       text: `Hello ${FOUNDER_NAME} Sir, I want to apply for the Capgemini Engineering Hiring Drive (Aeronautical & Mechanical). Please guide me with slot allocation and screening.`,
     },
     {
