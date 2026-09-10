@@ -13,6 +13,14 @@ export const WhatsAppWidget: React.FC = () => {
 
   const quickTemplates = [
     {
+      label: '⚡ Apply for Virtusa Software Engineer (2026 Batch)',
+      text: `Hello ${FOUNDER_NAME} Sir, I want to apply for the Virtusa Software Engineer Hiring Drive (TR1021) for 2026 passouts in Hyderabad. Please guide me with direct candidate screening.`,
+    },
+    {
+      label: '⚡ Apply for Deloitte Associate Analyst Drive',
+      text: `Hello ${FOUNDER_NAME} Sir, I want to apply for the Deloitte Mega Hiring Drive (TR1022) for Associate Analyst in Bangalore. Please guide me with panel management and slot allocation.`,
+    },
+    {
       label: '💼 Apply for Cognizant SME Mapping Walk-in',
       text: `Hello ${FOUNDER_NAME} Sir, I want to apply for the Cognizant SME Mapping Walk-in Drive (TR1020) at Kokapet, Hyderabad. I have 3.5+ years relevant experience. Please guide me with direct panel screening.`,
     },

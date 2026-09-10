@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="100%" height="100%">
+  <defs>
+    <linearGradient id="virtusaBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#071520" />
+      <stop offset="50%" stop-color="#0b2230" />
+      <stop offset="100%" stop-color="#040b10" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00A66C" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#00e599" stop-opacity="0.05" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="1000" fill="url(#virtusaBg)" />
+  
+  <!-- Subtle Circuit / Tech Grid Accents -->
+  <circle cx="700" cy="150" r="100" stroke="#00A66C" stroke-width="1.5" stroke-dasharray="4 4" fill="none" opacity="0.3" />
+  <circle cx="700" cy="150" r="60" stroke="#00A66C" stroke-width="1.5" fill="none" opacity="0.2" />
+  <path d="M 600,850 L 680,920 L 750,920" stroke="#00A66C" stroke-width="2" fill="none" opacity="0.4" />
+  <circle cx="750" cy="920" r="5" fill="#00A66C" opacity="0.8" />
+  <path d="M 640,880 L 720,950 L 780,950" stroke="#00A66C" stroke-width="1.5" fill="none" opacity="0.3" />
+
+  <!-- Logo -->
+  <g transform="translate(60, 60)">
+    <text x="0" y="45" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="52" font-weight="900" fill="#00e599" letter-spacing="-1">vírtusa</text>
+  </g>
+
+  <!-- Job Title & Location -->
+  <g transform="translate(60, 160)">
+    <text x="0" y="55" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="58" font-weight="900" fill="#FFFFFF">Software Engineer</text>
+    <g transform="translate(0, 95)">
+      <circle cx="10" cy="-6" r="6" fill="#00e599" />
+      <text x="28" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="700" fill="#E2E8F0">Hyderabad, Telangana, India</text>
+    </g>
+  </g>
+
+  <!-- Key Badges / Cards -->
+  <g transform="translate(60, 310)">
+    <!-- Department -->
+    <rect x="0" y="0" width="680" height="60" rx="12" fill="url(#cardGrad)" stroke="#00A66C" stroke-width="1" stroke-opacity="0.4" />
+    <text x="25" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="700" fill="#94A3B8">Department:</text>
+    <text x="165" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="21" font-weight="800" fill="#FFFFFF">Technology &amp; Product Development</text>
+
+    <!-- Eligibility -->
+    <rect x="0" y="80" width="680" height="60" rx="12" fill="url(#cardGrad)" stroke="#00A66C" stroke-width="1.5" stroke-opacity="0.6" />
+    <text x="25" y="118" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="900" fill="#00e599">ELIGIBILITY:</text>
+    <text x="165" y="118" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="900" fill="#FFFFFF">ONLY 2026 B.Tech / BE Passouts</text>
+
+    <!-- Compensation -->
+    <rect x="0" y="160" width="680" height="60" rx="12" fill="url(#cardGrad)" stroke="#00A66C" stroke-width="1" stroke-opacity="0.4" />
+    <text x="25" y="198" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="900" fill="#38BDF8">COMPENSATION:</text>
+    <text x="195" y="198" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="900" fill="#38BDF8">Up to 5 - 6 LPA</text>
+  </g>
+
+  <!-- Divider -->
+  <line x1="60" y1="560" x2="740" y2="560" stroke="#1E293B" stroke-width="2" />
+
+  <!-- KEY RESPONSIBILITIES (JD Highlights) -->
+  <g transform="translate(60, 600)">
+    <text x="0" y="25" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="900" fill="#00e599" letter-spacing="1">KEY RESPONSIBILITIES (JD Highlights):</text>
+
+    <g transform="translate(10, 65)">
+      <circle cx="5" cy="0" r="5" fill="#00e599" />
+      <text x="25" y="6" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="19" font-weight="600" fill="#F1F5F9">Full-stack Application Development (Backend &amp; Frontend)</text>
+    </g>
+
+    <g transform="translate(10, 115)">
+      <circle cx="5" cy="0" r="5" fill="#00e599" />
+      <text x="25" y="6" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="19" font-weight="600" fill="#F1F5F9">Codebase Maintenance, Testing, and Debugging</text>
+    </g>
+
+    <g transform="translate(10, 165)">
+      <circle cx="5" cy="0" r="5" fill="#00e599" />
+      <text x="25" y="6" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="19" font-weight="600" fill="#F1F5F9">Agile Development methodologies (SDLC participation)</text>
+    </g>
+
+    <g transform="translate(10, 215)">
+      <circle cx="5" cy="0" r="5" fill="#00e599" />
+      <text x="25" y="6" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="19" font-weight="600" fill="#F1F5F9">Effective System Panel and UI Management for user interactions</text>
+    </g>
+
+    <g transform="translate(10, 265)">
+      <circle cx="5" cy="0" r="5" fill="#00e599" />
+      <text x="25" y="6" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="19" font-weight="600" fill="#F1F5F9">API Integration and Performance Optimization</text>
+    </g>
+  </g>
+
+  <!-- Footer Banner -->
+  <g transform="translate(60, 920)">
+    <rect x="0" y="0" width="680" height="50" rx="25" fill="#00A66C" />
+    <text x="340" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="900" fill="#FFFFFF" text-anchor="middle">TalentRise Direct Candidate Screening • Apply on WhatsApp ↗</text>
+  </g>
+</svg>

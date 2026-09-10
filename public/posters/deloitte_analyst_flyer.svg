@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="100%" height="100%">
+  <defs>
+    <linearGradient id="deloitteBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="60%" stop-color="#F8FAFC" />
+      <stop offset="100%" stop-color="#F1F5F9" />
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#027A48" />
+      <stop offset="100%" stop-color="#12B76A" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="1000" fill="url(#deloitteBg)" />
+
+  <!-- Header Section -->
+  <g transform="translate(60, 50)">
+    <!-- Brand -->
+    <text x="0" y="45" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="52" font-weight="900" fill="#000000" letter-spacing="-1">Deloitte<tspan fill="#86BC25">.</tspan></text>
+    <text x="0" y="75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600" fill="#475467">Making an impact that matters</text>
+
+    <!-- Location Pill -->
+    <rect x="520" y="10" width="160" height="40" rx="20" fill="#ECFDF3" stroke="#A6F4C5" stroke-width="1.5" />
+    <text x="600" y="35" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" fill="#027A48" text-anchor="middle">📍 Bangalore</text>
+  </g>
+
+  <!-- Mega Hiring Banner -->
+  <g transform="translate(60, 150)">
+    <rect x="0" y="0" width="680" height="85" rx="16" fill="url(#headerGrad)" />
+    <text x="340" y="40" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="30" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">📢 OFFICIAL MEGA HIRING</text>
+    <text x="340" y="68" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="800" fill="#D1FADF" text-anchor="middle">For BE / B.Tech Graduates</text>
+  </g>
+
+  <!-- Details Grid -->
+  <g transform="translate(60, 260)">
+    <!-- Role -->
+    <rect x="0" y="0" width="325" height="72" rx="14" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" />
+    <text x="20" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#64748B">ROLE</text>
+    <text x="20" y="54" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="900" fill="#0F172A">Associate Analyst</text>
+
+    <!-- CTC -->
+    <rect x="355" y="0" width="325" height="72" rx="14" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" />
+    <text x="375" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#64748B">CTC PACKAGE</text>
+    <text x="375" y="54" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="900" fill="#027A48">₹4.2 - 6 LPA</text>
+
+    <!-- Experience -->
+    <rect x="0" y="86" width="325" height="72" rx="14" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" />
+    <text x="20" y="114" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#64748B">EXPERIENCE</text>
+    <text x="20" y="140" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="900" fill="#0F172A">Freshers / 0-2 Years</text>
+
+    <!-- Qualifications -->
+    <rect x="355" y="86" width="325" height="72" rx="14" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" />
+    <text x="375" y="114" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#64748B">QUALIFICATIONS</text>
+    <text x="375" y="140" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="900" fill="#0F172A">BE / B.TECH</text>
+  </g>
+
+  <!-- 100% Panel Management Highlight Box -->
+  <g transform="translate(60, 440)">
+    <rect x="0" y="0" width="680" height="85" rx="16" fill="#F0FDF4" stroke="#86BC25" stroke-width="2" />
+    <text x="340" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="900" fill="#15803D" text-anchor="middle">✓ 100% PANEL MANAGEMENT</text>
+    <text x="340" y="64" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700" fill="#166534" text-anchor="middle">Direct Interview Process – No 3rd Party Intermediaries</text>
+  </g>
+
+  <!-- Job Description (JD) -->
+  <g transform="translate(60, 550)">
+    <rect x="0" y="0" width="680" height="175" rx="16" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" />
+    <text x="25" y="35" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="900" fill="#0F172A">JOB DESCRIPTION (JD):</text>
+    <text x="25" y="68" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="500" fill="#334155" width="630">We are looking for enthusiastic and driven candidates for the role of</text>
+    <text x="25" y="94" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#027A48">Associate Analyst at Deloitte.</text>
+    <text x="25" y="122" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="500" fill="#334155">This role involves working on real-world projects, gaining hands-on experience in</text>
+    <text x="25" y="150" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="500" fill="#334155">testing and automation, and contributing to high-quality solutions for our clients.</text>
+  </g>
+
+  <!-- Why Join Deloitte? -->
+  <g transform="translate(60, 745)">
+    <text x="0" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="900" fill="#0F172A">Why Kickstart Your Career with Deloitte?</text>
+    
+    <g transform="translate(0, 45)">
+      <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#15803D">✓ World-class learning &amp; development</text>
+      <text x="350" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#15803D">✓ Gain exposure to global clients</text>
+      <text x="0" y="30" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#15803D">✓ Supportive and inclusive culture</text>
+      <text x="350" y="30" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#15803D">✓ High career growth opportunities</text>
+    </g>
+  </g>
+
+  <!-- Direct Application Footer -->
+  <g transform="translate(60, 875)">
+    <rect x="0" y="0" width="680" height="75" rx="18" fill="#0F172A" />
+    <text x="340" y="34" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="900" fill="#FFFFFF" text-anchor="middle">TalentRise Mentorship &amp; Direct Panel Slot Allocation</text>
+    <text x="340" y="58" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#86BC25" text-anchor="middle">Connect with Sandru Anudeep on WhatsApp to confirm slot</text>
+  </g>
+</svg>

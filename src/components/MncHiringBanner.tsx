@@ -80,11 +80,11 @@ export const MncHiringBanner: React.FC<MncHiringBannerProps> = () => {
                   {partner.hiringRoles}
                 </p>
                 <div className="mt-1 flex items-center justify-between text-[11px]">
-                  <span className="font-extrabold text-emerald-600">
-                    {partner.ctc}
+                  <span className="font-bold text-purple-700">
+                    {partner.workMode}
                   </span>
                   <span className="text-slate-400 font-medium">
-                    {partner.workMode}
+                    Direct Slot
                   </span>
                 </div>
               </div>

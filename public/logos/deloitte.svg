@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" fill="none">
+  <!-- Deloitte wordmark with iconic green dot -->
+  <g transform="translate(10, 20)">
+    <text x="10" y="60" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="52" font-weight="900" fill="#000000" letter-spacing="-1">Deloitte<tspan fill="#86BC25">.</tspan></text>
+  </g>
+</svg>

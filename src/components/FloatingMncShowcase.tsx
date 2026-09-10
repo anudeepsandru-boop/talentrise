@@ -30,16 +30,16 @@ export const FloatingMncShowcase: React.FC<FloatingMncShowcaseProps> = ({ onSele
             {/* Animated Logo Stack Preview */}
             <div className="flex -space-x-2 overflow-hidden py-0.5">
               <div className="w-7 h-7 rounded-lg bg-white border border-slate-200 shadow-xs flex items-center justify-center p-0.5">
+                <img src="/logos/virtusa.svg" alt="Virtusa" className="w-full h-full object-contain" />
+              </div>
+              <div className="w-7 h-7 rounded-lg bg-white border border-slate-200 shadow-xs flex items-center justify-center p-0.5">
+                <img src="/logos/deloitte.svg" alt="Deloitte" className="w-full h-full object-contain" />
+              </div>
+              <div className="w-7 h-7 rounded-lg bg-white border border-slate-200 shadow-xs flex items-center justify-center p-0.5">
                 <img src="/logos/cognizant.svg" alt="Cognizant" className="w-full h-full object-contain" />
               </div>
               <div className="w-7 h-7 rounded-lg bg-white border border-slate-200 shadow-xs flex items-center justify-center p-0.5">
                 <img src="/logos/capgemini.svg" alt="Capgemini" className="w-full h-full object-contain" />
-              </div>
-              <div className="w-7 h-7 rounded-lg bg-white border border-slate-200 shadow-xs flex items-center justify-center p-0.5">
-                <img src="/logos/wipro.svg" alt="Wipro" className="w-full h-full object-contain" />
-              </div>
-              <div className="w-7 h-7 rounded-lg bg-white border border-slate-200 shadow-xs flex items-center justify-center p-0.5">
-                <img src="/logos/teleperformance.svg" alt="Teleperformance" className="w-full h-full object-contain" />
               </div>
             </div>
 
@@ -51,7 +51,7 @@ export const FloatingMncShowcase: React.FC<FloatingMncShowcaseProps> = ({ onSele
                 </p>
               </div>
               <p className="text-[10px] text-purple-700 font-bold leading-tight">
-                8 Tier-1 Global Giants
+                {MNC_PARTNERS.length} Tier-1 Global Giants
               </p>
             </div>
 
@@ -142,7 +142,7 @@ export const FloatingMncShowcase: React.FC<FloatingMncShowcaseProps> = ({ onSele
             {/* Footer Action */}
             <div className="p-3 bg-slate-50 border-t border-slate-200 flex items-center justify-between text-xs">
               <span className="text-slate-600 text-[11px]">
-                8 Active Enterprise Drives
+                {MNC_PARTNERS.length} Active Enterprise Drives
               </span>
               <button
                 onClick={() => setIsOpen(false)}

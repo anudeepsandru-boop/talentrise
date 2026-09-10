@@ -10,7 +10,9 @@ import {
   Code2, 
   Cpu, 
   ShieldCheck,
-  Calendar
+  Calendar,
+  ImageIcon,
+  X
 } from 'lucide-react';
 import { JobDrive, PageType } from '../types';
 import { PageHeaderBanner } from './PageHeaderBanner';
@@ -29,6 +31,7 @@ export const ITDrivesPage: React.FC<ITDrivesPageProps> = ({
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedWorkMode, setSelectedWorkMode] = useState('All');
+  const [previewPosterJob, setPreviewPosterJob] = useState<JobDrive | null>(null);
 
   const itJobs = useMemo(() => {
     return jobs
@@ -58,7 +61,7 @@ export const ITDrivesPage: React.FC<ITDrivesPageProps> = ({
       <PageHeaderBanner
         currentPage="it"
         title="IT & Engineering Placement Drives"
-        subtitle="Exclusive client walk-in drives and direct interview schedules with Tier-1 technology leaders in Hyderabad — Capgemini CATIA, Associate Software Engineering, Enterprise Cloud & Specialized Engineering."
+        subtitle="Exclusive client walk-in drives and direct interview schedules with Tier-1 technology leaders — Virtusa Software Engineering, Deloitte Associate Analyst, Capgemini Engineering & Enterprise Tech."
         badgeText="Verified Enterprise Tech Pipeline"
         onNavigate={onNavigate}
       />
@@ -66,33 +69,33 @@ export const ITDrivesPage: React.FC<ITDrivesPageProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
         {/* Technology Highlights Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-          <div className="p-5 rounded-2xl bg-white border border-cyan-200/80 shadow-sm hover:shadow-md transition-all">
+          <div className="p-5 rounded-2xl bg-white border border-emerald-200/80 shadow-sm hover:shadow-md transition-all">
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-9 h-9 rounded-xl bg-cyan-50 text-cyan-700 flex items-center justify-center">
-                <Cpu className="w-5 h-5" />
+              <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
+                <Code2 className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-slate-950 font-extrabold text-sm">Capgemini CATIA V5</h3>
-                <span className="text-[11px] text-cyan-700 font-mono font-bold">Specialized Mechanical & CAD</span>
+                <h3 className="text-slate-950 font-extrabold text-sm">Virtusa Software Engineer</h3>
+                <span className="text-[11px] text-emerald-700 font-mono font-bold">2026 Batch B.Tech / BE</span>
               </div>
             </div>
             <p className="text-xs text-slate-600 leading-relaxed">
-              Direct client drive for B.Tech Mechanical & Automobile engineers with CATIA modeling skills and immediate joining in Hyderabad.
+              Direct recruitment drive for 2026 engineering graduates in Technology & Product Development in Hyderabad. Full-stack development & testing.
             </p>
           </div>
 
           <div className="p-5 rounded-2xl bg-white border border-purple-200/80 shadow-sm hover:shadow-md transition-all">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center">
-                <Code2 className="w-5 h-5" />
+                <Cpu className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-slate-950 font-extrabold text-sm">Associate Software Engineers</h3>
-                <span className="text-[11px] text-purple-700 font-mono font-bold">Full-Stack & Cloud Services</span>
+                <h3 className="text-slate-950 font-extrabold text-sm">Deloitte Mega Hiring</h3>
+                <span className="text-[11px] text-purple-700 font-mono font-bold">Associate Analyst • Bangalore</span>
               </div>
             </div>
             <p className="text-xs text-slate-600 leading-relaxed">
-              Fresher & experienced openings across Capgemini, Tier-1 IT services, and product partners with ₹3.50 – ₹14.00 LPA CTC packages.
+              100% Panel Management direct interview drive for BE / B.Tech (Freshers / 0-2 yrs) in Automation Testing & Quality Engineering.
             </p>
           </div>
 
@@ -229,6 +232,23 @@ export const ITDrivesPage: React.FC<ITDrivesPageProps> = ({
                       </div>
                     ))}
                   </div>
+
+                  {/* Optional Poster Image Attachment Preview */}
+                  {job.posterImage && (
+                    <div className="mb-4">
+                      <button
+                        type="button"
+                        onClick={() => setPreviewPosterJob(job)}
+                        className="w-full flex items-center justify-between p-2 rounded-xl bg-cyan-50/80 hover:bg-cyan-100/80 border border-cyan-200/80 text-xs text-cyan-800 transition-colors font-semibold"
+                      >
+                        <div className="flex items-center gap-2">
+                          <ImageIcon className="w-3.5 h-3.5 text-cyan-600" />
+                          <span>View Official Requirement Flyer</span>
+                        </div>
+                        <span className="text-[10px] text-cyan-700 underline font-mono font-bold">Enlarge ↗</span>
+                      </button>
+                    </div>
+                  )}
                 </div>
 
                 {/* Card Action Buttons */}
@@ -254,6 +274,46 @@ export const ITDrivesPage: React.FC<ITDrivesPageProps> = ({
           </div>
         )}
       </div>
+
+      {/* Poster Preview Modal */}
+      {previewPosterJob && previewPosterJob.posterImage && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm animate-in fade-in">
+          <div className="relative max-w-2xl w-full bg-white rounded-2xl border border-slate-200 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+            <div className="flex items-center justify-between p-4 border-b border-slate-200 bg-slate-50">
+              <div>
+                <h4 className="text-sm font-bold text-slate-950">{previewPosterJob.title}</h4>
+                <p className="text-xs text-slate-500">{previewPosterJob.companyOrProcess} • {previewPosterJob.location}</p>
+              </div>
+              <button
+                onClick={() => setPreviewPosterJob(null)}
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-900 hover:bg-slate-200"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="p-4 overflow-y-auto flex items-center justify-center bg-slate-100">
+              <img
+                src={previewPosterJob.posterImage}
+                alt="Requirement Poster"
+                className="max-h-[65vh] w-auto object-contain rounded-lg border border-slate-200 shadow-sm"
+              />
+            </div>
+            <div className="p-3 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+              <span className="text-xs text-slate-500 font-mono">Official Recruiter Flyer Attachment</span>
+              <button
+                onClick={() => {
+                  const job = previewPosterJob;
+                  setPreviewPosterJob(null);
+                  onOpenApplyModal(job);
+                }}
+                className="px-4 py-2 rounded-xl bg-slate-950 hover:bg-slate-800 text-white text-xs font-bold shadow-sm"
+              >
+                Apply for this Drive Now
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
