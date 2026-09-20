@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1150" width="100%" height="100%">
+  <defs>
+    <linearGradient id="tpBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="45%" stop-color="#F0FDF4" />
+      <stop offset="100%" stop-color="#E6F4F1" />
+    </linearGradient>
+    <linearGradient id="tpTeal" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#025E73" />
+      <stop offset="100%" stop-color="#008080" />
+    </linearGradient>
+    <linearGradient id="alertGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF385C" />
+      <stop offset="100%" stop-color="#E11D48" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="1150" fill="url(#tpBg)" />
+
+  <!-- Top Header / Logo -->
+  <g transform="translate(60, 45)">
+    <!-- TP Logo styling -->
+    <rect x="0" y="2" width="30" height="30" rx="6" fill="#8B2FC9" />
+    <path d="M 8 10 L 22 10 M 15 10 L 15 24" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+    <text x="38" y="16" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#64748B">Payroll Partner</text>
+    <text x="38" y="34" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="900" fill="#0F172A">Teleperformance</text>
+    <text x="38" y="46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="600" fill="#8B2FC9">each interaction matters</text>
+
+    <!-- Right Side Tag -->
+    <g transform="translate(500, 0)">
+      <text x="120" y="18" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-style="italic" font-weight="800" fill="#025E73" text-anchor="end">Great People</text>
+      <text x="120" y="34" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-style="italic" font-weight="800" fill="#025E73" text-anchor="end">Brighter Futures</text>
+    </g>
+  </g>
+
+  <!-- WE ARE HIRING! Header -->
+  <g transform="translate(60, 115)">
+    <rect x="0" y="0" width="280" height="42" rx="8" fill="#00A896" />
+    <text x="140" y="29" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">WE ARE HIRING!</text>
+    <text x="0" y="60" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="800" fill="#64748B" letter-spacing="2">JOIN A TEAM THAT MAKES A DIFFERENCE</text>
+  </g>
+
+  <!-- Big Title Box -->
+  <g transform="translate(60, 185)">
+    <rect x="0" y="0" width="680" height="95" rx="16" fill="url(#tpTeal)" />
+    <text x="30" y="45" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="900" fill="#FFFFFF">Customer Service</text>
+    <text x="30" y="80" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="900" fill="#A7F3D0">Associates</text>
+    <text x="440" y="55" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-style="italic" font-weight="700" fill="#FFFFFF">Good Conversations</text>
+    <text x="440" y="75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-style="italic" font-weight="700" fill="#FDE047">Brighter Tomorrow ✨</text>
+  </g>
+
+  <!-- 4-Block Key Info Grid -->
+  <g transform="translate(60, 295)">
+    <!-- Position -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="325" height="75" rx="12" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" />
+      <circle cx="35" cy="38" r="22" fill="#00A896" />
+      <text x="35" y="44" font-size="20" text-anchor="middle" fill="#FFFFFF">💼</text>
+      <text x="70" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="800" fill="#64748B">POSITION</text>
+      <text x="70" y="52" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="900" fill="#0F172A">Customer Service Associate</text>
+    </g>
+
+    <!-- Location -->
+    <g transform="translate(355, 0)">
+      <rect x="0" y="0" width="325" height="75" rx="12" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" />
+      <circle cx="35" cy="38" r="22" fill="#025E73" />
+      <text x="35" y="44" font-size="20" text-anchor="middle" fill="#FFFFFF">📍</text>
+      <text x="70" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="800" fill="#64748B">LOCATION</text>
+      <text x="70" y="52" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="900" fill="#0F172A">Hyderabad (Work From Office)</text>
+    </g>
+
+    <!-- Salary -->
+    <g transform="translate(0, 90)">
+      <rect x="0" y="0" width="325" height="85" rx="12" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" />
+      <circle cx="35" cy="42" r="22" fill="#059669" />
+      <text x="35" y="48" font-size="20" text-anchor="middle" fill="#FFFFFF">💰</text>
+      <text x="70" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="800" fill="#64748B">SALARY</text>
+      <text x="70" y="48" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="900" fill="#059669">Experienced: upto ₹3.8 LPA</text>
+      <text x="70" y="68" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" fill="#64748B">(Depend upon last CTC)</text>
+    </g>
+
+    <!-- Process Duration -->
+    <g transform="translate(355, 90)">
+      <rect x="0" y="0" width="325" height="85" rx="12" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="1.5" />
+      <text x="25" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#991B1B">PROCESS DURATION</text>
+      <rect x="25" y="38" width="275" height="36" rx="8" fill="url(#alertGrad)" />
+      <text x="162" y="62" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">⚡ 10 WORKING DAYS</text>
+    </g>
+  </g>
+
+  <!-- Eligibility & Skills -->
+  <g transform="translate(60, 485)">
+    <!-- Eligibility -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="325" height="150" rx="12" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" />
+      <rect x="0" y="0" width="325" height="34" rx="12" fill="#025E73" />
+      <text x="15" y="23" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" fill="#FFFFFF">👥 Eligibility</text>
+      <text x="15" y="60" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#0F172A">• 12th Pass / Under Graduate /</text>
+      <text x="25" y="78" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#0F172A">Graduate / Post Graduate</text>
+      <text x="15" y="105" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#025E73">• Passout: 2020 – 2025</text>
+      <text x="15" y="130" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#E11D48">• 1+ years of experience</text>
+    </g>
+
+    <!-- Skills -->
+    <g transform="translate(355, 0)">
+      <rect x="0" y="0" width="325" height="150" rx="12" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" />
+      <rect x="0" y="0" width="325" height="34" rx="12" fill="#025E73" />
+      <text x="15" y="23" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" fill="#FFFFFF">⚙️ Skills</text>
+      <text x="15" y="65" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">• Client Email Support</text>
+      <text x="15" y="95" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">• Chat &amp; Compliance Management</text>
+      <text x="15" y="125" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">• Excellent Communication</text>
+    </g>
+  </g>
+
+  <!-- Job Details & Mandatory PF / BGV Section -->
+  <g transform="translate(60, 650)">
+    <!-- Job Details -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="325" height="175" rx="12" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" />
+      <rect x="0" y="0" width="325" height="34" rx="12" fill="#0F172A" />
+      <text x="15" y="23" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" fill="#FFFFFF">📋 Job Details</text>
+      <text x="15" y="65" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">• 5 Working Days</text>
+      <text x="15" y="92" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">• Rotational 24x7 Shifts</text>
+      <text x="15" y="120" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0F172A">• 2 Rotational Week-Offs</text>
+      <text x="15" y="148" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#025E73">• Work From Office – Hyderabad</text>
+    </g>
+
+    <!-- Mandatory PF & BGV Alert Box -->
+    <g transform="translate(355, 0)">
+      <rect x="0" y="0" width="325" height="175" rx="12" fill="#FFF1F2" stroke="#FDA4AF" stroke-width="1.5" />
+      <rect x="0" y="0" width="325" height="34" rx="12" fill="#E11D48" />
+      <text x="15" y="23" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="900" fill="#FFFFFF">⚠️ Mandatory PF &amp; BGV Notice</text>
+      <text x="15" y="62" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="800" fill="#991B1B">✓ PF History is mandatory</text>
+      <text x="15" y="85" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#0F172A">✓ All work related documents mandatory</text>
+      <text x="25" y="102" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#0F172A">as per the PF History</text>
+      <text x="15" y="125" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#0F172A">✓ Every document ready in prior</text>
+      <text x="15" y="152" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="800" fill="#DC2626">✓ If BGV is not cleared, not responsible</text>
+    </g>
+  </g>
+
+  <!-- Apply via TalentRise / TPO Strip -->
+  <g transform="translate(60, 840)">
+    <rect x="0" y="0" width="680" height="80" rx="14" fill="#025E73" />
+    <circle cx="45" cy="40" r="22" fill="#00A896" />
+    <text x="45" y="47" font-size="22" text-anchor="middle" fill="#FFFFFF">📞</text>
+    <text x="80" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="900" fill="#FFFFFF">Interested candidates, contact your respective TPO or Vendor to apply</text>
+    <text x="80" y="58" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#A7F3D0">TalentRise Official Vendor Partnership • Connect with Sandru Anudeep on WhatsApp</text>
+  </g>
+
+  <!-- Hyderabad Skyline / Slogan Banner -->
+  <g transform="translate(60, 935)">
+    <rect x="0" y="0" width="680" height="60" rx="12" fill="#0F172A" />
+    <text x="340" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="900" fill="#38BDF8" text-anchor="middle">Hyderabad Lets Grow Together • Teleperformance Fast 10 Days Hiring</text>
+  </g>
+</svg>

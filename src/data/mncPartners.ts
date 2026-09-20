@@ -143,4 +143,17 @@ export const MNC_PARTNERS: MncPartner[] = [
     bgLight: 'bg-lime-50/70',
     borderLight: 'border-lime-200/80',
   },
+  {
+    id: 'tech_mahindra',
+    name: 'Tech Mahindra',
+    shortName: 'Tech Mahindra',
+    logo: '/logos/tech_mahindra.svg',
+    badge: 'Urgent Voice Hiring',
+    hiringRoles: 'Associate Customer Support (Voice), Operations',
+    ctc: '₹2.40 - ₹3.00 LPA',
+    workMode: 'Hyderabad On-Site',
+    accentColor: '#E31837',
+    bgLight: 'bg-red-50/70',
+    borderLight: 'border-red-200/80',
+  },
 ];

@@ -87,33 +87,33 @@ export const NonITDrivesPage: React.FC<NonITDrivesPageProps> = ({
             </p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-white border border-pink-200/80 shadow-sm hover:shadow-md transition-all">
+          <div className="p-5 rounded-2xl bg-white border border-red-200/90 shadow-sm hover:shadow-md transition-all">
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-9 h-9 rounded-xl bg-pink-50 text-pink-700 flex items-center justify-center">
-                <Plane className="w-5 h-5" />
+              <div className="w-9 h-9 rounded-xl bg-red-50 text-red-600 flex items-center justify-center">
+                <Headphones className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-slate-950 font-extrabold text-sm">Teleperformance Travel</h3>
-                <span className="text-[11px] text-pink-700 font-mono font-bold">Freshers & Exp • Up to ₹4.20 LPA</span>
+                <h3 className="text-slate-950 font-extrabold text-sm">Tech Mahindra Voice Support</h3>
+                <span className="text-[11px] text-red-600 font-mono font-bold">Urgent • English & Hindi</span>
               </div>
             </div>
             <p className="text-xs text-slate-600 leading-relaxed">
-              Dedicated travel ticketing, itinerary coordination, and compliance desk with 2-way home cabs and fast turnaround.
+              Immediate walk-in drives for Freshers & Exp in Hyderabad. Voice customer care, SVAR 48+ cutoff, 100% Free placement.
             </p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-white border border-cyan-200/80 shadow-sm hover:shadow-md transition-all">
+          <div className="p-5 rounded-2xl bg-white border border-emerald-200/90 shadow-sm hover:shadow-md transition-all">
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-9 h-9 rounded-xl bg-cyan-50 text-cyan-700 flex items-center justify-center">
+              <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
                 <ShieldCheck className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-slate-950 font-extrabold text-sm">Google Content Moderation</h3>
-                <span className="text-[11px] text-cyan-700 font-mono font-bold">Concentrix & Cognizant Partners</span>
+                <h3 className="text-slate-950 font-extrabold text-sm">Teleperformance CSA</h3>
+                <span className="text-[11px] text-emerald-700 font-mono font-bold">Fast 10 Working Days Process</span>
               </div>
             </div>
             <p className="text-xs text-slate-600 leading-relaxed">
-              Tier-1 client processes in Hyderabad for digital safety, creator moderation, and geospatial mapping workflows.
+              Client email, chat, and compliance management in Hyderabad. 1+ yrs experience, PF history mandatory, rapid offer rollout.
             </p>
           </div>
 

@@ -21,6 +21,14 @@ export const WhatsAppWidget: React.FC = () => {
       text: `Hello ${FOUNDER_NAME} Sir, I want to apply for the Deloitte Mega Hiring Drive (TR1022) for Associate Analyst in Bangalore. Please guide me with panel management and slot allocation.`,
     },
     {
+      label: '⚡ Apply for Tech Mahindra Voice Support (Hyderabad)',
+      text: `Hello ${FOUNDER_NAME} Sir, I want to apply for the Tech Mahindra Associate Customer Support – Voice Drive (TR1023) in Hyderabad. I am fluent in English & Hindi. Please guide me with direct screening.`,
+    },
+    {
+      label: '⚡ Apply for Teleperformance CSA (10 Days Hiring)',
+      text: `Hello ${FOUNDER_NAME} Sir, I want to apply for Teleperformance Customer Service Associate (TR1024) in Hyderabad (10 Working Days Process). I have 1+ years experience with valid PF records. Please guide me.`,
+    },
+    {
       label: '💼 Apply for Cognizant SME Mapping Walk-in',
       text: `Hello ${FOUNDER_NAME} Sir, I want to apply for the Cognizant SME Mapping Walk-in Drive (TR1020) at Kokapet, Hyderabad. I have 3.5+ years relevant experience. Please guide me with direct panel screening.`,
     },
